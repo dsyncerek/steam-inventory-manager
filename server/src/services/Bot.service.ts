@@ -33,7 +33,7 @@ class BotService implements BotServiceInterface {
   public createBot = async (data: BotCreateDto): Promise<void> => {
     try {
       const bot = new Bot({ ...data });
-      await this.botRepository.save(bot);
+      await this.botRepository.insert(bot);
     } catch (e) {
       throw new EntityCreateException(e.message);
     }

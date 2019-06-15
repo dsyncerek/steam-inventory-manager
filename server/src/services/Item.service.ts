@@ -33,7 +33,7 @@ class ItemService implements ItemServiceInterface {
   public createItem = async (data: ItemCreateDto): Promise<void> => {
     try {
       const item = new Item({ ...data });
-      await this.itemRepository.save(item);
+      await this.itemRepository.insert(item);
     } catch (e) {
       throw new EntityCreateException(e.message);
     }
