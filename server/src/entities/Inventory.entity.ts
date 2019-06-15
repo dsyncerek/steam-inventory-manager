@@ -13,11 +13,11 @@ class Inventory {
   @Column({ default: 0 })
   worth: number;
 
-  @OneToOne(() => Bot, bot => bot.inventory)
+  @OneToOne(() => Bot, bot => bot.inventory, { nullable: false, onDelete: "CASCADE" })
   @JoinColumn()
   bot: Bot;
 
-  @OneToMany(() => InventoryItem, item => item.inventory, { eager: true, cascade: true })
+  @OneToMany(() => InventoryItem, item => item.inventory, { cascade: true })
   items: InventoryItem[];
 
   constructor(partial: Partial<Inventory> = {}) {

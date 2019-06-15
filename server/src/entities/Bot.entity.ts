@@ -25,7 +25,7 @@ class Bot {
   @Column({ default: false })
   isOnline: boolean;
 
-  @OneToOne(() => Inventory, inv => inv.bot)
+  @OneToOne(() => Inventory, inv => inv.bot, { cascade: true, eager: true })
   inventory: Inventory;
 
   constructor(partial: Partial<Bot> = {}) {
