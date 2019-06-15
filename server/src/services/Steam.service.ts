@@ -25,27 +25,21 @@ class SteamService {
       const response = await fetch(url);
       const { assets, descriptions } = await response.json();
 
-      const inventory = new Inventory();
-
-      inventory.items = [];
-      inventory.count = 0;
-      inventory.worth = 0;
+      const inventory = new Inventory({ items: [], count: 0, worth: 0 });
 
       descriptions
         .filter(description => description.marketable)
         .forEach(description => {
-          const item = new Item();
-          const inventoryItem = new InventoryItem();
-
-          item.classId = description.classid;
-          item.name = description.market_hash_name;
-          item.appId = description.appid;
-          item.icon = description.icon_url_large || description.icon_url;
-          item.contextId = 2;
-          item.price = 0;
-
-          inventoryItem.item = item;
-          inventoryItem.quantity = 10;
+          const inventoryItem = new InventoryItem({
+            quantity: 4,
+            item: new Item({
+              classId: description.classId,
+              name: description.market_hash_name,
+              appId: description.appid,
+              icon: description.icon_url_large || description.icon_url,
+              contextId: 2,
+            }),
+          });
 
           inventory.items.push(inventoryItem);
           inventory.count += inventoryItem.quantity;

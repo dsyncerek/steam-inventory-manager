@@ -28,6 +28,10 @@ class Item {
 
   @OneToMany(() => InventoryItem, inventoryItem => inventoryItem.item)
   inventoryItems: InventoryItem[];
+
+  constructor(partial: Partial<Item> = {}) {
+    Object.assign(this, partial);
+  }
 }
 
 export default Item;

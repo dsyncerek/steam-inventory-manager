@@ -19,6 +19,10 @@ class Inventory {
 
   @OneToMany(() => InventoryItem, item => item.inventory, { eager: true, cascade: true })
   items: InventoryItem[];
+
+  constructor(partial: Partial<Inventory> = {}) {
+    Object.assign(this, partial);
+  }
 }
 
 export default Inventory;

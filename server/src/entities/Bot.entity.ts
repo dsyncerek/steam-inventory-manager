@@ -27,6 +27,10 @@ class Bot {
 
   @OneToOne(() => Inventory, inv => inv.bot)
   inventory: Inventory;
+
+  constructor(partial: Partial<Bot> = {}) {
+    Object.assign(this, partial);
+  }
 }
 
 export default Bot;

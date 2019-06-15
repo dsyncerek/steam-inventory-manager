@@ -34,8 +34,8 @@ class BotService implements BotServiceInterface {
 
   public createBot = async (data: BotCreateDto): Promise<void> => {
     try {
-      const inventory = this.inventoryRepository.create({ count: 0, worth: 0 });
-      const bot = this.botRepository.create({ ...data, inventory });
+      const inventory = new Inventory({ items: [], count: 0, worth: 0 });
+      const bot = new Bot({ ...data, inventory });
       await this.botRepository.save(bot);
     } catch (e) {
       throw new EntityCreateException(e.message);
