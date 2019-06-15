@@ -1,13 +1,9 @@
-import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, OneToMany, PrimaryColumn } from 'typeorm';
 import InventoryItem from './InventoryItem.entity';
 
 @Entity()
 class Item {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
-
-  @Column()
-  @Index({ unique: true })
+  @PrimaryColumn()
   classId: string;
 
   @Column()

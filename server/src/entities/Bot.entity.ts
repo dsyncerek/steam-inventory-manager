@@ -1,13 +1,9 @@
-import { AfterLoad, Column, Entity, Index, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { AfterLoad, Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
 import Inventory from './Inventory.entity';
 
 @Entity()
 class Bot {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
-
-  @Column()
-  @Index({ unique: true })
+  @PrimaryColumn()
   steamId: string;
 
   @Column({ default: "" })
