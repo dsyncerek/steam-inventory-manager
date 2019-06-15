@@ -24,7 +24,7 @@ class ItemService implements ItemServiceInterface {
 
   public getItemByName = async (name: string): Promise<Item> => {
     try {
-      return await this.itemRepository.findOneOrFail({ where: { name } });
+      return await this.itemRepository.findOneOrFail({ name });
     } catch (e) {
       throw new EntityGetException(e.message);
     }

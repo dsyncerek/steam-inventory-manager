@@ -18,7 +18,6 @@ interface BotServiceInterface {
 
 class BotService implements BotServiceInterface {
   private botRepository = getRepository(Bot);
-  private inventoryRepository = getRepository(Inventory);
 
   public getAllBots = async (): Promise<Bot[]> => {
     return await this.botRepository.find();
@@ -26,7 +25,7 @@ class BotService implements BotServiceInterface {
 
   public getBotBySteamId = async (steamId: string): Promise<Bot> => {
     try {
-      return await this.botRepository.findOneOrFail({ where: { steamId } });
+      return await this.botRepository.findOneOrFail({ steamId });
     } catch (e) {
       throw new EntityGetException(e.message);
     }
