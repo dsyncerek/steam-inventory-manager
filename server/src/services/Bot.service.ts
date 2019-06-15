@@ -2,7 +2,6 @@ import { getRepository } from 'typeorm';
 import BotCreateDto from '../dtos/BotCreate.dto';
 import BotUpdateDto from '../dtos/BotUpdate.dto';
 import Bot from '../entities/Bot.entity';
-import Inventory from '../entities/Inventory.entity';
 import EntityCreateException from '../exceptions/EntityCreateException';
 import EntityDeleteException from '../exceptions/EntityDeleteException';
 import EntityGetException from '../exceptions/EntityGetException';
@@ -33,8 +32,7 @@ class BotService implements BotServiceInterface {
 
   public createBot = async (data: BotCreateDto): Promise<void> => {
     try {
-      const inventory = new Inventory({ items: [], count: 0, worth: 0 });
-      const bot = new Bot({ ...data, inventory });
+      const bot = new Bot({ ...data });
       await this.botRepository.save(bot);
     } catch (e) {
       throw new EntityCreateException(e.message);

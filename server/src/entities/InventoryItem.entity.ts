@@ -7,13 +7,13 @@ class InventoryItem {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ default: 1 })
   quantity: number;
 
   @ManyToOne(() => Inventory, inv => inv.items, { nullable: false, onDelete: "CASCADE" })
   inventory: Inventory;
 
-  @ManyToOne(() => Item, item => item.inventoryItems, { eager: true, cascade: true, nullable: false, onDelete: "CASCADE" })
+  @ManyToOne(() => Item, item => item.invItems, { eager: true, cascade: true, nullable: false, onDelete: "CASCADE" })
   item: Item;
 
   constructor(partial: Partial<InventoryItem> = {}) {

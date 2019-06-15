@@ -20,14 +20,14 @@ class Item {
   @Column()
   contextId: number;
 
-  @Column()
+  @Column({ default: "" })
   icon: string;
 
   @Column({ default: 0 })
   price: number;
 
-  @OneToMany(() => InventoryItem, inventoryItem => inventoryItem.item)
-  inventoryItems: InventoryItem[];
+  @OneToMany(() => InventoryItem, invItem => invItem.item)
+  invItems: InventoryItem[];
 
   constructor(partial: Partial<Item> = {}) {
     Object.assign(this, partial);

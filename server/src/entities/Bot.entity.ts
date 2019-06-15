@@ -1,4 +1,4 @@
-import { Column, Entity, Index, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { AfterLoad, Column, Entity, Index, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Inventory from './Inventory.entity';
 
 @Entity()
@@ -30,6 +30,16 @@ class Bot {
 
   constructor(partial: Partial<Bot> = {}) {
     Object.assign(this, partial);
+  }
+
+  @AfterLoad()
+  setInventory() {
+    if (this.inventory === null)
+      this.inventory = new Inventory({
+        items: [],
+        worth: 0,
+        count: 0,
+      });
   }
 }
 
