@@ -2,7 +2,6 @@ version: "3"
 
 services:
   postgres:
-    container_name: postgres
     image: postgres:latest
     ports:
       - 5432:5432
@@ -10,14 +9,11 @@ services:
       - /data/postgres:/data/postgres
     env_file:
       - .env
-
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
+      
+  adminer:
+    image: adminer
     ports:
-      - 8080:80
-    volumes:
-      - /data/pgadmin:/root/.pgadmin
+      - 8080:8080
     env_file:
       - .env
     depends_on:
