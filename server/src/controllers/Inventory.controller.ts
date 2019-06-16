@@ -1,10 +1,15 @@
 import { NextFunction, Request, Response, Router } from 'express';
-import Controller from '../interfaces/Controller.interface';
-import InventoryService from '../services/Inventory.service';
+import { inject, injectable } from 'inversify';
+import { TYPES } from '../constants/types';
+import ControllerInterface from '../interfaces/Controller.interface';
+import { InventoryServiceInterface } from '../services/Inventory.service';
 
-class InventoryController implements Controller {
+@injectable()
+class InventoryController implements ControllerInterface {
   router = Router();
-  inventoryService = new InventoryService();
+
+  @inject(TYPES.InventoryServiceInterface)
+  private inventoryService: InventoryServiceInterface;
 
   constructor() {
     this.initRoutes();

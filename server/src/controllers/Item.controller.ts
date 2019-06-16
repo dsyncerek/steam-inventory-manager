@@ -1,13 +1,18 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import { inject, injectable } from 'inversify';
+import { TYPES } from '../constants/types';
 import ItemCreateDto from '../dtos/ItemCreate.dto';
 import ItemUpdateDto from '../dtos/ItemUpdate.dto';
-import Controller from '../interfaces/Controller.interface';
+import ControllerInterface from '../interfaces/Controller.interface';
 import validationMiddleware from '../middlewares/validation.middleware';
-import ItemService from '../services/Item.service';
+import { ItemServiceInterface } from '../services/Item.service';
 
-class ItemController implements Controller {
+@injectable()
+class ItemController implements ControllerInterface {
   router = Router();
-  itemService = new ItemService();
+
+  @inject(TYPES.ItemServiceInterface)
+  private itemService: ItemServiceInterface;
 
   constructor() {
     this.initRoutes();

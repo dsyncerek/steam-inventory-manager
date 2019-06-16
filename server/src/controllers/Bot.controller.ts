@@ -1,13 +1,18 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import { inject, injectable } from 'inversify';
+import { TYPES } from '../constants/types';
 import BotCreateDto from '../dtos/BotCreate.dto';
 import BotUpdateDto from '../dtos/BotUpdate.dto';
-import Controller from '../interfaces/Controller.interface';
+import ControllerInterface from '../interfaces/Controller.interface';
 import validationMiddleware from '../middlewares/validation.middleware';
-import BotService from '../services/Bot.service';
+import { BotServiceInterface } from '../services/Bot.service';
 
-class BotController implements Controller {
+@injectable()
+class BotController implements ControllerInterface {
   router = Router();
-  botService = new BotService();
+
+  @inject(TYPES.BotServiceInterface)
+  private botService: BotServiceInterface;
 
   constructor() {
     this.initRoutes();
