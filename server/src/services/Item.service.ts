@@ -1,4 +1,6 @@
-import { getRepository } from 'typeorm';
+import { inject, injectable } from 'inversify';
+import { Repository } from 'typeorm';
+import { TYPES } from '../constants/types';
 import ItemCreateDto from '../dtos/ItemCreate.dto';
 import ItemUpdateDto from '../dtos/ItemUpdate.dto';
 import Item from '../entities/Item.entity';
@@ -15,8 +17,10 @@ interface ItemServiceInterface {
   deleteItemByName(name: string): Promise<void>;
 }
 
+@injectable()
 class ItemService implements ItemServiceInterface {
-  private itemRepository = getRepository(Item);
+  @inject(TYPES.ItemRepository)
+  private itemRepository: Repository<Item>;
 
   public getAllItems = async (): Promise<Item[]> => {
     return await this.itemRepository.find();
@@ -56,4 +60,5 @@ class ItemService implements ItemServiceInterface {
   };
 }
 
+export { ItemServiceInterface };
 export default ItemService;
