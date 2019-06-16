@@ -1,9 +1,9 @@
 class BaseException extends Error {
   public message: string;
   public status: number;
-  public type = "error";
+  public type = 'error';
 
-  constructor(message = "something went wrong", status = 500) {
+  constructor(message = 'something went wrong', status = 500) {
     super(message);
 
     this.message = message;

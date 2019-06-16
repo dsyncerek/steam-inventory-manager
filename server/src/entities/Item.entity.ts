@@ -16,7 +16,7 @@ class Item {
   @Column()
   contextId: number;
 
-  @Column({ default: "" })
+  @Column({ default: '' })
   icon: string;
 
   @Column({ default: 0 })

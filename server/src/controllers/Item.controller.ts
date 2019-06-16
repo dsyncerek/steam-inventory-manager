@@ -1,74 +1,44 @@
-import { NextFunction, Request, Response, Router } from 'express';
-import { inject, injectable } from 'inversify';
+import { inject } from 'inversify';
+import { BaseHttpController, controller, httpMethod, requestBody, requestParam } from 'inversify-express-utils';
 import { TYPES } from '../constants/types';
 import ItemCreateDto from '../dtos/ItemCreate.dto';
 import ItemUpdateDto from '../dtos/ItemUpdate.dto';
-import ControllerInterface from '../interfaces/Controller.interface';
 import validationMiddleware from '../middlewares/validation.middleware';
 import { ItemServiceInterface } from '../services/Item.service';
 
-@injectable()
-class ItemController implements ControllerInterface {
-  router = Router();
-
+@controller('/item')
+class ItemController extends BaseHttpController {
   @inject(TYPES.ItemServiceInterface)
   private itemService: ItemServiceInterface;
 
-  constructor() {
-    this.initRoutes();
-  };
-
-  private initRoutes() {
-    this.router.get('/item', this.getAllItems);
-    this.router.get('/item/:name', this.getItem);
-    this.router.post('/item', validationMiddleware(ItemCreateDto), this.createItem);
-    this.router.put('/item/:name', validationMiddleware(ItemUpdateDto), this.updateItem);
-    this.router.delete('/item/:name', this.deleteItem);
-  };
-
-  private getAllItems = async (request: Request, response: Response, next: NextFunction) => {
+  @httpMethod('get', '/')
+  private async getAllItems() {
     const items = await this.itemService.getAllItems();
-    response.send(items);
+    return this.json(items);
   };
 
-  private getItem = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const { name } = request.params;
-      const item = await this.itemService.getItemByName(name);
-      response.send(item);
-    } catch (e) {
-      next(e);
-    }
+  @httpMethod('get', '/:name')
+  private async getItem(@requestParam('name') name: string) {
+    const item = await this.itemService.getItemByName(name);
+    return this.json(item);
   };
 
-  private createItem = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const { body } = request;
-      await this.itemService.createItem(body);
-      response.sendStatus(200);
-    } catch (e) {
-      next(e);
-    }
+  @httpMethod('post', '/', validationMiddleware(ItemCreateDto))
+  private async createItem(@requestBody() body: ItemCreateDto) {
+    await this.itemService.createItem(body);
+    return this.ok();
   };
 
-  private updateItem = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const { body, params: { name } } = request;
-      await this.itemService.updateItemByName(name, body);
-      response.sendStatus(200);
-    } catch (e) {
-      next(e);
-    }
+  @httpMethod('put', '/:name', validationMiddleware(ItemUpdateDto))
+  private async updateItem(@requestParam('name') name: string, @requestBody() body: ItemUpdateDto) {
+    await this.itemService.updateItemByName(name, body);
+    return this.ok();
   };
 
-  private deleteItem = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const { name } = request.params;
-      await this.itemService.deleteItemByName(name);
-      response.sendStatus(200);
-    } catch (e) {
-      next(e);
-    }
+  @httpMethod('delete', '/:name')
+  private async deleteItem(@requestParam('name') name: string) {
+    await this.itemService.deleteItemByName(name);
+    return this.ok();
   };
 }
 

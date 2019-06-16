@@ -18,7 +18,7 @@ class SteamService {
     }
   };
 
-  public getInventoryBySteamId = async (steamId: string, appId = 730, contextId = 2, lang = "en"): Promise<Inventory> => {
+  public getInventoryBySteamId = async (steamId: string, appId = 730, contextId = 2, lang = 'en'): Promise<Inventory> => {
     const url = `http://steamcommunity.com/inventory/${steamId}/${appId}/${contextId}?l=${lang}`;
 
     try {
@@ -50,7 +50,7 @@ class SteamService {
     } catch (e) {
       throw new SteamException(e.message);
     }
-  }
+  };
 }
 
 export default SteamService;

@@ -1,74 +1,44 @@
-import { NextFunction, Request, Response, Router } from 'express';
-import { inject, injectable } from 'inversify';
+import { inject } from 'inversify';
+import { BaseHttpController, controller, httpMethod, requestBody, requestParam } from 'inversify-express-utils';
 import { TYPES } from '../constants/types';
 import BotCreateDto from '../dtos/BotCreate.dto';
 import BotUpdateDto from '../dtos/BotUpdate.dto';
-import ControllerInterface from '../interfaces/Controller.interface';
 import validationMiddleware from '../middlewares/validation.middleware';
 import { BotServiceInterface } from '../services/Bot.service';
 
-@injectable()
-class BotController implements ControllerInterface {
-  router = Router();
-
+@controller('/bot')
+class BotController extends BaseHttpController {
   @inject(TYPES.BotServiceInterface)
   private botService: BotServiceInterface;
 
-  constructor() {
-    this.initRoutes();
-  }
-
-  private initRoutes() {
-    this.router.get('/bot', this.getAllBots);
-    this.router.get('/bot/:steamId', this.getBot);
-    this.router.post('/bot', validationMiddleware(BotCreateDto), this.createBot);
-    this.router.put('/bot/:steamId', validationMiddleware(BotUpdateDto), this.updateBot);
-    this.router.delete('/bot/:steamId', this.deleteBot);
-  }
-
-  private getAllBots = async (request: Request, response: Response, next: NextFunction) => {
+  @httpMethod('get', '/')
+  private async getAllBots() {
     const bots = await this.botService.getAllBots();
-    response.send(bots);
+    return this.json(bots);
   };
 
-  private getBot = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const { steamId } = request.params;
-      const bot = await this.botService.getBotBySteamId(steamId);
-      response.send(bot);
-    } catch (e) {
-      next(e);
-    }
+  @httpMethod('get', '/:steamId')
+  private async getBot(@requestParam('steamId') steamId: string) {
+    const bot = await this.botService.getBotBySteamId(steamId);
+    return this.json(bot);
   };
 
-  private createBot = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const { body } = request;
-      await this.botService.createBot(body);
-      response.sendStatus(200);
-    } catch (e) {
-      next(e);
-    }
+  @httpMethod('post', '/', validationMiddleware(BotCreateDto))
+  private async createBot(@requestBody() body: BotCreateDto) {
+    await this.botService.createBot(body);
+    return this.ok();
   };
 
-  private updateBot = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const { body, params: { steamId } } = request;
-      await this.botService.updateBotBySteamId(steamId, body);
-      response.sendStatus(200);
-    } catch (e) {
-      next(e);
-    }
+  @httpMethod('put', '/:steamId', validationMiddleware(BotUpdateDto))
+  private async updateBot(@requestParam('steamId') steamId: string, @requestBody() body: BotCreateDto) {
+    await this.botService.updateBotBySteamId(steamId, body);
+    return this.ok();
   };
 
-  private deleteBot = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const { steamId } = request.params;
-      await this.botService.deleteBotBySteamId(steamId);
-      response.sendStatus(200);
-    } catch (e) {
-      next(e);
-    }
+  @httpMethod('delete', '/:steamId')
+  private async deleteBot(@requestParam('steamId') steamId: string) {
+    await this.botService.deleteBotBySteamId(steamId);
+    return this.ok();
   };
 }
 

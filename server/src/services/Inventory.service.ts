@@ -2,11 +2,8 @@ import { inject, injectable } from 'inversify';
 import { Repository } from 'typeorm';
 import { TYPES } from '../constants/types';
 import Inventory from '../entities/Inventory.entity';
-import InventoryItem from '../entities/InventoryItem.entity';
-import Item from '../entities/Item.entity';
 import EntityGetException from '../exceptions/EntityGetException';
 import EntityUpdateException from '../exceptions/EntityUpdateException';
-import SteamException from '../exceptions/SteamException';
 
 interface InventoryServiceInterface {
   getInventoryBySteamId(steamId: string): Promise<Inventory>;
@@ -31,7 +28,6 @@ class InventoryService implements InventoryServiceInterface {
       // todo
       return new Inventory();
     } catch (e) {
-      console.log(e);
       throw new EntityUpdateException(e.message);
     }
   };

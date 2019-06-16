@@ -4,7 +4,7 @@ import InventoryItem from './InventoryItem.entity';
 
 @Entity()
 class Inventory {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ default: 0 })
@@ -13,7 +13,7 @@ class Inventory {
   @Column({ default: 0 })
   worth: number;
 
-  @OneToOne(() => Bot, bot => bot.inventory, { nullable: false, onDelete: "CASCADE" })
+  @OneToOne(() => Bot, bot => bot.inventory, { nullable: false, onDelete: 'CASCADE' })
   @JoinColumn()
   bot: Bot;
 

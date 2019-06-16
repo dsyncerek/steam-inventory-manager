@@ -6,13 +6,13 @@ class Bot {
   @PrimaryColumn()
   steamId: string;
 
-  @Column({ default: "" })
+  @Column({ default: '' })
   name: string;
 
-  @Column({ default: "" })
+  @Column({ default: '' })
   login: string;
 
-  @Column({ default: "" })
+  @Column({ default: '' })
   tradeLink: string;
 
   @Column({ default: false })

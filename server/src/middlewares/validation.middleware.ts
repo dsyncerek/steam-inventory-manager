@@ -1,4 +1,4 @@
-import { transformAndValidate } from "class-transformer-validator";
+import { transformAndValidate } from 'class-transformer-validator';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import ValidationException from '../exceptions/ValidationException';
 
