@@ -1,4 +1,6 @@
-import { getRepository } from 'typeorm';
+import { inject, injectable } from 'inversify';
+import { Repository } from 'typeorm';
+import { TYPES } from '../constants/types';
 import BotCreateDto from '../dtos/BotCreate.dto';
 import BotUpdateDto from '../dtos/BotUpdate.dto';
 import Bot from '../entities/Bot.entity';
@@ -15,8 +17,10 @@ interface BotServiceInterface {
   deleteBotBySteamId(steamId: string): Promise<void>;
 }
 
+@injectable()
 class BotService implements BotServiceInterface {
-  private botRepository = getRepository(Bot);
+  @inject(TYPES.BotRepository)
+  private botRepository: Repository<Bot>;
 
   public getAllBots = async (): Promise<Bot[]> => {
     return await this.botRepository.find();
@@ -56,4 +60,5 @@ class BotService implements BotServiceInterface {
   };
 }
 
+export { BotServiceInterface };
 export default BotService;
