@@ -6,11 +6,7 @@ function errorMiddleware(error: BaseException, request: Request, response: Respo
 
   response
     .status(status)
-    .send({
-      type,
-      message,
-      status,
-    });
+    .send({ type, message, status });
 }
 
 export default errorMiddleware;

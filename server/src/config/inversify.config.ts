@@ -1,4 +1,4 @@
-import { Container } from "inversify";
+import { Container } from 'inversify';
 import { interfaces } from 'inversify-express-utils';
 import { getRepository, Repository } from 'typeorm';
 import { TYPES } from '../constants/types';

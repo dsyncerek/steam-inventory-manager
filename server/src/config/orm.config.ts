@@ -1,8 +1,8 @@
 import { ConnectionOptions } from 'typeorm';
-import Bot from "../entities/Bot.entity";
+import Bot from '../entities/Bot.entity';
 import Inventory from '../entities/Inventory.entity';
-import InventoryItem from "../entities/InventoryItem.entity";
-import Item from "../entities/Item.entity";
+import InventoryItem from '../entities/InventoryItem.entity';
+import Item from '../entities/Item.entity';
 
 const ormConfig: ConnectionOptions = {
   type: 'postgres',
