@@ -9,5 +9,4 @@ import { Bot } from './entity/bot.entity';
   providers: [BotService],
   controllers: [BotController],
 })
-export class BotModule {
-}
+export class BotModule {}

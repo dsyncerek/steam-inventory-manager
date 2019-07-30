@@ -25,5 +25,4 @@ const jwtConfig: JwtModuleOptions = {
   ],
   controllers: [AuthController],
 })
-export class AuthModule {
-}
+export class AuthModule {}

@@ -7,7 +7,7 @@ export function getTokenFromCookie(req: Request): string {
 }
 
 export function generateTokenCookie(token: string): string {
-  return `Authorization=${token}; HttpOnly; Max-Age=${3600}`;
+  return `Authorization=${token}; HttpOnly; Max-Age=${3600}; Path=/`;
 }
 
 export function clearTokenCookie(): string {
