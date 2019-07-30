@@ -11,13 +11,10 @@ services:
     env_file:
       - .env
 
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
+  adminer:
+    image: adminer
     ports:
-      - 8080:80
-    volumes:
-      - /data/pgadmin:/root/.pgadmin
+      - 8080:8080
     env_file:
       - .env
     depends_on:
