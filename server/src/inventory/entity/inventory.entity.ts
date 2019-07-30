@@ -22,6 +22,11 @@ export class Inventory {
 
   count: number;
   worth: number;
+  botSteamId: string;
+
+  constructor(partial: Partial<Inventory> = {}) {
+    Object.assign(this, partial);
+  }
 
   @AfterLoad()
   setCountAndWorth() {
@@ -31,15 +36,9 @@ export class Inventory {
     }
   }
 
-  botSteamId: string;
-
   @BeforeInsert()
   setBot() {
     this.bot = new Bot({ steamId: this.botSteamId });
-  }
-
-  constructor(partial: Partial<Inventory> = {}) {
-    Object.assign(this, partial);
   }
 
 }

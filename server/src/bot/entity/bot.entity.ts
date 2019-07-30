@@ -30,12 +30,12 @@ export class Bot {
 
   ownerSteamId: string;
 
+  constructor(partial: Partial<Bot> = {}) {
+    Object.assign(this, partial);
+  }
+
   @BeforeInsert()
   setOwner() {
     this.owner = new User({ steamId: this.ownerSteamId });
-  }
-
-  constructor(partial: Partial<Bot> = {}) {
-    Object.assign(this, partial);
   }
 }
