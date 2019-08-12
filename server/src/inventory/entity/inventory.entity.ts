@@ -40,5 +40,4 @@ export class Inventory {
   setBot() {
     this.bot = new Bot({ steamId: this.botSteamId });
   }
-
 }

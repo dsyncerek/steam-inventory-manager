@@ -7,34 +7,33 @@ import { ItemService } from './item.service';
 
 @Controller('item')
 export class ItemController {
-  constructor(private readonly itemService: ItemService) {
-  }
+  constructor(private readonly itemService: ItemService) {}
 
   @Get()
-  getAll(): Promise<Item[]> {
+  getAllItems(): Promise<Item[]> {
     return this.itemService.getAll();
   }
 
   @Get(':name')
-  getByName(@Param('name') name: string): Promise<Item> {
+  getItemByName(@Param('name') name: string): Promise<Item> {
     return this.itemService.getByName(name);
   }
 
   @Post()
   @RolesAllowed('create_item')
-  create(@Body() body: CreateItemDto): Promise<Item> {
+  createItem(@Body() body: CreateItemDto): Promise<Item> {
     return this.itemService.create(body);
-  };
+  }
 
   @Put('/:name')
   @RolesAllowed('update_item')
-  updateByName(@Param('name') name: string, @Body() body: UpdateItemDto): Promise<Item> {
+  updateItemByName(@Param('name') name: string, @Body() body: UpdateItemDto): Promise<Item> {
     return this.itemService.updateByName(name, body);
-  };
+  }
 
   @Delete('/:name')
   @RolesAllowed('delete_item')
-  deleteByName(@Param('name') name: string): Promise<void> {
+  deleteItemByName(@Param('name') name: string): Promise<void> {
     return this.itemService.deleteByName(name);
-  };
+  }
 }
