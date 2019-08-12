@@ -12,7 +12,7 @@ export class User {
   @CreateDateColumn()
   createdAt: Date;
 
-  constructor(partial: Partial<Bot> = {}) {
+  constructor(partial: Partial<User> = {}) {
     Object.assign(this, partial);
   }
 }
