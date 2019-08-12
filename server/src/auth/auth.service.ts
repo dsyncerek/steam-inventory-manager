@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   async validateUser(steamId: string): Promise<User> {
-    return await this.userService.getOrCreate({ steamId });
+    return await this.userService.upsert({ steamId });
   }
 
   login({ steamId }: User): string {

@@ -33,7 +33,7 @@ export class UserService {
     await this.userRepository.delete({ steamId });
   };
 
-  getOrCreate = async (data: CreateUserDto): Promise<User> => {
+  upsert = async (data: CreateUserDto): Promise<User> => {
     try {
       return await this.getBySteamId(data.steamId);
     } catch (e) {
