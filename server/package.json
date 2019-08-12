@@ -24,10 +24,10 @@
     "passport-openid": "^0.4.0",
     "pg": "^7.12.0",
     "reflect-metadata": "0.1.13",
+    "rxjs": "^6.5.2",
     "typeorm": "^0.2.18"
   },
   "devDependencies": {
-    "nodemon": "1.18.11",
     "prettier": "^1.18.2",
     "rimraf": "2.6.3",
     "ts-node": "8.1.0",
