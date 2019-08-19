@@ -3,7 +3,6 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-openid';
 import { User } from '../../user/entity/user.entity';
 import { AuthService } from '../auth.service';
-import { getSteamIdFromIdentifier } from '../utils/getSteamIdFromIdentifier';
 
 @Injectable()
 export class OpenidStrategy extends PassportStrategy(Strategy) {
@@ -17,7 +16,12 @@ export class OpenidStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(identifier: string): Promise<User> {
-    const steamId = getSteamIdFromIdentifier(identifier);
+    const steamId = OpenidStrategy.getSteamIdFromIdentifier(identifier);
     return this.authService.validateUser(steamId);
+  }
+
+  private static getSteamIdFromIdentifier(identifier: string): string {
+    const identifierRegex = /^https?:\/\/steamcommunity\.com\/openid\/id\/(\d+)$/;
+    return identifierRegex.exec(identifier)[1];
   }
 }

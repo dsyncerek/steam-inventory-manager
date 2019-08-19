@@ -14,7 +14,7 @@ export class AuthController {
   login(@InjectUser() user: User, @Res() res: Response) {
     const cookie = this.authService.login(user);
     res.setHeader('Set-Cookie', [cookie]);
-    res.redirect('/user/me');
+    res.redirect('/');
   }
 
   @Get('logout')
@@ -22,6 +22,6 @@ export class AuthController {
   logout(@Res() res: Response) {
     const cookie = this.authService.logout();
     res.setHeader('Set-Cookie', [cookie]);
-    res.redirect('/user/me');
+    res.redirect('/');
   }
 }
