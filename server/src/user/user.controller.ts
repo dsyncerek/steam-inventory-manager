@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, ForbiddenException, Get, Param, Post, Put } from '@nestjs/common';
 import { InjectUser } from '../common/decorators/inject-user.decorator';
-import { RolesAllowed } from '../common/decorators/roles-allowed.decorator';
+import { PermissionsAllowed } from '../common/decorators/permissions-allowed.decorator';
+import { PermissionsEnum } from '../common/enums/permissions.enum';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entity/user.entity';
@@ -11,50 +12,56 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  @RolesAllowed('get_all_users')
-  getAll(): Promise<User[]> {
+  @PermissionsAllowed(PermissionsEnum.GetAllUsers)
+  getAllUsers(): Promise<User[]> {
     return this.userService.getAll();
   }
 
-  @Get('me')
-  @RolesAllowed('get_me')
-  getMeBySteamId(@InjectUser() user: User): Promise<User> {
-    return this.userService.getBySteamId(user.steamId);
-  }
-
   @Get(':steamId')
-  @RolesAllowed('get_user')
-  getBySteamId(@Param('steamId') steamId: string): Promise<User> {
-    return this.userService.getBySteamId(steamId);
+  @PermissionsAllowed(PermissionsEnum.GetUser, PermissionsEnum.GetMe)
+  getUserBySteamId(@Param('steamId') steamId: string, @InjectUser() user: User): Promise<User> {
+    const ownResource = true;
+    const hasPermission: boolean = user.hasPermission(PermissionsEnum.GetUser)
+      || (user.hasPermission(PermissionsEnum.GetMe) && ownResource);
+
+    if (hasPermission) {
+      return this.userService.getBySteamId(steamId);
+    }
+
+    throw new ForbiddenException();
   }
 
   @Post()
-  @RolesAllowed('create_user')
-  create(@Body() body: CreateUserDto): Promise<User> {
+  @PermissionsAllowed(PermissionsEnum.CreateUser)
+  createUser(@Body() body: CreateUserDto): Promise<User> {
     return this.userService.create(body);
-  };
-
-  @Put('me')
-  @RolesAllowed('update_me')
-  updateMeBySteamId(@InjectUser() user: User, @Body() body: UpdateUserDto): Promise<User> {
-    return this.userService.updateBySteamId(user.steamId, body);
   }
 
   @Put(':steamId')
-  @RolesAllowed('update_user')
-  updateBySteamId(@Param('steamId') steamId: string, @Body() body: UpdateUserDto): Promise<User> {
-    return this.userService.updateBySteamId(steamId, body);
-  };
+  @PermissionsAllowed(PermissionsEnum.UpdateUser, PermissionsEnum.UpdateMe)
+  updateUserBySteamId(@Param('steamId') steamId: string, @Body() body: UpdateUserDto, @InjectUser() user: User): Promise<User> {
+    const ownResource = true;
+    const hasPermission: boolean = user.hasPermission(PermissionsEnum.UpdateUser)
+      || (user.hasPermission(PermissionsEnum.UpdateMe) && ownResource);
 
-  @Delete('me')
-  @RolesAllowed('delete_me')
-  deleteMeBySteamId(@InjectUser() user: User): Promise<void> {
-    return this.userService.deleteBySteamId(user.steamId);
+    if (hasPermission) {
+      return this.userService.updateBySteamId(steamId, body);
+    }
+
+    throw new ForbiddenException();
   }
 
   @Delete(':steamId')
-  @RolesAllowed('delete_user')
-  deleteBySteamId(@Param('steamId') steamId: string): Promise<void> {
-    return this.userService.deleteBySteamId(steamId);
-  };
+  @PermissionsAllowed(PermissionsEnum.DeleteUser, PermissionsEnum.DeleteMe)
+  deleteUserBySteamId(@Param('steamId') steamId: string, @InjectUser() user: User): Promise<void> {
+    const ownResource = true;
+    const hasPermission: boolean = user.hasPermission(PermissionsEnum.DeleteUser)
+      || (user.hasPermission(PermissionsEnum.DeleteMe) && ownResource);
+
+    if (hasPermission) {
+      return this.userService.deleteBySteamId(steamId);
+    }
+
+    throw new ForbiddenException();
+  }
 }

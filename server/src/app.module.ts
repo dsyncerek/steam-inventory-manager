@@ -4,7 +4,7 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { BotModule } from './bot/bot.module';
 import { Bot } from './bot/entity/bot.entity';
-import { RolesGuard } from './common/guards/roles.guard';
+import { PermissionsGuard } from './common/guards/permissions.guard';
 import { InventoryItem } from './inventory/entity/inventory-item.entity';
 import { Inventory } from './inventory/entity/inventory.entity';
 import { InventoryModule } from './inventory/inventory.module';
@@ -36,7 +36,7 @@ const ormConfig: TypeOrmModuleOptions = {
   providers: [
     {
       provide: APP_GUARD,
-      useClass: RolesGuard,
+      useClass: PermissionsGuard,
     },
   ],
 })

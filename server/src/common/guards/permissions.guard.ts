@@ -2,17 +2,18 @@ import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from '../../user/entity/user.entity';
+import { PermissionsEnum } from '../enums/permissions.enum';
 
 @Injectable()
-export class RolesGuard extends AuthGuard('jwt') {
+export class PermissionsGuard extends AuthGuard('jwt') {
   constructor(private readonly reflector: Reflector) {
     super();
   }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const roles = this.reflector.get<string[]>('roles', context.getHandler());
+    const permissions = this.reflector.get<PermissionsEnum[]>('permissions', context.getHandler());
 
-    if (!roles) {
+    if (!permissions) {
       return true;
     }
 
@@ -21,10 +22,6 @@ export class RolesGuard extends AuthGuard('jwt') {
     const request = context.switchToHttp().getRequest();
     const user: User = request.user;
 
-    console.log(user);
-    console.log(roles);
-
-    // todo
-    return true;
+    return user.hasPermission(...permissions);
   }
 }

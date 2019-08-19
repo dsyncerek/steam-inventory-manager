@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { RolesEnum } from '../common/enums/roles.enum';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entity/user.entity';
@@ -19,8 +20,8 @@ export class UserService {
   };
 
   create = async (data: CreateUserDto): Promise<User> => {
-    const user = new User(data);
-    await this.userRepository.insert(user);
+    const user = new User({ ...data, roles: [RolesEnum.User] });
+    await this.userRepository.save(user);
     return await this.getBySteamId(user.steamId);
   };
 

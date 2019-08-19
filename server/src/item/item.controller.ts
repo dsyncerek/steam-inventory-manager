@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { RolesAllowed } from '../common/decorators/roles-allowed.decorator';
+import { PermissionsAllowed } from '../common/decorators/permissions-allowed.decorator';
+import { PermissionsEnum } from '../common/enums/permissions.enum';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { Item } from './entity/item.entity';
@@ -20,19 +21,19 @@ export class ItemController {
   }
 
   @Post()
-  @RolesAllowed('create_item')
+  @PermissionsAllowed(PermissionsEnum.CreateItem)
   createItem(@Body() body: CreateItemDto): Promise<Item> {
     return this.itemService.create(body);
   }
 
   @Put('/:name')
-  @RolesAllowed('update_item')
+  @PermissionsAllowed(PermissionsEnum.UpdateItem)
   updateItemByName(@Param('name') name: string, @Body() body: UpdateItemDto): Promise<Item> {
     return this.itemService.updateByName(name, body);
   }
 
   @Delete('/:name')
-  @RolesAllowed('delete_item')
+  @PermissionsAllowed(PermissionsEnum.DeleteItem)
   deleteItemByName(@Param('name') name: string): Promise<void> {
     return this.itemService.deleteByName(name);
   }
