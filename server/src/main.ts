@@ -1,6 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import * as cookieParser from 'cookie-parser';
+import { SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 (async () => {
@@ -12,6 +12,8 @@ import { AppModule } from './app.module';
       whitelist: true,
     }),
   );
+
+  SwaggerModule.setup('api', app, SwaggerModule.createDocument(app, {}));
 
   await app.listen(5000);
 })();
