@@ -13,7 +13,5 @@ import { AppModule } from './app.module';
     }),
   );
 
-  app.use(cookieParser());
-
   await app.listen(5000);
 })();

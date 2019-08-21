@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
+import { parse } from 'cookie';
 import { Request } from 'express';
 import { Strategy } from 'passport-jwt';
 import { User } from '../../user/entity/user.entity';
@@ -21,8 +22,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   private static getTokenFromCookie(req: Request): string {
-    if (req && req.cookies) {
-      return req.cookies.Authorization;
+    try {
+      const cookies = parse(req.headers.cookie);
+      return cookies.Authorization;
+    } catch {
+      return null;
     }
   }
 }

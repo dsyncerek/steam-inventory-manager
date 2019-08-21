@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { CookieService } from '../common/service/cookie.service';
+import { serialize } from 'cookie';
 import { User } from '../user/entity/user.entity';
 import { UserService } from '../user/user.service';
 import { JwtPayload } from './interfaces/JwtPayload.interface';
@@ -10,7 +10,6 @@ export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-    private readonly cookieService: CookieService,
   ) {}
 
   async validateUser(steamId: string): Promise<User> {
@@ -20,10 +19,10 @@ export class AuthService {
   login({ steamId }: User): string {
     const payload: JwtPayload = { steamId };
     const token = this.jwtService.sign(payload);
-    return this.cookieService.create('Authorization', token);
+    return serialize('Authorization', token, { httpOnly: true, maxAge: 3600, path: '/' });
   }
 
   logout(): string {
-    return this.cookieService.create('Authorization', '', 0);
+    return serialize('Authorization', '', { httpOnly: true, maxAge: 0, path: '/' });
   }
 }
