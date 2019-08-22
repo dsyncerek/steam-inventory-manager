@@ -22,10 +22,10 @@ export class Bot {
   @Column({ default: false })
   isOnline: boolean;
 
-  @OneToMany(() => Inventory, inv => inv.bot, { cascade: true, eager: true })
+  @OneToMany(() => Inventory, inv => inv.bot, { eager: true })
   inventories: Inventory[];
 
-  @ManyToOne(() => User, user => user.bots, { cascade: true, nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(() => User, user => user.bots, { nullable: false, onDelete: 'CASCADE' })
   owner: User;
 
   ownerSteamId: string;

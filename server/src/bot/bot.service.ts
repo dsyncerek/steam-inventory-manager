@@ -18,6 +18,10 @@ export class BotService {
     return await this.botRepository.findOneOrFail({ steamId });
   };
 
+  getByUserSteamId = async (steamId: string): Promise<Bot[]> => {
+    return await this.botRepository.find({ owner: { steamId } });
+  };
+
   create = async (data: CreateBotDto): Promise<Bot> => {
     const bot = new Bot(data);
     await this.botRepository.insert(bot);
