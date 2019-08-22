@@ -1,24 +1,25 @@
-name: Node CI
+name: Server CI
 
 on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install and build
-      run: |
-        cd server
-        npm install
-        npm run build
+    - name: Change directory
+      run: cd server
+    - name: Install dependencies
+      run: npm install
+    - name: Lint
+      run: npm run lint
+    - name: Build
+      run: npm run build
