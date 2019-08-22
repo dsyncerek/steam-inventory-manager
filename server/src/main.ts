@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
-(async () => {
+(async (): Promise<void> => {
   const app = await NestFactory.create(AppModule);
 
   app.useGlobalPipes(

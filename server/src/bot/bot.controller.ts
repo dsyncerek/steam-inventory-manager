@@ -32,17 +32,17 @@ export class BotController {
   @PermissionsAllowed(PermissionsEnum.CreateBot)
   createBot(@Body() body: CreateBotDto): Promise<Bot> {
     return this.botService.create(body);
-  };
+  }
 
   @Put(':steamId')
   @PermissionsAllowed(PermissionsEnum.UpdateBot)
   updateBotBySteamId(@Param('steamId') steamId: string, @Body() body: UpdateBotDto): Promise<Bot> {
     return this.botService.updateBySteamId(steamId, body);
-  };
+  }
 
   @Delete(':steamId')
   @PermissionsAllowed(PermissionsEnum.DeleteBot)
   deleteBotBySteamId(@Param('steamId') steamId: string): Promise<void> {
     return this.botService.deleteBySteamId(steamId);
-  };
+  }
 }

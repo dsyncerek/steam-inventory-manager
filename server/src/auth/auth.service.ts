@@ -7,10 +7,7 @@ import { JwtPayload } from './interfaces/JwtPayload.interface';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private readonly userService: UserService,
-    private readonly jwtService: JwtService,
-  ) {}
+  constructor(private readonly userService: UserService, private readonly jwtService: JwtService) {}
 
   async validateUser(steamId: string): Promise<User> {
     return await this.userService.upsert({ steamId });

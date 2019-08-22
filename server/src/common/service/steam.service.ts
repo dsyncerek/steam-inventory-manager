@@ -39,7 +39,7 @@ export class SteamService {
     });
   };
 
-  private getSteamApiKey = () => {
+  private getSteamApiKey = (): string => {
     return process.env.STEAM_API_KEY;
   };
 }

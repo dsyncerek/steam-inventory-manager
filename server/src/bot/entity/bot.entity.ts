@@ -35,7 +35,7 @@ export class Bot {
   }
 
   @BeforeInsert()
-  setOwner() {
+  setOwner(): void {
     this.owner = new User({ steamId: this.ownerSteamId });
   }
 }

@@ -17,7 +17,7 @@ export class Inventory {
   @ManyToOne(() => Bot, bot => bot.inventories, { nullable: false, onDelete: 'CASCADE' })
   bot: Bot;
 
-  @OneToMany(() => InventoryItem, item => item.inventory, { cascade: true })
+  @OneToMany(() => InventoryItem, item => item.inventory, { cascade: !true })
   items: InventoryItem[];
 
   count: number;
@@ -29,15 +29,15 @@ export class Inventory {
   }
 
   @AfterLoad()
-  setCountAndWorth() {
+  setCountAndWorth(): void {
     if (this.items) {
-      this.worth = this.items.map(invItem => invItem.quantity).reduce((a, b) => a + b, 0);
-      this.count = this.items.map(invItem => (invItem.quantity * invItem.item.price) || 0).reduce((a, b) => a + b, 0);
+      this.count = this.items.map(invItem => invItem.quantity).reduce((a, b) => a + b, 0);
+      this.worth = this.items.map(invItem => invItem.quantity * invItem.item.price || 0).reduce((a, b) => a + b, 0);
     }
   }
 
   @BeforeInsert()
-  setBot() {
+  setBot(): void {
     this.bot = new Bot({ steamId: this.botSteamId });
   }
 }

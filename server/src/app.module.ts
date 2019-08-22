@@ -25,14 +25,7 @@ const ormConfig: TypeOrmModuleOptions = {
 };
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot(ormConfig),
-    AuthModule,
-    ItemModule,
-    BotModule,
-    InventoryModule,
-    UserModule,
-  ],
+  imports: [TypeOrmModule.forRoot(ormConfig), AuthModule, ItemModule, BotModule, InventoryModule, UserModule],
   providers: [
     {
       provide: APP_GUARD,

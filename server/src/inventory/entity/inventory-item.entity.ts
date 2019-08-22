@@ -13,7 +13,7 @@ export class InventoryItem {
   @ManyToOne(() => Inventory, inv => inv.items, { nullable: false, onDelete: 'CASCADE' })
   inventory: Inventory;
 
-  @ManyToOne(() => Item, { eager: true, cascade: true, nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(() => Item, { eager: true, cascade: !true, nullable: false, onDelete: 'CASCADE' })
   item: Item;
 
   constructor(partial: Partial<InventoryItem> = {}) {

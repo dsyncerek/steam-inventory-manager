@@ -13,18 +13,8 @@ const jwtConfig: JwtModuleOptions = {
 };
 
 @Module({
-  imports: [
-    UserModule,
-    PassportModule,
-    JwtModule.register(jwtConfig),
-  ],
-  providers: [
-    AuthService,
-    OpenidStrategy,
-    JwtStrategy,
-  ],
-  controllers: [
-    AuthController,
-  ],
+  imports: [UserModule, PassportModule, JwtModule.register(jwtConfig)],
+  providers: [AuthService, OpenidStrategy, JwtStrategy],
+  controllers: [AuthController],
 })
 export class AuthModule {}
