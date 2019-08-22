@@ -15,11 +15,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Change directory
-      run: cd server
     - name: Install dependencies
+      working-directory: server
       run: npm install
     - name: Lint
+      working-directory: server
       run: npm run lint
     - name: Build
+      working-directory: server
       run: npm run build
