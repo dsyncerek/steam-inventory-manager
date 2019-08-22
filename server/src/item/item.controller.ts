@@ -11,11 +11,13 @@ export class ItemController {
   constructor(private readonly itemService: ItemService) {}
 
   @Get()
+  @PermissionsAllowed(PermissionsEnum.GetAllItems)
   getAllItems(): Promise<Item[]> {
     return this.itemService.getAll();
   }
 
   @Get(':name')
+  @PermissionsAllowed(PermissionsEnum.GetItem)
   getItemByName(@Param('name') name: string): Promise<Item> {
     return this.itemService.getByName(name);
   }

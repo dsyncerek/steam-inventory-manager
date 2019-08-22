@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, ForbiddenException, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { InjectUser } from '../common/decorators/inject-user.decorator';
 import { PermissionsAllowed } from '../common/decorators/permissions-allowed.decorator';
 import { PermissionsEnum } from '../common/enums/permissions.enum';
@@ -18,17 +18,9 @@ export class UserController {
   }
 
   @Get(':steamId')
-  @PermissionsAllowed(PermissionsEnum.GetUser, PermissionsEnum.GetMe)
+  @PermissionsAllowed(PermissionsEnum.GetUser)
   getUserBySteamId(@Param('steamId') steamId: string, @InjectUser() user: User): Promise<User> {
-    const ownResource = true;
-    const hasPermission: boolean = user.hasPermission(PermissionsEnum.GetUser)
-      || (user.hasPermission(PermissionsEnum.GetMe) && ownResource);
-
-    if (hasPermission) {
-      return this.userService.getBySteamId(steamId);
-    }
-
-    throw new ForbiddenException();
+    return this.userService.getBySteamId(steamId);
   }
 
   @Post()
@@ -38,30 +30,14 @@ export class UserController {
   }
 
   @Put(':steamId')
-  @PermissionsAllowed(PermissionsEnum.UpdateUser, PermissionsEnum.UpdateMe)
+  @PermissionsAllowed(PermissionsEnum.UpdateUser)
   updateUserBySteamId(@Param('steamId') steamId: string, @Body() body: UpdateUserDto, @InjectUser() user: User): Promise<User> {
-    const ownResource = true;
-    const hasPermission: boolean = user.hasPermission(PermissionsEnum.UpdateUser)
-      || (user.hasPermission(PermissionsEnum.UpdateMe) && ownResource);
-
-    if (hasPermission) {
-      return this.userService.updateBySteamId(steamId, body);
-    }
-
-    throw new ForbiddenException();
+    return this.userService.updateBySteamId(steamId, body);
   }
 
   @Delete(':steamId')
-  @PermissionsAllowed(PermissionsEnum.DeleteUser, PermissionsEnum.DeleteMe)
+  @PermissionsAllowed(PermissionsEnum.DeleteUser)
   deleteUserBySteamId(@Param('steamId') steamId: string, @InjectUser() user: User): Promise<void> {
-    const ownResource = true;
-    const hasPermission: boolean = user.hasPermission(PermissionsEnum.DeleteUser)
-      || (user.hasPermission(PermissionsEnum.DeleteMe) && ownResource);
-
-    if (hasPermission) {
-      return this.userService.deleteBySteamId(steamId);
-    }
-
-    throw new ForbiddenException();
+    return this.userService.deleteBySteamId(steamId);
   }
 }
