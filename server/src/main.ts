@@ -4,7 +4,7 @@ import { SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 (async (): Promise<void> => {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.createe(AppModule);
 
   app.useGlobalPipes(
     new ValidationPipe({
