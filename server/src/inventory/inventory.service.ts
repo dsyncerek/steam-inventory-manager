@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SteamService } from '../common/service/steam.service';
+import { SteamService } from '../steam/steam.service';
 import { Inventory } from './entity/inventory.entity';
 
 @Injectable()
