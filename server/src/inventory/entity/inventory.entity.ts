@@ -17,12 +17,12 @@ export class Inventory {
   @ManyToOne(() => Bot, bot => bot.inventories, { nullable: false, onDelete: 'CASCADE' })
   bot: Bot;
 
-  @OneToMany(() => InventoryItem, item => item.inventory, { cascade: !true })
+  @OneToMany(() => InventoryItem, item => item.inventory, { cascade: true })
   items: InventoryItem[];
 
   count: number;
   worth: number;
-  botSteamId: string;
+  steamId: string;
 
   constructor(partial: Partial<Inventory> = {}) {
     Object.assign(this, partial);
@@ -38,6 +38,6 @@ export class Inventory {
 
   @BeforeInsert()
   setBot(): void {
-    this.bot = new Bot({ steamId: this.botSteamId });
+    this.bot = new Bot({ steamId: this.steamId });
   }
 }
