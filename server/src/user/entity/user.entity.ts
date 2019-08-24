@@ -1,7 +1,8 @@
-import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { PermissionsEnum } from '../../access-control/enums/permissions.enum';
 import { RolesEnum } from '../../access-control/enums/roles.enum';
 import { Bot } from '../../bot/entity/bot.entity';
+import { arrayIntersectionAny } from '../../common/utils/array.util';
 
 @Entity()
 export class User {
@@ -12,10 +13,10 @@ export class User {
   bots: Bot[];
 
   @Column('simple-array')
-  roles: RolesEnum[];
+  roles: RolesEnum[] = [];
 
   @Column('simple-array')
-  permissions: PermissionsEnum[];
+  permissions: PermissionsEnum[] = [];
 
   @CreateDateColumn()
   createdAt: Date;
@@ -24,19 +25,11 @@ export class User {
     Object.assign(this, partial);
   }
 
-  @BeforeInsert()
-  setPermissions(): void {
-    if (!this.permissions) {
-      this.permissions = [];
-    }
-  }
-
   hasRole(...roles: RolesEnum[]): boolean {
-    return this.roles.filter(value => roles.includes(value)).length !== 0;
+    return arrayIntersectionAny(this.roles, roles);
   }
 
   hasPermission(...permissions: PermissionsEnum[]): boolean {
-    // todo
-    return true;
+    return arrayIntersectionAny(this.permissions, permissions);
   }
 }
