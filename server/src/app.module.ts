@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { PermissionsGuard } from './access-control/guards/permissions.guard';
 import { AuthModule } from './auth/auth.module';
 import { BotModule } from './bot/bot.module';
 import { Bot } from './bot/entity/bot.entity';
-import { PermissionsGuard } from './common/guards/permissions.guard';
 import { InventoryItem } from './inventory/entity/inventory-item.entity';
 import { Inventory } from './inventory/entity/inventory.entity';
 import { InventoryModule } from './inventory/inventory.module';

@@ -1,7 +1,7 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { PermissionsEnum } from '../../access-control/enums/permissions.enum';
+import { RolesEnum } from '../../access-control/enums/roles.enum';
 import { Bot } from '../../bot/entity/bot.entity';
-import { PermissionsEnum } from '../../common/enums/permissions.enum';
-import { RolesEnum } from '../../common/enums/roles.enum';
 
 @Entity()
 export class User {
@@ -14,11 +14,21 @@ export class User {
   @Column('simple-array')
   roles: RolesEnum[];
 
+  @Column('simple-array')
+  permissions: PermissionsEnum[];
+
   @CreateDateColumn()
   createdAt: Date;
 
   constructor(partial: Partial<User> = {}) {
     Object.assign(this, partial);
+  }
+
+  @BeforeInsert()
+  setPermissions(): void {
+    if (!this.permissions) {
+      this.permissions = [];
+    }
   }
 
   hasRole(...roles: RolesEnum[]): boolean {

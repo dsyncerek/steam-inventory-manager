@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Put } from '@nestjs/common';
-import { PermissionsAllowed } from '../common/decorators/permissions-allowed.decorator';
-import { PermissionsEnum } from '../common/enums/permissions.enum';
+import { PermissionsAllowed } from '../access-control/decorators/permissions-allowed.decorator';
+import { PermissionsEnum } from '../access-control/enums/permissions.enum';
 import { Inventory } from './entity/inventory.entity';
 import { InventoryService } from './inventory.service';
 
