@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { PermissionsAllowed } from '../common/decorators/permissions-allowed.decorator';
-import { PermissionsEnum } from '../common/enums/permissions.enum';
+import { PermissionsAllowed } from '../access-control/decorators/permissions-allowed.decorator';
+import { PermissionsEnum } from '../access-control/enums/permissions.enum';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entity/user.entity';

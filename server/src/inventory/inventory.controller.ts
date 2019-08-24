@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Put } from '@nestjs/common';
-import { PermissionsAllowed } from '../common/decorators/permissions-allowed.decorator';
-import { PermissionsEnum } from '../common/enums/permissions.enum';
+import { PermissionsAllowed } from '../access-control/decorators/permissions-allowed.decorator';
+import { PermissionsEnum } from '../access-control/enums/permissions.enum';
 import { Inventory } from './entity/inventory.entity';
 import { InventoryService } from './inventory.service';
 
@@ -9,7 +9,7 @@ export class InventoryController {
   constructor(private readonly inventoryService: InventoryService) {}
 
   @Get(':steamId')
-  @PermissionsAllowed(PermissionsEnum.GetAllBotsInventories)
+  @PermissionsAllowed(PermissionsEnum.GetAllBotInventories)
   getAllBotInventoriesBySteamId(@Param('steamId') steamId: string): Promise<Inventory[]> {
     return this.inventoryService.getAllBySteamId(steamId);
   }
