@@ -1,7 +1,9 @@
 import { PermissionsEnum } from '../enums/permissions.enum';
 import { RolesEnum } from '../enums/roles.enum';
 
-export const rolesConfig = {
+export type RolesConfig = { [key in RolesEnum]: PermissionsEnum[] };
+
+export const rolesConfig: RolesConfig = {
   [RolesEnum.User]: [PermissionsEnum.GetAllItems, PermissionsEnum.GetItem],
   [RolesEnum.Admin]: [
     PermissionsEnum.GetAllUsers,
