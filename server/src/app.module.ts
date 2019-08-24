@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { PermissionsGuard } from './access-control/guards/permissions.guard';
 import { AuthModule } from './auth/auth.module';
 import { BotModule } from './bot/bot.module';
 import { Bot } from './bot/entity/bot.entity';
+import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { InventoryItem } from './inventory/entity/inventory-item.entity';
 import { Inventory } from './inventory/entity/inventory.entity';
 import { InventoryModule } from './inventory/inventory.module';
@@ -30,6 +31,10 @@ const ormConfig: TypeOrmModuleOptions = {
     {
       provide: APP_GUARD,
       useClass: PermissionsGuard,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter,
     },
   ],
 })
