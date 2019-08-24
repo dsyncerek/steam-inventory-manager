@@ -9,7 +9,7 @@ export class InventoryController {
   constructor(private readonly inventoryService: InventoryService) {}
 
   @Get(':steamId')
-  @PermissionsAllowed(PermissionsEnum.GetAllBotsInventories)
+  @PermissionsAllowed(PermissionsEnum.GetAllBotInventories)
   getAllBotInventoriesBySteamId(@Param('steamId') steamId: string): Promise<Inventory[]> {
     return this.inventoryService.getAllBySteamId(steamId);
   }
