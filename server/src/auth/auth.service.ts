@@ -16,7 +16,7 @@ export class AuthService {
   login({ steamId }: User): string {
     const payload: JwtPayload = { steamId };
     const token = this.jwtService.sign(payload);
-    return serialize('Authorization', token, { httpOnly: true, maxAge: 3600, path: '/' });
+    return serialize('Authorization', token, { httpOnly: true, maxAge: 3600 * 24 * 7, path: '/' });
   }
 
   logout(): string {

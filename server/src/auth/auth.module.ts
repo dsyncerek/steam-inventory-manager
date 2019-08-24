@@ -9,7 +9,7 @@ import { OpenidStrategy } from './strategy/openid.strategy';
 
 const jwtConfig: JwtModuleOptions = {
   secret: 'jwt-secret',
-  signOptions: { expiresIn: 3600 },
+  signOptions: { expiresIn: 3600 * 24 * 7 },
 };
 
 @Module({
