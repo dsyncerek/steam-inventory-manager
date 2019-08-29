@@ -1,4 +1,13 @@
 {
   "name": "steam-inventory-manager",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run --stream precommit"
+    }
+  },
+  "devDependencies": {
+    "husky": "^3.0.4",
+    "lerna": "^3.16.4"
+  }
 }
