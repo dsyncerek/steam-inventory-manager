@@ -11,20 +11,9 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.ts": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ],
-    "src/**/*.scss": [
-      "prettier --write",
-      "stylelint --fix",
-      "git add"
-    ],
-    "src/**/*.html": [
-      "prettier --write",
-      "git add"
-    ]
+    "src/**/*.ts": ["prettier --write", "eslint --fix", "git add"],
+    "src/**/*.scss": ["prettier --write", "stylelint --fix", "git add"],
+    "src/**/*.html": ["prettier --write", "git add"]
   },
   "dependencies": {
     "@angular/animations": "^8.2.4",
@@ -41,16 +30,21 @@
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.803.1",
-    "@angular/cli": "^8.3.1",
+    "@angular-devkit/build-angular": "^0.803.2",
+    "@angular/cli": "^8.3.2",
     "@angular/compiler-cli": "^8.2.4",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
-    "eslint": "^6.2.1",
+    "eslint": "^6.2.2",
     "eslint-config-prettier": "^6.1.0",
+    "eslint-config-standard-with-typescript": "^9.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.2.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "lint-staged": "^9.2.3",
     "prettier": "^1.18.2",
-    "typescript": "~3.5.3",
-    "stylelint": "^10.1.0"
+    "stylelint": "^10.1.0",
+    "typescript": "~3.5.3"
   }
 }

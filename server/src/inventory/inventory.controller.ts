@@ -10,13 +10,13 @@ export class InventoryController {
 
   @Get(':steamId')
   @PermissionsAllowed(PermissionsEnum.GetAllBotInventories)
-  getAllBotInventoriesBySteamId(@Param('steamId') steamId: string): Promise<Inventory[]> {
+  async getAllBotInventoriesBySteamId(@Param('steamId') steamId: string): Promise<Inventory[]> {
     return this.inventoryService.getAllBySteamId(steamId);
   }
 
   @Get(':steamId/:appId/:contextId')
   @PermissionsAllowed(PermissionsEnum.GetBotInventory)
-  getBotInventoryBySteamId(
+  async getBotInventoryBySteamId(
     @Param('steamId') steamId: string,
     @Param('appId') appId: number,
     @Param('contextId') contextId: number,
@@ -26,7 +26,7 @@ export class InventoryController {
 
   @Put(':steamId/:appId/:contextId')
   @PermissionsAllowed(PermissionsEnum.RefreshBotInventory)
-  refreshBotInventoryBySteamId(
+  async refreshBotInventoryBySteamId(
     @Param('steamId') steamId: string,
     @Param('appId') appId: number,
     @Param('contextId') contextId: number,

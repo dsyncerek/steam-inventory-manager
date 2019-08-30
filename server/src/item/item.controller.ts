@@ -12,31 +12,31 @@ export class ItemController {
 
   @Get()
   @PermissionsAllowed(PermissionsEnum.GetAllItems)
-  getAllItems(): Promise<Item[]> {
+  async getAllItems(): Promise<Item[]> {
     return this.itemService.getAll();
   }
 
   @Get(':name')
   @PermissionsAllowed(PermissionsEnum.GetItem)
-  getItemByName(@Param('name') name: string): Promise<Item> {
+  async getItemByName(@Param('name') name: string): Promise<Item> {
     return this.itemService.getByName(name);
   }
 
   @Post()
   @PermissionsAllowed(PermissionsEnum.CreateItem)
-  createItem(@Body() body: CreateItemDto): Promise<Item> {
+  async createItem(@Body() body: CreateItemDto): Promise<Item> {
     return this.itemService.create(body);
   }
 
   @Put('/:name')
   @PermissionsAllowed(PermissionsEnum.UpdateItem)
-  updateItemByName(@Param('name') name: string, @Body() body: UpdateItemDto): Promise<Item> {
+  async updateItemByName(@Param('name') name: string, @Body() body: UpdateItemDto): Promise<Item> {
     return this.itemService.updateByName(name, body);
   }
 
   @Delete('/:name')
   @PermissionsAllowed(PermissionsEnum.DeleteItem)
-  deleteItemByName(@Param('name') name: string): Promise<void> {
+  async deleteItemByName(@Param('name') name: string): Promise<void> {
     return this.itemService.deleteByName(name);
   }
 }

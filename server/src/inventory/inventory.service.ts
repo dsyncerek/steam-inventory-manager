@@ -12,14 +12,14 @@ export class InventoryService {
   constructor(private readonly steamService: SteamService) {}
 
   getAllBySteamId = async (steamId: string): Promise<Inventory[]> => {
-    return await this.inventoryRepository.find({
+    return this.inventoryRepository.find({
       where: { bot: { steamId } },
       relations: ['items'],
     });
   };
 
   getBySteamId = async (steamId: string, appId: number, contextId: number): Promise<Inventory> => {
-    return await this.inventoryRepository.findOneOrFail({
+    return this.inventoryRepository.findOneOrFail({
       where: { bot: { steamId }, appId, contextId },
       relations: ['items'],
     });

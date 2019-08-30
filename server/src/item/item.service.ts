@@ -11,22 +11,22 @@ export class ItemService {
   private readonly itemRepository: Repository<Item>;
 
   getAll = async (): Promise<Item[]> => {
-    return await this.itemRepository.find();
+    return this.itemRepository.find();
   };
 
   getByName = async (name: string): Promise<Item> => {
-    return await this.itemRepository.findOneOrFail({ name });
+    return this.itemRepository.findOneOrFail({ name });
   };
 
   create = async (data: CreateItemDto): Promise<Item> => {
     const item = new Item(data);
     await this.itemRepository.insert(item);
-    return await this.getByName(item.name);
+    return this.getByName(item.name);
   };
 
   updateByName = async (name: string, data: UpdateItemDto): Promise<Item> => {
     await this.itemRepository.update({ name }, data);
-    return await this.getByName(name);
+    return this.getByName(name);
   };
 
   deleteByName = async (name: string): Promise<void> => {

@@ -12,22 +12,22 @@ export class UserService {
   private readonly userRepository: Repository<User>;
 
   getAll = async (): Promise<User[]> => {
-    return await this.userRepository.find();
+    return this.userRepository.find();
   };
 
   getBySteamId = async (steamId: string): Promise<User> => {
-    return await this.userRepository.findOneOrFail({ steamId });
+    return this.userRepository.findOneOrFail({ steamId });
   };
 
   create = async (data: CreateUserDto): Promise<User> => {
     const user = new User({ ...data, roles: [RolesEnum.User] });
     await this.userRepository.save(user);
-    return await this.getBySteamId(user.steamId);
+    return this.getBySteamId(user.steamId);
   };
 
   updateBySteamId = async (steamId: string, data: UpdateUserDto): Promise<User> => {
     await this.userRepository.update({ steamId }, data);
-    return await this.getBySteamId(steamId);
+    return this.getBySteamId(steamId);
   };
 
   deleteBySteamId = async (steamId: string): Promise<void> => {
@@ -36,9 +36,9 @@ export class UserService {
 
   upsert = async (data: CreateUserDto): Promise<User> => {
     try {
-      return await this.getBySteamId(data.steamId);
+      return this.getBySteamId(data.steamId);
     } catch (e) {
-      return await this.create(data);
+      return this.create(data);
     }
   };
 }

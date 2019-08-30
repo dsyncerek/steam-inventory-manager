@@ -1,16 +1,13 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
-  "parserOptions": { "project": "./tsconfig.json","createDefaultProgram": true },
+  "parserOptions": { "project": "./tsconfig.json", "createDefaultProgram": true },
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "standard-with-typescript",
     "prettier",
     "prettier/@typescript-eslint"
   ],
   "rules": {
-    "@typescript-eslint/unbound-method": ["error", { "ignoreStatic": true }]
+    "@typescript-eslint/no-extraneous-class": "off",
+    "@typescript-eslint/no-floating-promises": "warn",
+    "@typescript-eslint/strict-boolean-expressions": "warn"
   }
 }

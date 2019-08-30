@@ -10,7 +10,7 @@ export class SteamService {
   getInventoryBySteamId = async (steamId: string, appId = 730, contextId = 2): Promise<Inventory> => {
     const { assets, descriptions } = await this.getInventoryFromSteamApi(steamId, appId, contextId);
 
-    const aggregatedAssets: { classId: string; quantity: number }[] = [];
+    const aggregatedAssets: Array<{ classId: string; quantity: number }> = [];
 
     assets.forEach(asset => {
       const item = aggregatedAssets.find(a => a.classId === asset.classid);
@@ -46,7 +46,7 @@ export class SteamService {
     });
   };
 
-  private getInventoryFromSteamApi = async (
+  private readonly getInventoryFromSteamApi = async (
     steamId: string,
     appId = 730,
     contextId = 2,
