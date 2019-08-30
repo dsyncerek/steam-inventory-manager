@@ -11,19 +11,37 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.ts": ["prettier --write", "eslint --fix", "git add"],
-    "src/**/*.scss": ["prettier --write", "stylelint --fix", "git add"],
-    "src/**/*.html": ["prettier --write", "git add"]
+    "src/**/*.ts": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.scss": [
+      "prettier --write",
+      "stylelint --fix",
+      "git add"
+    ],
+    "src/**/*.html": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "@angular/animations": "^8.2.4",
+    "@angular/cdk": "~8.1.4",
     "@angular/common": "^8.2.4",
     "@angular/compiler": "^8.2.4",
     "@angular/core": "^8.2.4",
+    "@angular/flex-layout": "^8.0.0-beta.27",
     "@angular/forms": "^8.2.4",
+    "@angular/material": "^8.1.4",
     "@angular/platform-browser": "^8.2.4",
     "@angular/platform-browser-dynamic": "^8.2.4",
     "@angular/router": "^8.2.4",
+    "@ngrx/effects": "^8.3.0",
+    "@ngrx/entity": "^8.3.0",
+    "@ngrx/store": "^8.3.0",
+    "@ngrx/store-devtools": "^8.3.0",
     "stylelint-config-recommended": "^2.2.0",
     "stylelint-config-recommended-scss": "^3.3.0",
     "stylelint-scss": "^3.10.0",
