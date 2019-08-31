@@ -41,6 +41,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
+    "@nestjs/cli": "^6.6.4",
     "eslint": "^6.2.2",
     "eslint-config-prettier": "^6.1.0",
     "eslint-config-standard-with-typescript": "^9.0.0",
