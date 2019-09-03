@@ -10,26 +10,26 @@ export class ItemService {
   @InjectRepository(Item)
   private readonly itemRepository: Repository<Item>;
 
-  getAll = async (): Promise<Item[]> => {
+  getAllItems = async (): Promise<Item[]> => {
     return this.itemRepository.find();
   };
 
-  getByName = async (name: string): Promise<Item> => {
+  getItem = async (name: string): Promise<Item> => {
     return this.itemRepository.findOneOrFail({ name });
   };
 
-  create = async (data: CreateItemDto): Promise<Item> => {
+  createItem = async (data: CreateItemDto): Promise<Item> => {
     const item = new Item(data);
     await this.itemRepository.insert(item);
-    return this.getByName(item.name);
+    return this.getItem(item.name);
   };
 
-  updateByName = async (name: string, data: UpdateItemDto): Promise<Item> => {
+  updateItem = async (name: string, data: UpdateItemDto): Promise<Item> => {
     await this.itemRepository.update({ name }, data);
-    return this.getByName(name);
+    return this.getItem(name);
   };
 
-  deleteByName = async (name: string): Promise<void> => {
+  deleteItem = async (name: string): Promise<void> => {
     await this.itemRepository.delete({ name });
   };
 }

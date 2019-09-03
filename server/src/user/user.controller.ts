@@ -11,32 +11,32 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  @PermissionsAllowed(PermissionsEnum.GetAllUsers)
+  @PermissionsAllowed(PermissionsEnum.UserGetAll)
   async getAllUsers(): Promise<User[]> {
-    return this.userService.getAll();
+    return this.userService.getAllUsers();
   }
 
   @Get(':steamId')
-  @PermissionsAllowed(PermissionsEnum.GetUser)
-  async getUserBySteamId(@Param('steamId') steamId: string): Promise<User> {
-    return this.userService.getBySteamId(steamId);
+  @PermissionsAllowed(PermissionsEnum.UserGetAny)
+  async getUser(@Param('steamId') steamId: string): Promise<User> {
+    return this.userService.getUser(steamId);
   }
 
   @Post()
-  @PermissionsAllowed(PermissionsEnum.CreateUser)
+  @PermissionsAllowed(PermissionsEnum.UserCreateAny)
   async createUser(@Body() body: CreateUserDto): Promise<User> {
-    return this.userService.create(body);
+    return this.userService.createUser(body);
   }
 
   @Put(':steamId')
-  @PermissionsAllowed(PermissionsEnum.UpdateUser)
-  async updateUserBySteamId(@Param('steamId') steamId: string, @Body() body: UpdateUserDto): Promise<User> {
-    return this.userService.updateBySteamId(steamId, body);
+  @PermissionsAllowed(PermissionsEnum.UserUpdateAny)
+  async updateUser(@Param('steamId') steamId: string, @Body() body: UpdateUserDto): Promise<User> {
+    return this.userService.updateUser(steamId, body);
   }
 
   @Delete(':steamId')
-  @PermissionsAllowed(PermissionsEnum.DeleteUser)
-  async deleteUserBySteamId(@Param('steamId') steamId: string): Promise<void> {
-    return this.userService.deleteBySteamId(steamId);
+  @PermissionsAllowed(PermissionsEnum.UserDeleteAny)
+  async deleteUser(@Param('steamId') steamId: string): Promise<void> {
+    return this.userService.deleteUser(steamId);
   }
 }

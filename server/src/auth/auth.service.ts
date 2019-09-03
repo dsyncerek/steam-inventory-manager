@@ -10,7 +10,7 @@ export class AuthService {
   constructor(private readonly userService: UserService, private readonly jwtService: JwtService) {}
 
   async validateUser(steamId: string): Promise<User> {
-    return this.userService.upsert({ steamId });
+    return this.userService.upsertUser({ steamId });
   }
 
   login({ steamId }: User): string {

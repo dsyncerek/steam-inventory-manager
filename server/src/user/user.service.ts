@@ -11,34 +11,34 @@ export class UserService {
   @InjectRepository(User)
   private readonly userRepository: Repository<User>;
 
-  getAll = async (): Promise<User[]> => {
+  getAllUsers = async (): Promise<User[]> => {
     return this.userRepository.find();
   };
 
-  getBySteamId = async (steamId: string): Promise<User> => {
+  getUser = async (steamId: string): Promise<User> => {
     return this.userRepository.findOneOrFail({ steamId });
   };
 
-  create = async (data: CreateUserDto): Promise<User> => {
+  createUser = async (data: CreateUserDto): Promise<User> => {
     const user = new User({ ...data, roles: [RolesEnum.User] });
     await this.userRepository.save(user);
-    return this.getBySteamId(user.steamId);
+    return this.getUser(user.steamId);
   };
 
-  updateBySteamId = async (steamId: string, data: UpdateUserDto): Promise<User> => {
+  updateUser = async (steamId: string, data: UpdateUserDto): Promise<User> => {
     await this.userRepository.update({ steamId }, data);
-    return this.getBySteamId(steamId);
+    return this.getUser(steamId);
   };
 
-  deleteBySteamId = async (steamId: string): Promise<void> => {
+  deleteUser = async (steamId: string): Promise<void> => {
     await this.userRepository.delete({ steamId });
   };
 
-  upsert = async (data: CreateUserDto): Promise<User> => {
+  upsertUser = async (data: CreateUserDto): Promise<User> => {
     try {
-      return this.getBySteamId(data.steamId);
+      return this.getUser(data.steamId);
     } catch (e) {
-      return this.create(data);
+      return this.createUser(data);
     }
   };
 }

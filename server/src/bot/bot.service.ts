@@ -10,30 +10,30 @@ export class BotService {
   @InjectRepository(Bot)
   private readonly botRepository: Repository<Bot>;
 
-  getAll = async (): Promise<Bot[]> => {
+  getAllBots = async (): Promise<Bot[]> => {
     return this.botRepository.find();
   };
 
-  getBySteamId = async (steamId: string): Promise<Bot> => {
-    return this.botRepository.findOneOrFail({ steamId });
-  };
-
-  getByUserSteamId = async (steamId: string): Promise<Bot[]> => {
+  getUserBots = async (steamId: string): Promise<Bot[]> => {
     return this.botRepository.find({ owner: { steamId } });
   };
 
-  create = async (data: CreateBotDto): Promise<Bot> => {
+  getBot = async (steamId: string): Promise<Bot> => {
+    return this.botRepository.findOneOrFail({ steamId });
+  };
+
+  createBot = async (data: CreateBotDto): Promise<Bot> => {
     const bot = new Bot(data);
     await this.botRepository.insert(bot);
-    return this.getBySteamId(bot.steamId);
+    return this.getBot(bot.steamId);
   };
 
-  updateBySteamId = async (steamId: string, data: UpdateBotDto): Promise<Bot> => {
+  updateBot = async (steamId: string, data: UpdateBotDto): Promise<Bot> => {
     await this.botRepository.update({ steamId }, data);
-    return this.getBySteamId(steamId);
+    return this.getBot(steamId);
   };
 
-  deleteBySteamId = async (steamId: string): Promise<void> => {
+  deleteBot = async (steamId: string): Promise<void> => {
     await this.botRepository.delete({ steamId });
   };
 }
