@@ -7,7 +7,7 @@ import { SteamInventoryDto } from './dto/steam-inventory.dto';
 
 @Injectable()
 export class SteamService {
-  getInventoryBySteamId = async (steamId: string, appId = 730, contextId = 2): Promise<Inventory> => {
+  async getInventoryBySteamId(steamId: string, appId = 730, contextId = 2): Promise<Inventory> {
     const { assets, descriptions } = await this.getInventoryFromSteamApi(steamId, appId, contextId);
 
     const aggregatedAssets: Array<{ classId: string; quantity: number }> = [];
@@ -44,15 +44,11 @@ export class SteamService {
       steamId,
       items,
     });
-  };
+  }
 
-  private readonly getInventoryFromSteamApi = async (
-    steamId: string,
-    appId = 730,
-    contextId = 2,
-  ): Promise<SteamInventoryDto> => {
+  private async getInventoryFromSteamApi(steamId: string, appId = 730, contextId = 2): Promise<SteamInventoryDto> {
     const url = `http://steamcommunity.com/inventory/${steamId}/${appId}/${contextId}/?count=5000`;
     const response = await axios.get<SteamInventoryDto>(url);
     return response.data;
-  };
+  }
 }

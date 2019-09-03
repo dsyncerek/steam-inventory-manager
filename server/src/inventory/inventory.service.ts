@@ -11,35 +11,35 @@ export class InventoryService {
 
   constructor(private readonly steamService: SteamService) {}
 
-  getUserInventories = async (steamId: string): Promise<Inventory[]> => {
+  async getUserInventories(steamId: string): Promise<Inventory[]> {
     return this.inventoryRepository.find({
       where: { bot: { owner: { steamId } } },
       relations: ['items'],
     });
-  };
+  }
 
-  getBotInventories = async (steamId: string): Promise<Inventory[]> => {
+  async getBotInventories(steamId: string): Promise<Inventory[]> {
     return this.inventoryRepository.find({
       where: { bot: { steamId } },
       relations: ['items'],
     });
-  };
+  }
 
-  getInventory = async (steamId: string, appId: number, contextId: number): Promise<Inventory> => {
+  async getInventory(steamId: string, appId: number, contextId: number): Promise<Inventory> {
     return this.inventoryRepository.findOneOrFail({
       where: { bot: { steamId }, appId, contextId },
       relations: ['items'],
     });
-  };
+  }
 
-  refreshInventory = async (steamId: string, appId: number, contextId: number): Promise<Inventory> => {
+  async refreshInventory(steamId: string, appId: number, contextId: number): Promise<Inventory> {
     const inventory = await this.steamService.getInventoryBySteamId(steamId, appId, contextId);
     await this.deleteInventory(steamId, appId, contextId);
     await this.inventoryRepository.save(inventory);
     return this.getInventory(steamId, appId, contextId);
-  };
+  }
 
-  deleteInventory = async (steamId: string, appId: number, contextId: number): Promise<void> => {
+  async deleteInventory(steamId: string, appId: number, contextId: number): Promise<void> {
     await this.inventoryRepository.delete({ bot: { steamId }, appId, contextId });
-  };
+  }
 }
