@@ -1,11 +1,9 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
-import { arrayIntersectionAny } from '../../common/utils/array.util';
 import { User } from '../../user/entity/user.entity';
 import { AccessControlService } from '../access-control.service';
 import { PermissionsEnum } from '../enums/permissions.enum';
-import { RolesEnum } from '../enums/roles.enum';
 
 @Injectable()
 export class PermissionsGuard extends AuthGuard('jwt') {
@@ -22,15 +20,12 @@ export class PermissionsGuard extends AuthGuard('jwt') {
 
     await super.canActivate(context);
 
-    const userRoles = this.getUserRoles(context);
-    const userPermissions = this.acService.getPermissionsInRole(...userRoles);
-
-    return arrayIntersectionAny(userPermissions, permissions);
+    const user = PermissionsGuard.getUser(context);
+    return this.acService.hasUserAnyPermission(user, permissions);
   }
 
-  private getUserRoles(context: ExecutionContext): RolesEnum[] {
+  private static getUser(context: ExecutionContext): User {
     const request = context.switchToHttp().getRequest();
-    const user: User = request.user;
-    return user.roles;
+    return request.user;
   }
 }

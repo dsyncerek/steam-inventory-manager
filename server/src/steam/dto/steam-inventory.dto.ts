@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export class SteamInventoryDto {
   total_inventory_count: number;
   success: number;
