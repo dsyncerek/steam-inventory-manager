@@ -17,6 +17,13 @@ export const rolesConfig: RolesConfig = {
     PermissionsEnum.ItemGetAll,
     PermissionsEnum.ItemGetAny,
   ],
+  [RolesEnum.ItemsManager]: [
+    PermissionsEnum.ItemGetAll,
+    PermissionsEnum.ItemGetAny,
+    PermissionsEnum.ItemCreateAny,
+    PermissionsEnum.ItemUpdateAny,
+    PermissionsEnum.ItemDeleteAny,
+  ],
   [RolesEnum.Admin]: [
     PermissionsEnum.UserGetAll,
     PermissionsEnum.UserGetAny,
