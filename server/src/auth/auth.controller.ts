@@ -24,4 +24,10 @@ export class AuthController {
     res.setHeader('Set-Cookie', [cookie]);
     res.redirect('/');
   }
+
+  @Get('profile')
+  @UseGuards(AuthGuard('jwt'))
+  getProfile(@InjectUser() user: User): User {
+    return user;
+  }
 }
