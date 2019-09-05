@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { RolesEnum } from '../../access-control/enums/roles.enum';
 import { Bot } from '../../bot/entity/bot.entity';
@@ -13,6 +14,7 @@ export class User {
   @Column('simple-array')
   roles: RolesEnum[] = [];
 
+  @Exclude()
   @CreateDateColumn()
   createdAt: Date;
 

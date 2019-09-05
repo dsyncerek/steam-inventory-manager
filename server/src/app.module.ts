@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common';
-import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { ClassSerializerInterceptor, Module } from '@nestjs/common';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AccessControlModule } from './access-control/access-control.module';
 import { PermissionsGuard } from './access-control/guards/permissions.guard';
@@ -39,6 +39,7 @@ const ormConfig: TypeOrmModuleOptions = {
   providers: [
     { provide: APP_GUARD, useClass: PermissionsGuard },
     { provide: APP_FILTER, useClass: AllExceptionsFilter },
+    { provide: APP_INTERCEPTOR, useClass: ClassSerializerInterceptor },
   ],
 })
 export class AppModule {}
