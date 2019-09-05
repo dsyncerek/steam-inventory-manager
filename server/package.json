@@ -10,13 +10,6 @@
     "lint": "eslint src/**/*.ts --fix",
     "precommit": "lint-staged"
   },
-  "lint-staged": {
-    "src/**/*.ts": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ]
-  },
   "dependencies": {
     "@nestjs/common": "^6.6.7",
     "@nestjs/core": "^6.6.7",
