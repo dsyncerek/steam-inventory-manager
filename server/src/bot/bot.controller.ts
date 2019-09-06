@@ -10,37 +10,37 @@ import { Bot } from './entity/bot.entity';
 export class BotController {
   constructor(private readonly botService: BotService) {}
 
-  @Get()
+  @Get('get-all')
   @PermissionsAllowed(PermissionsEnum.BotGetAll)
   async getAllBots(): Promise<Bot[]> {
     return this.botService.getAllBots();
   }
 
-  @Get('user/:steamId')
+  @Get('get-of-user/:steamId')
   @PermissionsAllowed(PermissionsEnum.BotGetAllByUserAny, PermissionsEnum.BotGetAllByUserOwn)
   async getAllUserBots(@Param('steamId') steamId: string): Promise<Bot[]> {
     return this.botService.getUserBots(steamId);
   }
 
-  @Get(':steamId')
+  @Get('get/:steamId')
   @PermissionsAllowed(PermissionsEnum.BotGetAny, PermissionsEnum.BotGetOwn)
   async getBot(@Param('steamId') steamId: string): Promise<Bot> {
     return this.botService.getBot(steamId);
   }
 
-  @Post()
+  @Post('create')
   @PermissionsAllowed(PermissionsEnum.BotCreateAny, PermissionsEnum.BotCreateOwn)
   async createBot(@Body() body: CreateBotDto): Promise<Bot> {
     return this.botService.createBot(body);
   }
 
-  @Put(':steamId')
+  @Put('update/:steamId')
   @PermissionsAllowed(PermissionsEnum.BotUpdateAny, PermissionsEnum.BotUpdateOwn)
   async updateBot(@Param('steamId') steamId: string, @Body() body: UpdateBotDto): Promise<Bot> {
     return this.botService.updateBot(steamId, body);
   }
 
-  @Delete(':steamId')
+  @Delete('delete/:steamId')
   @PermissionsAllowed(PermissionsEnum.BotDeleteAny, PermissionsEnum.BotDeleteOwn)
   async deleteBot(@Param('steamId') steamId: string): Promise<void> {
     return this.botService.deleteBot(steamId);

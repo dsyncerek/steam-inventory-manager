@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Put } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { PermissionsAllowed } from '../access-control/decorators/permissions-allowed.decorator';
 import { PermissionsEnum } from '../access-control/enums/permissions.enum';
 import { Inventory } from './entity/inventory.entity';
@@ -8,19 +8,19 @@ import { InventoryService } from './inventory.service';
 export class InventoryController {
   constructor(private readonly inventoryService: InventoryService) {}
 
-  @Get('user/:steamId')
+  @Get('get-of-user/:steamId')
   @PermissionsAllowed(PermissionsEnum.InventoryGetAllByUserAny, PermissionsEnum.InventoryGetAllByUserOwn)
   async getAllUserInventories(@Param('steamId') steamId: string): Promise<Inventory[]> {
     return this.inventoryService.getUserInventories(steamId);
   }
 
-  @Get(':steamId')
+  @Get('get-of-bot/:steamId')
   @PermissionsAllowed(PermissionsEnum.InventoryGetAllByBotAny, PermissionsEnum.InventoryGetAllByBotOwn)
   async getAllBotInventories(@Param('steamId') steamId: string): Promise<Inventory[]> {
     return this.inventoryService.getBotInventories(steamId);
   }
 
-  @Get(':steamId/:appId/:contextId')
+  @Get('get/:steamId/:appId/:contextId')
   @PermissionsAllowed(PermissionsEnum.InventoryGetAny, PermissionsEnum.InventoryGetOwn)
   async getInventory(
     @Param('steamId') steamId: string,
@@ -30,7 +30,7 @@ export class InventoryController {
     return this.inventoryService.getInventory(steamId, appId, contextId);
   }
 
-  @Put(':steamId/:appId/:contextId')
+  @Get('refresh/:steamId/:appId/:contextId')
   @PermissionsAllowed(PermissionsEnum.InventoryRefreshAny, PermissionsEnum.InventoryRefreshOwn)
   async refreshInventory(
     @Param('steamId') steamId: string,

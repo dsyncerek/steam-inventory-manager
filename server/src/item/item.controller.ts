@@ -10,31 +10,31 @@ import { ItemService } from './item.service';
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}
 
-  @Get()
+  @Get('get-all')
   @PermissionsAllowed(PermissionsEnum.ItemGetAll)
   async getAllItems(): Promise<Item[]> {
     return this.itemService.getAllItems();
   }
 
-  @Get(':name')
+  @Get('get/:name')
   @PermissionsAllowed(PermissionsEnum.ItemGetAny)
   async getItem(@Param('name') name: string): Promise<Item> {
     return this.itemService.getItem(name);
   }
 
-  @Post()
+  @Post('create')
   @PermissionsAllowed(PermissionsEnum.ItemCreateAny)
   async createItem(@Body() body: CreateItemDto): Promise<Item> {
     return this.itemService.createItem(body);
   }
 
-  @Put('/:name')
+  @Put('update/:name')
   @PermissionsAllowed(PermissionsEnum.ItemUpdateAny)
   async updateItem(@Param('name') name: string, @Body() body: UpdateItemDto): Promise<Item> {
     return this.itemService.updateItem(name, body);
   }
 
-  @Delete('/:name')
+  @Delete('delete/:name')
   @PermissionsAllowed(PermissionsEnum.ItemDeleteAny)
   async deleteItem(@Param('name') name: string): Promise<void> {
     return this.itemService.deleteItem(name);
