@@ -41,7 +41,7 @@ export class SteamService {
     return new Inventory({
       appId,
       contextId,
-      steamId,
+      botSteamId: steamId,
       items,
     });
   }

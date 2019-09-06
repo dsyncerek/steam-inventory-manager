@@ -14,6 +14,9 @@ export class Inventory {
   @Column()
   contextId: number;
 
+  @Column()
+  botSteamId: string;
+
   @ManyToOne(() => Bot, bot => bot.inventories, { nullable: false, onDelete: 'CASCADE' })
   bot: Bot;
 
@@ -22,7 +25,6 @@ export class Inventory {
 
   count: number;
   worth: number;
-  steamId: string;
 
   constructor(partial: Partial<Inventory> = {}) {
     Object.assign(this, partial);
@@ -32,12 +34,12 @@ export class Inventory {
   setCountAndWorth(): void {
     if (this.items) {
       this.count = this.items.map(invItem => invItem.quantity).reduce((a, b) => a + b, 0);
-      this.worth = this.items.map(invItem => invItem.quantity * invItem.item.price || 0).reduce((a, b) => a + b, 0);
+      this.worth = this.items.map(invItem => invItem.quantity * invItem.item.price).reduce((a, b) => a + b, 0);
     }
   }
 
   @BeforeInsert()
   setBot(): void {
-    this.bot = new Bot({ steamId: this.steamId });
+    this.bot = new Bot({ steamId: this.botSteamId });
   }
 }

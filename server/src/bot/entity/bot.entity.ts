@@ -25,10 +25,11 @@ export class Bot {
   @OneToMany(() => Inventory, inv => inv.bot, { eager: true })
   inventories: Inventory[];
 
+  @Column()
+  ownerSteamId: string;
+
   @ManyToOne(() => User, user => user.bots, { nullable: false, onDelete: 'CASCADE' })
   owner: User;
-
-  ownerSteamId: string;
 
   constructor(partial: Partial<Bot> = {}) {
     Object.assign(this, partial);
