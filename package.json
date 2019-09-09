@@ -2,6 +2,7 @@
   "name": "steam-inventory-manager",
   "version": "1.0.0",
   "scripts": {
+    "start:dev": "lerna run --stream start:dev",
     "postinstall": "lerna bootstrap",
     "format": "lerna run format",
     "lint": "lerna run lint"
