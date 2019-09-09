@@ -55,7 +55,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "steam-inventory-manager-client:build"
+            "browserTarget": "steam-inventory-manager-client:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

@@ -6,6 +6,8 @@ import { AppModule } from './app.module';
 (async (): Promise<void> => {
   const app = await NestFactory.create(AppModule);
 
+  app.setGlobalPrefix('api');
+
   app.useGlobalPipes(
     new ValidationPipe({
       skipMissingProperties: true,
@@ -13,7 +15,7 @@ import { AppModule } from './app.module';
     }),
   );
 
-  SwaggerModule.setup('api', app, SwaggerModule.createDocument(app, {}));
+  SwaggerModule.setup('docs', app, SwaggerModule.createDocument(app, {}));
 
   await app.listen(5000);
 })();
