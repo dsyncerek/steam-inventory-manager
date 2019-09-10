@@ -18,7 +18,7 @@ export class BotController {
 
   @Get('get-of-user/:steamId')
   @PermissionsAllowed(PermissionsEnum.BotGetAllByUserAny, PermissionsEnum.BotGetAllByUserOwn)
-  async getAllUserBots(@Param('steamId') steamId: string): Promise<Bot[]> {
+  async getUserBots(@Param('steamId') steamId: string): Promise<Bot[]> {
     return this.botService.getUserBots(steamId);
   }
 

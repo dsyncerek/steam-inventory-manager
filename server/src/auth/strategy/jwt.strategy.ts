@@ -17,10 +17,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate({ steamId }: JwtPayload): Promise<User> {
-    return this.authService.validateUser(steamId);
-  }
-
   private static getTokenFromCookie(req: Request): string {
     try {
       const cookies = parse(req.headers.cookie);
@@ -28,5 +24,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     } catch {
       return null;
     }
+  }
+
+  async validate({ steamId }: JwtPayload): Promise<User> {
+    return this.authService.validateUser(steamId);
   }
 }

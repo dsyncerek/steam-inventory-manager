@@ -15,13 +15,13 @@ export class OpenidStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(identifier: string): Promise<User> {
-    const steamId = OpenidStrategy.getSteamIdFromIdentifier(identifier);
-    return this.authService.validateUser(steamId);
-  }
-
   private static getSteamIdFromIdentifier(identifier: string): string {
     const identifierRegex = /^https?:\/\/steamcommunity\.com\/openid\/id\/(\d+)$/;
     return identifierRegex.exec(identifier)[1];
+  }
+
+  async validate(identifier: string): Promise<User> {
+    const steamId = OpenidStrategy.getSteamIdFromIdentifier(identifier);
+    return this.authService.validateUser(steamId);
   }
 }

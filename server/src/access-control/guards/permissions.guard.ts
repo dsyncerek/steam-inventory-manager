@@ -11,6 +11,11 @@ export class PermissionsGuard extends AuthGuard('jwt') {
     super();
   }
 
+  private static getUser(context: ExecutionContext): User {
+    const request = context.switchToHttp().getRequest();
+    return request.user;
+  }
+
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const permissions = this.reflector.get<PermissionsEnum[]>('permissions', context.getHandler());
 
@@ -22,10 +27,5 @@ export class PermissionsGuard extends AuthGuard('jwt') {
 
     const user = PermissionsGuard.getUser(context);
     return this.acService.hasUserAnyPermission(user, permissions);
-  }
-
-  private static getUser(context: ExecutionContext): User {
-    const request = context.switchToHttp().getRequest();
-    return request.user;
   }
 }

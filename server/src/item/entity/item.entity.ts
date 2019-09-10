@@ -1,4 +1,3 @@
-import { Exclude } from 'class-transformer';
 import { Column, Entity, Index, PrimaryColumn } from 'typeorm';
 
 @Entity()
@@ -10,11 +9,9 @@ export class Item {
   @Index({ unique: true })
   name: string;
 
-  @Exclude()
   @Column()
   appId: number;
 
-  @Exclude()
   @Column()
   contextId: number;
 
