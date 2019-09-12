@@ -1,10 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BaseDataService } from '../shared/services/base-data.service';
+import { environment } from '../../environments/environment';
 import { Item } from './models/item';
 
-@Injectable()
-export class ItemService extends BaseDataService {
+@Injectable({ providedIn: 'root' })
+export class ItemService {
+  private readonly apiUrl = environment.apiUrl;
+
+  constructor(private readonly http: HttpClient) {}
+
   getAllItems(): Observable<Item[]> {
     return this.http.get<Item[]>(`${this.apiUrl}/item/get-all`);
   }

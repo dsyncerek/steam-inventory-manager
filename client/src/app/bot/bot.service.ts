@@ -1,15 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BaseDataService } from '../shared/services/base-data.service';
+import { environment } from '../../environments/environment';
 import { Bot } from './models/bot';
 
-@Injectable()
-export class BotService extends BaseDataService {
+@Injectable({ providedIn: 'root' })
+export class BotService {
+  private readonly apiUrl = environment.apiUrl;
+
+  constructor(private readonly http: HttpClient) {}
+
   getAllBots(): Observable<Bot[]> {
     return this.http.get<Bot[]>(`${this.apiUrl}/bot/get-all`);
   }
 
-  getAllUserBots(steamId: string): Observable<Bot[]> {
+  getUserBots(steamId: string): Observable<Bot[]> {
     return this.http.get<Bot[]>(`${this.apiUrl}/bot/get-of-user/${steamId}`);
   }
 

@@ -1,10 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BaseDataService } from '../shared/services/base-data.service';
+import { environment } from '../../environments/environment';
 import { Inventory } from './models/inventory';
 
-@Injectable()
-export class InventoryService extends BaseDataService {
+@Injectable({ providedIn: 'root' })
+export class InventoryService {
+  private readonly apiUrl = environment.apiUrl;
+
+  constructor(private readonly http: HttpClient) {}
+
   getUserInventories(steamId: string): Observable<Inventory[]> {
     return this.http.get<Inventory[]>(`${this.apiUrl}/inventory/get-of-user/${steamId}`);
   }
