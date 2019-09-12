@@ -10,3 +10,5 @@ export interface Bot {
   isOnline: boolean;
   inventories: Inventory[];
 }
+
+export const selectBotId = (bot: Bot): string => bot.steamId;

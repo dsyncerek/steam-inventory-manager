@@ -1,0 +1,37 @@
+<article class="bot-details">
+  <header class="bot-details__header">
+    <div class="bot-details__id">
+      <span>
+        <span *ngIf="bot.name" class="bot-details__name">
+          {{ bot.name }}
+        </span>
+        <span *ngIf="bot.login" class="bot-details__login">
+          {{ bot.login }}
+        </span>
+      </span>
+      <span class="bot-details__steamid">
+        {{ bot.steamId }}
+      </span>
+      <span class="bot-details__checks">
+        <mat-icon matTooltip="2FA" matTooltipPosition="right">{{ bot.is2FA ? 'check' : 'close' }}</mat-icon>
+        <mat-icon matTooltip="Online" matTooltipPosition="right">{{ bot.isOnline ? 'check' : 'close' }}</mat-icon>
+      </span>
+    </div>
+    <nav class="bot-details__nav">
+      <a target="_blank" [href]="steamProfileUrl" mat-stroked-button>
+        View profile
+      </a>
+      <a *ngIf="bot.tradeLink" target="_blank" [href]="bot.tradeLink" mat-stroked-button>
+        Offer a Trade
+      </a>
+      <button mat-stroked-button (click)="botEdit.emit(bot.steamId)">
+        Edit
+      </button>
+      <button mat-stroked-button color="warn" (click)="botDelete.emit(bot.steamId)">
+        Delete
+      </button>
+    </nav>
+  </header>
+
+  <app-inventory-list class="bot-details__inventory" [steamId]="bot.steamId"></app-inventory-list>
+</article>

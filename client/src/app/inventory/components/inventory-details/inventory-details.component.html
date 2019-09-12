@@ -1,0 +1,34 @@
+<div class="inventory-details">
+  <div class="inventory-details__header">
+    <div>
+      <div>
+        <span class="mat-small">Count: </span>
+        <span>{{ inventory.count }}</span>
+      </div>
+      <div>
+        <span class="mat-small">Worth: </span>
+        <span>{{ inventory.worth | currency }}</span>
+      </div>
+    </div>
+    <nav class="inventory-details__nav">
+      <button mat-stroked-button (click)="inventoryShow.emit(inventory.id)">
+        Show
+      </button>
+      <button mat-stroked-button (click)="inventoryRefresh.emit(inventory.id)">
+        Refresh
+      </button>
+      <button mat-stroked-button color="warn" (click)="inventoryDelete.emit(inventory.id)">
+        Delete
+      </button>
+    </nav>
+  </div>
+
+  <div *ngIf="inventory.items && inventory.items.length > 0" class="inventory-details__items">
+    <app-item-details
+      class="inventory-details__item"
+      *ngFor="let inventoryItem of inventory.items"
+      [item]="inventoryItem.item"
+      [quantity]="inventoryItem.quantity"
+    ></app-item-details>
+  </div>
+</div>

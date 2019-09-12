@@ -1,0 +1,14 @@
+<a
+  matRipple
+  class="item-details"
+  target="_blank"
+  [href]="steamMarketUrl"
+  [matTooltip]="item.name"
+  matTooltipPosition="above"
+>
+  <img class="item-details__icon" [src]="steamIconUrl" [alt]="item.name" />
+  <span class="item-details__price">
+    {{ item.price | currency }}
+  </span>
+  <span class="item-details__quantity" *ngIf="quantity"> x{{ quantity }} </span>
+</a>

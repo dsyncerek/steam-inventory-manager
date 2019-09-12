@@ -5,7 +5,7 @@ export interface Inventory {
   botSteamId: string;
   appId: number;
   contextId: number;
-  items: InventoryItem[];
   count: number;
   worth: number;
+  items?: InventoryItem[];
 }

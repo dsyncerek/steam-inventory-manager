@@ -6,3 +6,5 @@ export interface Item {
   icon: string;
   price: number;
 }
+
+export const selectItemId = (item: Item): string => item.classId;
