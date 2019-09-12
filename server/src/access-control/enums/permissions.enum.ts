@@ -23,8 +23,12 @@ export enum PermissionsEnum {
   InventoryGetAllByBotOwn = 'inventory:get-all-by-bot:own',
   InventoryGetAny = 'inventory:get:any',
   InventoryGetOwn = 'inventory:get:own',
+  InventoryCreateAny = 'inventory:create:any',
+  InventoryCreateOwn = 'inventory:create:own',
   InventoryRefreshAny = 'inventory:refresh:any',
   InventoryRefreshOwn = 'inventory:refresh:own',
+  InventoryDeleteAny = 'inventory:delete:any',
+  InventoryDeleteOwn = 'inventory:delete:own',
 
   ItemGetAll = 'item:get-all:any',
   ItemGetAny = 'item:get:any',

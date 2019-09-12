@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SteamService } from '../steam/steam.service';
+import { CreateInventoryDto } from './dto/create-inventory.dto';
 import { Inventory } from './entity/inventory.entity';
 
 @Injectable()
@@ -12,34 +13,35 @@ export class InventoryService {
   constructor(private readonly steamService: SteamService) {}
 
   async getUserInventories(steamId: string): Promise<Inventory[]> {
-    return this.inventoryRepository.find({
-      where: { bot: { owner: { steamId } } },
-      relations: ['items'],
-    });
+    return this.inventoryRepository.find({ bot: { owner: { steamId } } });
   }
 
   async getBotInventories(steamId: string): Promise<Inventory[]> {
-    return this.inventoryRepository.find({
-      where: { bot: { steamId } },
-      relations: ['items'],
-    });
+    return this.inventoryRepository.find({ bot: { steamId } });
   }
 
-  async getInventory(steamId: string, appId: number, contextId: number): Promise<Inventory> {
-    return this.inventoryRepository.findOneOrFail({
-      where: { bot: { steamId }, appId, contextId },
-      relations: ['items'],
-    });
+  async getInventory(id: string): Promise<Inventory> {
+    return this.inventoryRepository.findOneOrFail({ id });
   }
 
-  async refreshInventory(steamId: string, appId: number, contextId: number): Promise<Inventory> {
+  async createInventory(data: CreateInventoryDto): Promise<Inventory> {
+    const { appId, contextId, steamId } = data;
     const inventory = await this.steamService.getInventoryBySteamId(steamId, appId, contextId);
-    await this.deleteInventory(steamId, appId, contextId);
     await this.inventoryRepository.save(inventory);
-    return this.getInventory(steamId, appId, contextId);
+    return this.getInventory(inventory.id);
   }
 
-  async deleteInventory(steamId: string, appId: number, contextId: number): Promise<void> {
-    await this.inventoryRepository.delete({ bot: { steamId }, appId, contextId });
+  async refreshInventory(id: string): Promise<Inventory> {
+    const inventory = await this.getInventory(id);
+    const { appId, contextId, botSteamId } = inventory;
+    const inventoryFromSteam = await this.steamService.getInventoryBySteamId(botSteamId, appId, contextId);
+    const inventoryToSave = { ...inventoryFromSteam, id };
+    await this.deleteInventory(id);
+    await this.inventoryRepository.save(inventoryToSave);
+    return this.getInventory(id);
+  }
+
+  async deleteInventory(id: string): Promise<void> {
+    await this.inventoryRepository.delete({ id });
   }
 }

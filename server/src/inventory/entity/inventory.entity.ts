@@ -1,9 +1,11 @@
-import { AfterLoad, BeforeInsert, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Expose } from 'class-transformer';
+import { AfterLoad, BeforeInsert, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { Column } from 'typeorm/decorator/columns/Column';
 import { Bot } from '../../bot/entity/bot.entity';
 import { InventoryItem } from './inventory-item.entity';
 
 @Entity()
+@Unique(['appId', 'contextId', 'botSteamId'])
 export class Inventory {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -20,7 +22,8 @@ export class Inventory {
   @ManyToOne(() => Bot, bot => bot.inventories, { nullable: false, onDelete: 'CASCADE' })
   bot: Bot;
 
-  @OneToMany(() => InventoryItem, item => item.inventory, { cascade: true })
+  @Expose({ groups: ['inventory'] })
+  @OneToMany(() => InventoryItem, item => item.inventory, { cascade: true, eager: true })
   items: InventoryItem[];
 
   count: number;
@@ -32,10 +35,8 @@ export class Inventory {
 
   @AfterLoad()
   setCountAndWorth(): void {
-    if (this.items) {
-      this.count = this.items.map(invItem => invItem.quantity).reduce((a, b) => a + b, 0);
-      this.worth = this.items.map(invItem => invItem.quantity * invItem.item.price).reduce((a, b) => a + b, 0);
-    }
+    this.count = this.items.map(invItem => invItem.quantity).reduce((a, b) => a + b, 0);
+    this.worth = this.items.map(invItem => invItem.quantity * invItem.item.price).reduce((a, b) => a + b, 0);
   }
 
   @BeforeInsert()

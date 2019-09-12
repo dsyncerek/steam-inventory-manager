@@ -1,6 +1,7 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, SerializeOptions } from '@nestjs/common';
 import { PermissionsAllowed } from '../access-control/decorators/permissions-allowed.decorator';
 import { PermissionsEnum } from '../access-control/enums/permissions.enum';
+import { CreateInventoryDto } from './dto/create-inventory.dto';
 import { Inventory } from './entity/inventory.entity';
 import { InventoryService } from './inventory.service';
 
@@ -10,33 +11,42 @@ export class InventoryController {
 
   @Get('get-of-user/:steamId')
   @PermissionsAllowed(PermissionsEnum.InventoryGetAllByUserAny, PermissionsEnum.InventoryGetAllByUserOwn)
+  @SerializeOptions({ groups: ['inventory'] })
   async getUserInventories(@Param('steamId') steamId: string): Promise<Inventory[]> {
     return this.inventoryService.getUserInventories(steamId);
   }
 
   @Get('get-of-bot/:steamId')
   @PermissionsAllowed(PermissionsEnum.InventoryGetAllByBotAny, PermissionsEnum.InventoryGetAllByBotOwn)
+  @SerializeOptions({ groups: ['inventory'] })
   async getBotInventories(@Param('steamId') steamId: string): Promise<Inventory[]> {
     return this.inventoryService.getBotInventories(steamId);
   }
 
-  @Get('get/:steamId/:appId/:contextId')
+  @Get('get/:id')
   @PermissionsAllowed(PermissionsEnum.InventoryGetAny, PermissionsEnum.InventoryGetOwn)
-  async getInventory(
-    @Param('steamId') steamId: string,
-    @Param('appId') appId: number,
-    @Param('contextId') contextId: number,
-  ): Promise<Inventory> {
-    return this.inventoryService.getInventory(steamId, appId, contextId);
+  @SerializeOptions({ groups: ['inventory'] })
+  async getInventory(@Param('id') id: string): Promise<Inventory> {
+    return this.inventoryService.getInventory(id);
   }
 
-  @Get('refresh/:steamId/:appId/:contextId')
+  @Post('create')
+  @PermissionsAllowed(PermissionsEnum.InventoryCreateAny, PermissionsEnum.InventoryCreateOwn)
+  @SerializeOptions({ groups: ['inventory'] })
+  async createInventory(@Body() body: CreateInventoryDto): Promise<Inventory> {
+    return this.inventoryService.createInventory(body);
+  }
+
+  @Get('refresh/:id')
   @PermissionsAllowed(PermissionsEnum.InventoryRefreshAny, PermissionsEnum.InventoryRefreshOwn)
-  async refreshInventory(
-    @Param('steamId') steamId: string,
-    @Param('appId') appId: number,
-    @Param('contextId') contextId: number,
-  ): Promise<Inventory> {
-    return this.inventoryService.refreshInventory(steamId, appId, contextId);
+  @SerializeOptions({ groups: ['inventory'] })
+  async refreshInventory(@Param('id') id: string): Promise<Inventory> {
+    return this.inventoryService.refreshInventory(id);
+  }
+
+  @Delete('delete/:id')
+  @PermissionsAllowed(PermissionsEnum.InventoryDeleteAny, PermissionsEnum.InventoryDeleteOwn)
+  async deleteInventory(@Param('id') id: string): Promise<void> {
+    return this.inventoryService.deleteInventory(id);
   }
 }
