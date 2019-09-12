@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+
+$primary-palette: mat-palette($mat-blue);
+$accent-palette: mat-palette($mat-blue-gray);
+
+$font-stack: Roboto, 'Helvetica Neue', sans-serif;
+
+$dark: #171717;
+$light: #fff;
+$gold: #ffd700;
+
+$primary: map-get($primary-palette, default);
+$accent: map-get($accent-palette, default);
+
+$typography-config: mat-typography-config(
+  $font-family: $font-stack,
+);
+
+$light-theme: mat-light-theme($primary-palette, $accent-palette);
+$dark-theme: mat-dark-theme($primary-palette, $accent-palette);

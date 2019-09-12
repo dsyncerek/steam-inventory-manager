@@ -1,6 +1,24 @@
 @import 'theme';
+@import 'variables';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
 
 body {
+  font-family: $font-stack;
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  color: $light;
+  background: $dark;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
