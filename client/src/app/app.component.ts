@@ -3,10 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <h1>Hello world!</h1>
-    <button mat-button>Click me!</button>
-    <router-outlet></router-outlet>
+    <div style="width:1000px;max-width:100%;margin:auto">
+      <app-bot-list></app-bot-list>
+    </div>
   `,
-  styles: [],
 })
 export class AppComponent {}

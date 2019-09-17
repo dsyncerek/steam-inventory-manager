@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
 
-@NgModule()
+@NgModule({
+  imports: [SharedModule],
+})
 export class UserModule {}

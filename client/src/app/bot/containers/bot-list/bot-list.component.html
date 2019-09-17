@@ -1,0 +1,16 @@
+<div class="bot-list">
+  <div class="bot-list__items">
+    <app-bot-details
+      *ngFor="let bot of bots$ | async"
+      [bot]="bot"
+      (botDelete)="onBotDelete($event)"
+      (botEdit)="onBotEdit($event)"
+    ></app-bot-details>
+  </div>
+
+  <div class="bot-list__footer">
+    <button mat-icon-button (click)="onBotAdd()" matTooltip="Add new bot">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.bot-list {
+  &__items {
+    & > * {
+      display: block;
+      margin-bottom: 25px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+  }
+}
