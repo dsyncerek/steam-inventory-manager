@@ -12,17 +12,8 @@ export class AuthController {
   @Get('login')
   @UseGuards(AuthGuard('openid'))
   login(@InjectUser() user: User, @Res() res: Response): void {
-    const cookie = this.authService.login(user);
-    res.setHeader('Set-Cookie', [cookie]);
-    res.redirect('/');
-  }
-
-  @Get('logout')
-  @UseGuards(AuthGuard('jwt'))
-  logout(@Res() res: Response): void {
-    const cookie = this.authService.logout();
-    res.setHeader('Set-Cookie', [cookie]);
-    res.redirect('/');
+    const token = this.authService.generateToken(user);
+    res.redirect(`http://localhost:4200?token=${token}`); // todo
   }
 
   @Get('profile')

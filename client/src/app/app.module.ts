@@ -4,6 +4,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
 import { BotModule } from './bot/bot.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { ItemModule } from './item/item.module';
@@ -16,6 +17,7 @@ import { SharedModule } from './shared/shared.module';
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument(),
+    AuthModule,
     BotModule,
     InventoryModule,
     ItemModule,

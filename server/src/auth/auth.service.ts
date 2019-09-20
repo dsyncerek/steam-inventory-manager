@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { serialize } from 'cookie';
 import { User } from '../user/entity/user.entity';
 import { UserService } from '../user/user.service';
 import { JwtPayload } from './interfaces/JwtPayload.interface';
@@ -13,13 +12,8 @@ export class AuthService {
     return this.userService.upsertUser({ steamId });
   }
 
-  login({ steamId }: User): string {
-    const payload: JwtPayload = { steamId };
-    const token = this.jwtService.sign(payload);
-    return serialize('Authorization', token, { httpOnly: true, maxAge: 3600 * 24 * 7, path: '/' });
-  }
-
-  logout(): string {
-    return serialize('Authorization', '', { httpOnly: true, maxAge: 0, path: '/' });
+  generateToken({ steamId, roles }: User): string {
+    const payload: JwtPayload = { steamId, roles };
+    return this.jwtService.sign(payload);
   }
 }
