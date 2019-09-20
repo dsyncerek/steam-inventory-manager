@@ -24,9 +24,9 @@
       <a *ngIf="bot.tradeLink" target="_blank" [href]="bot.tradeLink" mat-stroked-button>
         Offer a Trade
       </a>
-      <button mat-stroked-button (click)="botEdit.emit(bot.steamId)">
+      <a mat-stroked-button [routerLink]="['edit', bot.steamId]">
         Edit
-      </button>
+      </a>
       <button mat-stroked-button color="warn" (click)="botDelete.emit(bot.steamId)">
         Delete
       </button>

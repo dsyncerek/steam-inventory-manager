@@ -1,0 +1,44 @@
+<form [formGroup]="form" fxLayout="column" fxLayoutGap="20px">
+  <h3 class="mat-headline">
+    Add Bot
+  </h3>
+  <div fxLayoutGap="20px">
+    <mat-form-field fxFlex="grow">
+      <mat-label>
+        SteamId64
+      </mat-label>
+      <input formControlName="steamId" matInput />
+    </mat-form-field>
+    <mat-form-field fxFlex="grow">
+      <mat-label>
+        Trade URL
+      </mat-label>
+      <input formControlName="tradeLink" matInput />
+    </mat-form-field>
+  </div>
+  <div fxLayoutGap="20px">
+    <mat-form-field fxFlex="grow">
+      <mat-label>
+        Display Name
+      </mat-label>
+      <input formControlName="name" matInput />
+    </mat-form-field>
+    <mat-form-field fxFlex="grow">
+      <mat-label>
+        Steam Username
+      </mat-label>
+      <input formControlName="login" matInput />
+    </mat-form-field>
+  </div>
+  <div fxLayoutGap="20px">
+    <mat-slide-toggle formControlName="isOnline">
+      Online
+    </mat-slide-toggle>
+    <mat-slide-toggle formControlName="is2FA">
+      2FA
+    </mat-slide-toggle>
+  </div>
+  <button color="primary" mat-flat-button>
+    Submit
+  </button>
+</form>

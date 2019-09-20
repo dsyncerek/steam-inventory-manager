@@ -24,12 +24,4 @@ export class BotListComponent implements OnInit {
   onBotDelete(steamId: string): void {
     console.log(`Delete: ${steamId}`);
   }
-
-  onBotEdit(steamId: string): void {
-    console.log(`Edit: ${steamId}`);
-  }
-
-  onBotAdd(): void {
-    console.log(`Add`);
-  }
 }

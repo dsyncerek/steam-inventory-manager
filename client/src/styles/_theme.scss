@@ -3,6 +3,7 @@
 @include mat-core($typography-config);
 @include angular-material-theme($dark-theme);
 
-.mat-stroked-button {
+.mat-stroked-button,
+.mat-button {
   border-radius: 0 !important;
 }
