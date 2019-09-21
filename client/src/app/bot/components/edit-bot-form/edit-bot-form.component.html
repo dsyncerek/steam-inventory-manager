@@ -8,19 +8,26 @@
         Display Name
       </mat-label>
       <input formControlName="name" matInput />
+      <mat-error>{{ getControlErrorMessage('name') }}</mat-error>
     </mat-form-field>
     <mat-form-field fxFlex="grow">
       <mat-label>
         Steam Username
       </mat-label>
       <input formControlName="login" matInput />
+      <mat-error>{{ getControlErrorMessage('login') }}</mat-error>
     </mat-form-field>
   </div>
   <mat-form-field>
     <mat-label>
       Trade URL
     </mat-label>
-    <input formControlName="tradeLink" matInput />
+    <input
+      formControlName="tradeLink"
+      matInput
+      placeholder="https://steamcommunity.com/tradeoffer/new/?partner=XXXXXXXXX&token=YYYYYYYY"
+    />
+    <mat-error>{{ getControlErrorMessage('tradeLink') }}</mat-error>
   </mat-form-field>
   <div fxLayoutGap="20px">
     <mat-slide-toggle formControlName="isOnline">

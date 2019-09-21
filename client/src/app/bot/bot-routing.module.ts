@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { AddBotFormComponent } from './components/add-bot-form/add-bot-form.component';
-import { BotListComponent } from './containers/bot-list/bot-list.component';
-import { EditBotFormComponent } from './components/edit-bot-form/edit-bot-form.component';
+import { AddBotComponent } from './containers/add-bot/add-bot.component';
+import { BotComponent } from './containers/bot/bot.component';
+import { BotsComponent } from './containers/bots/bots.component';
+import { EditBotComponent } from './containers/edit-bot/edit-bot.component';
 
 const routes: Route[] = [
   {
     path: '',
-    component: BotListComponent,
+    component: BotsComponent,
   },
   {
     path: 'add',
-    component: AddBotFormComponent,
+    component: AddBotComponent,
   },
   {
     path: 'edit/:steamId',
-    component: EditBotFormComponent,
+    component: EditBotComponent,
+  },
+  {
+    path: ':steamId',
+    component: BotComponent,
   },
 ];
 

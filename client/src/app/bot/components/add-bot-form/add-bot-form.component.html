@@ -1,4 +1,4 @@
-<form [formGroup]="form" fxLayout="column" fxLayoutGap="20px">
+<form (ngSubmit)="submit()" [formGroup]="form" fxLayout="column" fxLayoutGap="20px">
   <h3 class="mat-headline">
     Add Bot
   </h3>
@@ -7,13 +7,19 @@
       <mat-label>
         SteamId64
       </mat-label>
-      <input formControlName="steamId" matInput />
+      <input formControlName="steamId" matInput placeholder="76561198020084907" />
+      <mat-error>{{ getControlErrorMessage('steamId') }}</mat-error>
     </mat-form-field>
     <mat-form-field fxFlex="grow">
       <mat-label>
         Trade URL
       </mat-label>
-      <input formControlName="tradeLink" matInput />
+      <input
+        formControlName="tradeLink"
+        matInput
+        placeholder="https://steamcommunity.com/tradeoffer/new/?partner=XXXXXXXXX&token=YYYYYYYY"
+      />
+      <mat-error>{{ getControlErrorMessage('tradeLink') }}</mat-error>
     </mat-form-field>
   </div>
   <div fxLayoutGap="20px">
@@ -22,12 +28,14 @@
         Display Name
       </mat-label>
       <input formControlName="name" matInput />
+      <mat-error>{{ getControlErrorMessage('name') }}</mat-error>
     </mat-form-field>
     <mat-form-field fxFlex="grow">
       <mat-label>
         Steam Username
       </mat-label>
       <input formControlName="login" matInput />
+      <mat-error>{{ getControlErrorMessage('login') }}</mat-error>
     </mat-form-field>
   </div>
   <div fxLayoutGap="20px">

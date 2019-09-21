@@ -15,3 +15,9 @@ export const selectUserBots = (steamId: string) =>
     selectBots,
     bots => bots.filter(bot => bot.ownerSteamId === steamId),
   );
+
+export const selectBot = (steamId: string) =>
+  createSelector(
+    selectBots,
+    bots => bots.find(bot => bot.steamId === steamId),
+  );

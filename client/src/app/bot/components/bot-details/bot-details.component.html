@@ -1,4 +1,4 @@
-<article class="bot-details">
+<article *ngIf="bot" class="bot-details">
   <header class="bot-details__header">
     <div class="bot-details__id">
       <span>
@@ -24,7 +24,7 @@
       <a *ngIf="bot.tradeLink" target="_blank" [href]="bot.tradeLink" mat-stroked-button>
         Offer a Trade
       </a>
-      <a mat-stroked-button [routerLink]="['edit', bot.steamId]">
+      <a mat-stroked-button [routerLink]="['/bot', 'edit', bot.steamId]">
         Edit
       </a>
       <button mat-stroked-button color="warn" (click)="botDelete.emit(bot.steamId)">

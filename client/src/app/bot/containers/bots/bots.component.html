@@ -1,0 +1,11 @@
+<div class="bots">
+  <div class="bots__items">
+    <app-bot-details *ngFor="let bot of bots$ | async" [bot]="bot"></app-bot-details>
+  </div>
+
+  <div class="bots__footer">
+    <a mat-icon-button [routerLink]="['/bot', 'add']" matTooltip="Add new bot">
+      <mat-icon>add</mat-icon>
+    </a>
+  </div>
+</div>

@@ -4,6 +4,8 @@
 @include angular-material-theme($dark-theme);
 
 .mat-stroked-button,
-.mat-button {
+.mat-button,
+.mat-flat-button,
+.mat-form-field-flex {
   border-radius: 0 !important;
 }

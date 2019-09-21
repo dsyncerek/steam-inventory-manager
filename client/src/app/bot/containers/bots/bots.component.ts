@@ -7,11 +7,11 @@ import { GetUserBots } from '../../state/bot.actions';
 import { selectUserBots } from '../../state/bot.selectors';
 
 @Component({
-  selector: 'app-bot-list',
-  templateUrl: './bot-list.component.html',
-  styleUrls: ['./bot-list.component.scss'],
+  selector: 'app-bots',
+  templateUrl: './bots.component.html',
+  styleUrls: ['./bots.component.scss'],
 })
-export class BotListComponent implements OnInit {
+export class BotsComponent implements OnInit {
   bots$: Observable<Bot[]>;
 
   constructor(private readonly store: Store<AppState>) {}
@@ -19,9 +19,5 @@ export class BotListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new GetUserBots({ steamId: '76561198032411432' }));
     this.bots$ = this.store.select(selectUserBots('76561198032411432'));
-  }
-
-  onBotDelete(steamId: string): void {
-    console.log(`Delete: ${steamId}`);
   }
 }
