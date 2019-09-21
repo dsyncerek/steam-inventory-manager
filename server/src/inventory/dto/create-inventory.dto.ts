@@ -1,9 +1,10 @@
-import { IsDefined, IsInt, IsNotEmpty, IsPositive, IsString } from 'class-validator';
+import { IsDefined, IsInt, IsNotEmpty, IsPositive, IsString, Matches } from 'class-validator';
 
 export class CreateInventoryDto {
   @IsString()
   @IsNotEmpty()
   @IsDefined()
+  @Matches(/^\d{17}$/)
   steamId: string;
 
   @IsInt()

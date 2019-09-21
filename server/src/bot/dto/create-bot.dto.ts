@@ -1,9 +1,10 @@
-import { IsBoolean, IsDefined, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsDefined, IsNotEmpty, IsString, Matches } from 'class-validator';
 
 export class CreateBotDto {
   @IsString()
   @IsNotEmpty()
   @IsDefined()
+  @Matches(/^\d{17}$/)
   steamId: string;
 
   @IsString()
@@ -24,5 +25,6 @@ export class CreateBotDto {
   @IsString()
   @IsNotEmpty()
   @IsDefined()
+  @Matches(/^\d{17}$/)
   ownerSteamId: string;
 }
