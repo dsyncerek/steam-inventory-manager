@@ -2,11 +2,11 @@
   "name": "steam-inventory-manager",
   "version": "1.0.0",
   "scripts": {
-    "start:dev": "lerna run start:dev",
-    "start:prod": "lerna run start:prod",
-    "build": "lerna run build",
-    "format": "lerna run format",
-    "lint": "lerna run lint",
+    "start:dev": "lerna run --parallel start:dev",
+    "start:prod": "lerna run --stream start:prod",
+    "build": "lerna run --stream build",
+    "format": "lerna run --stream format",
+    "lint": "lerna run --stream lint",
     "postinstall": "lerna bootstrap"
   },
   "husky": {
