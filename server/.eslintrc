@@ -1,9 +1,9 @@
 {
   "parserOptions": { "project": "./tsconfig.json", "createDefaultProgram": true },
   "extends": [
-    "standard-with-typescript",
-    "prettier",
-    "prettier/@typescript-eslint"
+    "eslint-config-standard-with-typescript",
+    "eslint-config-prettier",
+    "eslint-config-prettier/@typescript-eslint"
   ],
   "rules": {
     "@typescript-eslint/no-extraneous-class": "off",

@@ -1,6 +1,7 @@
 {
   "extends": [
-    "stylelint-config-recommended-scss"
+    "stylelint-config-recommended-scss",
+    "stylelint-config-prettier"
   ],
   "rules": {
     "no-empty-source": null
