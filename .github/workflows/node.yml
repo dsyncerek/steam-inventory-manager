@@ -1,4 +1,4 @@
-name: Server CI
+name: Node CI
 
 on:
   pull_request:
@@ -20,11 +20,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        working-directory: server
         run: npm install
       - name: Lint
-        working-directory: server
         run: npm run lint
       - name: Build
-        working-directory: server
         run: npm run build

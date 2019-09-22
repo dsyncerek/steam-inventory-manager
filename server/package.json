@@ -2,7 +2,6 @@
   "name": "steam-inventory-manager-server",
   "version": "1.0.0",
   "scripts": {
-    "start": "ts-node src/main.ts",
     "start:dev": "ts-node-dev src/main.ts",
     "start:prod": "node dist/main.js",
     "prebuild": "rimraf dist",
@@ -46,7 +45,6 @@
     "lint-staged": "^9.3.0",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
-    "ts-node": "^8.4.1",
     "ts-node-dev": "^1.0.0-pre.43",
     "typescript": "~3.5.3"
   }
