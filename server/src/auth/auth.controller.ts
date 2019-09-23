@@ -13,7 +13,7 @@ export class AuthController {
   @UseGuards(AuthGuard('openid'))
   login(@InjectUser() user: User, @Res() res: Response): void {
     const token = this.authService.generateToken(user);
-    res.redirect(`http://localhost:4200?token=${token}`); // todo
+    res.redirect(`http://localhost:4200/callback/?token=${token}`); // todo
   }
 
   @Get('profile')

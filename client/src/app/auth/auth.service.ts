@@ -1,22 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { getUrlSearchParams } from '../shared/utils/url.utils';
 import { User } from '../user/models/user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly apiUrl = environment.apiUrl;
+  private readonly tokenStorageKey = 'token';
+  private readonly storage: Storage = localStorage;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient, private readonly router: Router) {}
 
   login(): void {
     window.location.href = `${this.apiUrl}/auth/login`;
   }
 
+  handleAuthentication(): void {
+    const { token } = getUrlSearchParams(window.location.search);
+    this.storage.setItem(this.tokenStorageKey, token);
+    this.router.navigate(['/']);
+  }
+
   logout(): void {
-    localStorage.removeItem('token');
-    window.location.href = `/`;
+    this.storage.removeItem(this.tokenStorageKey);
+    this.router.navigate(['/']);
   }
 
   getUser(): Observable<User> {
@@ -24,32 +34,10 @@ export class AuthService {
   }
 
   getToken(): string {
-    return localStorage.getItem('token');
+    return this.storage.getItem(this.tokenStorageKey);
   }
 
   isAuthenticated(): boolean {
     return !!this.getToken();
-  }
-
-  handleAuthentication(): void {
-    const { token } = this.searchToObject(window.location.search);
-
-    if (token) {
-      const url = location.origin + location.pathname;
-      history.replaceState(null, 'xd', url);
-      localStorage.setItem('token', token);
-    }
-  }
-
-  private searchToObject(search: string): any {
-    if (!search) {
-      return {};
-    }
-
-    return search
-      .slice(1)
-      .split('&')
-      .map(p => p.split('='))
-      .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {});
   }
 }

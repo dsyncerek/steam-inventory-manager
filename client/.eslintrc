@@ -9,6 +9,7 @@
     "import/no-duplicates": "off",
     "@typescript-eslint/no-extraneous-class": "off",
     "@typescript-eslint/explicit-function-return-type": "warn",
-    "@typescript-eslint/strict-boolean-expressions": "warn"
+    "@typescript-eslint/strict-boolean-expressions": "warn",
+    "@typescript-eslint/no-floating-promises": "warn"
   }
 }
