@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { CallbackComponent } from './components/callback.component';
-import { LoginComponent } from './components/login.component';
-import { LogoutComponent } from './components/logout.component';
+import { CallbackComponent } from './containers/callback.component';
+import { LoginComponent } from './containers/login.component';
+import { LogoutComponent } from './containers/logout.component';
 
 const routes: Route[] = [
   {
