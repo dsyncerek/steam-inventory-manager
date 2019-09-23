@@ -1,6 +1,8 @@
 import { ClassSerializerInterceptor, Module, ValidationPipe } from '@nestjs/common';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
 import { AccessControlModule } from './access-control/access-control.module';
 import { PermissionsGuard } from './access-control/guards/permissions.guard';
 import { AuthModule } from './auth/auth.module';
@@ -13,6 +15,7 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({ rootPath: join(__dirname, '../..', 'client/dist') }), // todo: only in prod
     TypeOrmModule.forRoot(),
     ConfigModule,
     AuthModule,
