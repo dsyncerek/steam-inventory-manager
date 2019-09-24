@@ -20,4 +20,8 @@ export class BotsComponent implements OnInit {
     this.store.dispatch(new GetUserBots({ steamId: '76561198032411432' }));
     this.bots$ = this.store.select(selectUserBots('76561198032411432'));
   }
+
+  onBotDelete(steamId: string): void {
+    console.log(`Delete: ${steamId}`);
+  }
 }

@@ -1,23 +1,22 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { adapter, BotState } from './bot.reducer';
-
-const selectors = adapter.getSelectors();
+import { Bot } from '../models/bot';
+import { BotState } from './bot.reducer';
 
 export const selectBotState = createFeatureSelector<BotState>('bot');
 
 export const selectBots = createSelector(
   selectBotState,
-  selectors.selectAll,
+  (state: BotState): Bot[] => Object.values(state.entities),
 );
 
 export const selectUserBots = (steamId: string) =>
   createSelector(
     selectBots,
-    bots => bots.filter(bot => bot.ownerSteamId === steamId),
+    (bots: Bot[]): Bot[] => bots.filter(bot => bot.ownerSteamId === steamId),
   );
 
 export const selectBot = (steamId: string) =>
   createSelector(
     selectBots,
-    bots => bots.find(bot => bot.steamId === steamId),
+    (bots: Bot[]): Bot => bots.find(bot => bot.steamId === steamId),
   );

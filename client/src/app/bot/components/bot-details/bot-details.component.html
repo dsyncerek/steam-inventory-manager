@@ -24,7 +24,7 @@
       <a *ngIf="bot.tradeLink" target="_blank" [href]="bot.tradeLink" mat-stroked-button>
         Offer a Trade
       </a>
-      <a mat-stroked-button [routerLink]="['/bot', 'edit', bot.steamId]">
+      <a mat-stroked-button [routerLink]="['/bot/edit', bot.steamId]">
         Edit
       </a>
       <button mat-stroked-button color="warn" (click)="botDelete.emit(bot.steamId)">
@@ -33,5 +33,5 @@
     </nav>
   </header>
 
-  <app-inventory-list class="bot-details__inventory" [steamId]="bot.steamId"></app-inventory-list>
+  <app-inventory [steamId]="bot.steamId"></app-inventory>
 </article>

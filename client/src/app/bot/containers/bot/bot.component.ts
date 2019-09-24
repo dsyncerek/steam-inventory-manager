@@ -22,4 +22,8 @@ export class BotComponent implements OnInit {
     this.bot$ = this.store.select(selectBot(steamId));
     this.store.dispatch(new GetBot({ steamId }));
   }
+
+  onBotDelete(steamId: string): void {
+    console.log(`Delete: ${steamId}`);
+  }
 }

@@ -13,6 +13,7 @@ import { BotsComponent } from './containers/bots/bots.component';
 import { EditBotComponent } from './containers/edit-bot/edit-bot.component';
 import { BotEffects } from './state/bot.effects';
 import { botReducer } from './state/bot.reducer';
+import { BotListComponent } from './components/bot-list/bot-list.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { botReducer } from './state/bot.reducer';
     EditBotComponent,
     BotComponent,
     BotsComponent,
+    BotListComponent,
   ],
 })
 export class BotModule {}

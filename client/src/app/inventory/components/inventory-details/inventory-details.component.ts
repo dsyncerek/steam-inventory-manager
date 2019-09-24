@@ -8,7 +8,7 @@ import { Inventory } from '../../models/inventory';
 })
 export class InventoryDetailsComponent {
   @Input() inventory: Inventory;
-
+  @Output() inventoryAdd = new EventEmitter<void>();
   @Output() inventoryShow = new EventEmitter<string>();
   @Output() inventoryRefresh = new EventEmitter<string>();
   @Output() inventoryDelete = new EventEmitter<string>();
