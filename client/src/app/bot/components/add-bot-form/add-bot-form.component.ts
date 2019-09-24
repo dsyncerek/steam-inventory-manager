@@ -13,6 +13,8 @@ export class AddBotFormComponent {
   @Output() addBot = new EventEmitter<Bot>();
 
   form: FormGroup;
+  tradeLinkHintLink = 'https://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url';
+  steamIdHintLink = 'https://steamidfinder.com';
 
   constructor(private readonly formBuilder: FormBuilder, private readonly formErrors: FormErrorsService) {
     this.form = this.formBuilder.group({

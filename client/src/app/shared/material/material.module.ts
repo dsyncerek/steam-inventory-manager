@@ -8,8 +8,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonLgDirective } from './mat-button-lg.directive';
 
 @NgModule({
+  providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
+  declarations: [MatButtonLgDirective],
   exports: [
     MatButtonModule,
     MatInputModule,
@@ -19,7 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
     MatRippleModule,
     MatProgressSpinnerModule,
+    MatButtonLgDirective,
   ],
-  providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
 })
 export class MaterialModule {}

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormErrorsService } from '../../../shared/services/form-errors.service';
 import { CustomValidators } from '../../../shared/utils/custom-validators';
@@ -9,24 +9,22 @@ import { Bot } from '../../models/bot';
   templateUrl: './edit-bot-form.component.html',
   styleUrls: ['./edit-bot-form.component.scss'],
 })
-export class EditBotFormComponent implements OnInit, OnChanges {
+export class EditBotFormComponent implements OnChanges {
   @Input() bot: Bot;
   @Output() editBot = new EventEmitter<Bot>();
 
   form: FormGroup;
+  tradeLinkHintLink = 'https://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url';
 
   constructor(private readonly formBuilder: FormBuilder, private readonly formErrors: FormErrorsService) {
     this.form = this.formBuilder.group({
+      steamId: { value: '', disabled: true },
       name: '',
       login: '',
       tradeLink: ['', CustomValidators.tradeLink],
       is2FA: false,
       isOnline: false,
     });
-  }
-
-  ngOnInit(): void {
-    this.form.patchValue({ ...this.bot });
   }
 
   ngOnChanges(): void {

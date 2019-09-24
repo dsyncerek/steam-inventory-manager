@@ -2,7 +2,23 @@
   <h3 class="mat-headline">
     Edit Bot
   </h3>
-  <div fxLayoutGap="20px">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+    <mat-form-field fxFlex="grow">
+      <mat-label>
+        SteamID64
+      </mat-label>
+      <input formControlName="steamId" matInput placeholder="76561198020084907" />
+    </mat-form-field>
+    <mat-form-field fxFlex="grow">
+      <mat-label>
+        Trade URL
+      </mat-label>
+      <input formControlName="tradeLink" matInput />
+      <mat-hint>Find it <a target="_blank" rel="nofollow" [href]="tradeLinkHintLink">here</a>.</mat-hint>
+      <mat-error>{{ getControlErrorMessage('tradeLink') }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
     <mat-form-field fxFlex="grow">
       <mat-label>
         Display Name
@@ -18,26 +34,19 @@
       <mat-error>{{ getControlErrorMessage('login') }}</mat-error>
     </mat-form-field>
   </div>
-  <mat-form-field>
-    <mat-label>
-      Trade URL
-    </mat-label>
-    <input
-      formControlName="tradeLink"
-      matInput
-      placeholder="https://steamcommunity.com/tradeoffer/new/?partner=XXXXXXXXX&token=YYYYYYYY"
-    />
-    <mat-error>{{ getControlErrorMessage('tradeLink') }}</mat-error>
-  </mat-form-field>
   <div fxLayoutGap="20px">
-    <mat-slide-toggle formControlName="isOnline">
-      Online
-    </mat-slide-toggle>
-    <mat-slide-toggle formControlName="is2FA">
-      2FA
-    </mat-slide-toggle>
+    <div class="mat-form-field-wrapper" fxFlex="nogrow">
+      <mat-slide-toggle formControlName="isOnline">
+        Online
+      </mat-slide-toggle>
+    </div>
+    <div class="mat-form-field-wrapper" fxFlex="nogrow">
+      <mat-slide-toggle formControlName="is2FA">
+        2FA
+      </mat-slide-toggle>
+    </div>
   </div>
-  <button color="primary" mat-flat-button>
+  <button color="primary" mat-flat-button mat-lg-button>
     Submit
   </button>
 </form>

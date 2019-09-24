@@ -11,19 +11,19 @@ export class FormErrorsService {
     }
 
     if (control.errors.required) {
-      return `Field is required`;
+      return `Field is required.`;
     }
 
     if (control.errors.email) {
-      return `Field should be an email address`;
+      return `Field should be an email address.`;
     }
 
     if (control.errors.steamId) {
-      return `Field should be a SteamID`;
+      return `Field should be a SteamID.`;
     }
 
     if (control.errors.tradeLink) {
-      return `Field should be a Trade URL`;
+      return `Field should be a Trade URL.`;
     }
 
     return null;
