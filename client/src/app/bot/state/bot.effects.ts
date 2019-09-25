@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { BotService } from '../bot.service';
 import * as botActions from './bot.actions';
 import { BotActionTypes } from './bot.actions';
 
 @Injectable()
 export class BotEffects {
-  constructor(private readonly actions$: Actions, private readonly botService: BotService) {}
+  constructor(
+    private readonly actions$: Actions,
+    private readonly botService: BotService,
+    private readonly snackBar: MatSnackBar,
+    private readonly router: Router,
+  ) {}
 
   @Effect()
   getAllBots$ = this.actions$.pipe(
@@ -49,6 +56,10 @@ export class BotEffects {
     mergeMap(({ payload }) => {
       return this.botService.createBot(payload.bot).pipe(
         map(bot => new botActions.CreateBotSuccess({ bot })),
+        tap(() => {
+          this.snackBar.open('Bot has been created!');
+          this.router.navigate(['/bot']);
+        }),
         catchError(error => of(new botActions.CreateBotError(error))),
       );
     }),
@@ -60,6 +71,10 @@ export class BotEffects {
     mergeMap(({ payload }) => {
       return this.botService.updateBot(payload.bot).pipe(
         map(bot => new botActions.UpdateBotSuccess({ bot })),
+        tap(() => {
+          this.snackBar.open('Bot has been updated!');
+          this.router.navigate(['/bot']);
+        }),
         catchError(error => of(new botActions.UpdateBotError(error))),
       );
     }),
@@ -71,6 +86,10 @@ export class BotEffects {
     mergeMap(({ payload }) => {
       return this.botService.deleteBot(payload.steamId).pipe(
         map(() => new botActions.DeleteBotSuccess({ steamId: payload.steamId })),
+        tap(() => {
+          this.snackBar.open('Bot has been deleted!');
+          this.router.navigate(['/bot']);
+        }),
         catchError(error => of(new botActions.DeleteBotError(error))),
       );
     }),
