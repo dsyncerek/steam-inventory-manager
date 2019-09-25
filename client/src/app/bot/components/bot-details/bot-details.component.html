@@ -19,10 +19,10 @@
     </div>
     <nav fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center center">
       <a target="_blank" [href]="steamProfileUrl" mat-stroked-button>
-        View profile
+        Steam
       </a>
       <a *ngIf="bot.tradeLink" target="_blank" [href]="bot.tradeLink" mat-stroked-button>
-        Offer a Trade
+        Trade
       </a>
       <a mat-stroked-button [routerLink]="['/bot/edit', bot.steamId]">
         Edit

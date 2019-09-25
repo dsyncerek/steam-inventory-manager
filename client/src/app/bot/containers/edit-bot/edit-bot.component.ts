@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../../../app.state';
@@ -15,7 +15,11 @@ import { selectBot } from '../../state/bot.selectors';
 export class EditBotComponent implements OnInit {
   bot$: Observable<Bot>;
 
-  constructor(private readonly store: Store<AppState>, private readonly activeRoute: ActivatedRoute) {}
+  constructor(
+    private readonly store: Store<AppState>,
+    private readonly activeRoute: ActivatedRoute,
+    private readonly router: Router,
+  ) {}
 
   ngOnInit(): void {
     const steamId = this.activeRoute.snapshot.params.steamId;
@@ -25,5 +29,6 @@ export class EditBotComponent implements OnInit {
 
   onEditBot(bot: Bot): void {
     this.store.dispatch(new UpdateBot({ bot }));
+    this.router.navigate(['/bot']);
   }
 }
