@@ -1,5 +1,4 @@
 @import 'theme';
-@import 'variables';
 
 html {
   box-sizing: border-box;
@@ -12,12 +11,20 @@ html {
 }
 
 body {
-  font-family: $font-stack;
   margin: 0;
-  color: $light;
-  background: $dark;
 }
 
 a {
   color: inherit;
+}
+
+.mat-stroked-button,
+.mat-button,
+.mat-flat-button,
+.mat-form-field-flex {
+  border-radius: 0 !important;
+}
+
+.mat-tab-body-content {
+  padding-top: 20px;
 }

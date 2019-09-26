@@ -1,0 +1,31 @@
+@import '~@angular/material/theming';
+@import '../app/bot/components/bot-details/bot-details.component';
+@import '../app/item/components/item-details/item-details.component';
+@import '../app/layout/sidebar/sidebar.component';
+
+@mixin material-core($typography-config) {
+  $font-stack: map-get($typography-config, font-family);
+
+  body {
+    font-family: $font-stack;
+  }
+
+  @include mat-core($typography-config);
+  @include bot-details-typography($typography-config);
+  @include item-details-typography($typography-config);
+}
+
+@mixin material-theme($theme) {
+  $text-color: map-get(map-get($theme, foreground), base);
+  $background-color: map-get(map-get($theme, background), background);
+
+  body {
+    color: $text-color;
+    background: $background-color;
+  }
+
+  @include angular-material-theme($theme);
+  @include bot-details-theme($theme);
+  @include item-details-theme($theme);
+  @include sidebar-theme($theme);
+}

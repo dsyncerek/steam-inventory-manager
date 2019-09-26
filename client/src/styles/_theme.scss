@@ -1,20 +1,27 @@
-@import 'variables';
+@import 'mixins';
 
-@include mat-core($typography-config);
-@include angular-material-theme($dark-theme);
+$font-stack: Roboto, 'Helvetica Neue', sans-serif;
+$typography-config: mat-typography-config($font-stack);
 
-.mat-stroked-button,
-.mat-button,
-.mat-flat-button,
-.mat-form-field-flex {
-  border-radius: 0 !important;
+$primary: mat-palette($mat-blue);
+$accent: mat-palette($mat-blue-gray);
+
+// override default dark theme background
+$mat-dark-theme-background: map-merge(
+  $mat-dark-theme-background,
+  (
+    background: #171717,
+  )
+);
+
+$light-theme: mat-light-theme($primary, $accent);
+$dark-theme: mat-dark-theme($primary, $accent);
+
+@include material-core($typography-config);
+@include material-theme($dark-theme);
+
+/*
+@media (prefers-color-scheme: light) {
+  @include material-theme($light-theme);
 }
-
-.mat-tab-body-content {
-  padding-top: 20px;
-}
-
-.mat-snack-bar-container {
-  color: rgba(255, 255, 255, 0.7);
-  background: #323232;
-}
+*/

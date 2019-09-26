@@ -1,7 +1,12 @@
-@import '../../../styles/variables';
-
 .sidebar {
   padding: 20px;
-  border: 1px solid rgba($light, 0.25);
-  background: rgba($light, 0.025);
+}
+
+@mixin sidebar-theme($theme) {
+  $text-color: map-get(map-get($theme, foreground), base);
+
+  .sidebar {
+    border: 1px solid rgba($text-color, 0.25);
+    background: rgba($text-color, 0.025);
+  }
 }

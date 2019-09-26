@@ -1,7 +1,4 @@
-@import '../../../../styles/variables';
-
 .item-details {
-  font-size: mat-font-size($typography-config, caption);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -9,8 +6,6 @@
   padding: 10px;
   text-align: center;
   text-decoration: none;
-  border: 2px solid $primary;
-
   border-bottom-width: 5px;
 
   &::before {
@@ -34,6 +29,24 @@
 
   &__price {
     margin-top: 5px;
-    color: $gold;
+  }
+}
+
+@mixin item-details-typography($typography-config) {
+  .item-details {
+    font-size: mat-font-size($typography-config, caption);
+  }
+}
+
+@mixin item-details-theme($theme) {
+  $primary: mat-color(map-get($theme, primary));
+  $gold: mat-color($mat-yellow, 500);
+
+  .item-details {
+    border: 2px solid $primary;
+
+    &__price {
+      color: $gold;
+    }
   }
 }

@@ -1,16 +1,25 @@
-@import '../../../../styles/variables';
-
 .bot-details {
   padding: 20px;
-  border: 1px solid rgba($light, 0.25);
-  background: rgba($light, 0.025);
+}
 
-  &__name {
-    font-size: mat-font-size($typography-config, headline);
+@mixin bot-details-typography($typography-config) {
+  .bot-details {
+    &__name {
+      font-size: mat-font-size($typography-config, headline);
+    }
+
+    &__loign,
+    &__steamid {
+      font-size: mat-font-size($typography-config, caption);
+    }
   }
+}
 
-  &__loign,
-  &__steamid {
-    font-size: mat-font-size($typography-config, caption);
+@mixin bot-details-theme($theme) {
+  $text-color: map-get(map-get($theme, foreground), base);
+
+  .bot-details {
+    border: 1px solid rgba($text-color, 0.25);
+    background: rgba($text-color, 0.025);
   }
 }
