@@ -17,8 +17,8 @@ export class BotsComponent implements OnInit {
   constructor(private readonly store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(new GetUserBots({ steamId: '76561198032411432' }));
-    this.bots$ = this.store.select(selectUserBots('76561198032411432'));
+    this.store.dispatch(new GetUserBots({ steamId: '76561198201500657' }));
+    this.bots$ = this.store.select(selectUserBots('76561198201500657'));
   }
 
   onBotDelete(steamId: string): void {

@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../../../app.state';
-import { InventoryService } from '../../inventory.service';
 import { Inventory } from '../../models/inventory';
+import { selectBotInventories } from '../../state/inventory.selectors';
 
 @Component({
   selector: 'app-inventory',
@@ -15,11 +15,10 @@ export class InventoryComponent {
 
   inventories$: Observable<Inventory[]>;
 
-  constructor(private readonly store: Store<AppState>, private readonly inventoryService: InventoryService) {}
+  constructor(private readonly store: Store<AppState>) {}
 
   ngOnInit(): void {
-    // this.inventories$ = this.store.select(selectBotInventories(this.steamId));
-    this.inventories$ = this.inventoryService.getBotInventories(this.steamId);
+    this.inventories$ = this.store.select(selectBotInventories(this.steamId));
   }
 
   onInventoryAdd(): void {
