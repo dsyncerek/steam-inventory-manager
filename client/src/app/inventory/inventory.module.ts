@@ -13,7 +13,7 @@ import { inventoryReducer } from './state/inventory.reducer';
   imports: [
     SharedModule,
     EffectsModule.forFeature([InventoryEffects]),
-    StoreModule.forFeature('inventories', inventoryReducer),
+    StoreModule.forFeature('inventory', inventoryReducer),
     ItemModule,
   ],
   declarations: [InventoryDetailsComponent, InventoryListComponent, InventoryComponent],

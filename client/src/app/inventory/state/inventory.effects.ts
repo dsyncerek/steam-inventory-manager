@@ -1,4 +1,78 @@
 import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
+import { InventoryService } from '../inventory.service';
+import * as inventoryActions from './inventory.actions';
+import { InventoryActionTypes } from './inventory.actions';
 
 @Injectable()
-export class InventoryEffects {}
+export class InventoryEffects {
+  constructor(private readonly actions$: Actions, private readonly inventoryService: InventoryService) {}
+
+  @Effect()
+  getUserInventories$ = this.actions$.pipe(
+    ofType<inventoryActions.GetUserInventories>(InventoryActionTypes.GetUserInventories),
+    mergeMap(({ payload }) => {
+      return this.inventoryService.getUserInventories(payload.steamId).pipe(
+        map(inventories => new inventoryActions.GetUserInventoriesSuccess({ inventories })),
+        catchError(error => of(new inventoryActions.GetUserInventoriesError(error))),
+      );
+    }),
+  );
+
+  @Effect()
+  getBotInventories$ = this.actions$.pipe(
+    ofType<inventoryActions.GetBotInventories>(InventoryActionTypes.GetBotInventories),
+    mergeMap(({ payload }) => {
+      return this.inventoryService.getBotInventories(payload.steamId).pipe(
+        map(inventories => new inventoryActions.GetBotInventoriesSuccess({ inventories })),
+        catchError(error => of(new inventoryActions.GetBotInventoriesError(error))),
+      );
+    }),
+  );
+
+  @Effect()
+  getInventory$ = this.actions$.pipe(
+    ofType<inventoryActions.GetInventory>(InventoryActionTypes.GetInventory),
+    mergeMap(({ payload }) => {
+      return this.inventoryService.getInventory(payload.id).pipe(
+        map(inventory => new inventoryActions.GetInventorySuccess({ inventory })),
+        catchError(error => of(new inventoryActions.GetInventoryError(error))),
+      );
+    }),
+  );
+
+  @Effect()
+  createInventory$ = this.actions$.pipe(
+    ofType<inventoryActions.CreateInventory>(InventoryActionTypes.CreateInventory),
+    mergeMap(({ payload }) => {
+      return this.inventoryService.createInventory(payload.steamId, payload.appId, payload.contextId).pipe(
+        map(inventory => new inventoryActions.CreateInventorySuccess({ inventory })),
+        catchError(error => of(new inventoryActions.CreateInventoryError(error))),
+      );
+    }),
+  );
+
+  @Effect()
+  refreshInventory$ = this.actions$.pipe(
+    ofType<inventoryActions.RefreshInventory>(InventoryActionTypes.RefreshInventory),
+    mergeMap(({ payload }) => {
+      return this.inventoryService.refreshInventory(payload.id).pipe(
+        map(inventory => new inventoryActions.RefreshInventorySuccess({ inventory })),
+        catchError(error => of(new inventoryActions.RefreshInventoryError(error))),
+      );
+    }),
+  );
+
+  @Effect()
+  deleteInventory$ = this.actions$.pipe(
+    ofType<inventoryActions.DeleteInventory>(InventoryActionTypes.DeleteInventory),
+    mergeMap(({ payload }) => {
+      return this.inventoryService.deleteInventory(payload.id).pipe(
+        map(inventory => new inventoryActions.DeleteInventorySuccess({ id: payload.id })),
+        catchError(error => of(new inventoryActions.DeleteInventoryError(error))),
+      );
+    }),
+  );
+}

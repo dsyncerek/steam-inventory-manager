@@ -1,17 +1,16 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { adapter, InventoryState } from './inventory.reducer';
+import { Inventory } from '../models/inventory';
+import { InventoryState } from './inventory.reducer';
 
-const selectors = adapter.getSelectors();
-
-export const selectInventoryState = createFeatureSelector<InventoryState>('inventories');
+export const selectInventoryState = createFeatureSelector<InventoryState>('inventory');
 
 export const selectInventories = createSelector(
   selectInventoryState,
-  selectors.selectAll,
+  (state: InventoryState): Inventory[] => Object.values(state.entities),
 );
 
 export const selectBotInventories = (steamId: string) =>
   createSelector(
     selectInventories,
-    inventories => inventories.filter(inv => inv.botSteamId === steamId),
+    (inventories: Inventory[]): Inventory[] => inventories.filter(inv => inv.botSteamId === steamId),
   );

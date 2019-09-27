@@ -18,11 +18,20 @@ export class InventoryService {
     return this.http.get<Inventory[]>(`${this.apiUrl}/inventory/get-of-bot/${steamId}`);
   }
 
-  getInventory(steamId: string, appId: number, contextId: number): Observable<Inventory> {
-    return this.http.get<Inventory>(`${this.apiUrl}/inventory/get/${steamId}/${appId}/${contextId}`);
+  getInventory(id: string): Observable<Inventory> {
+    return this.http.get<Inventory>(`${this.apiUrl}/inventory/get/${id}`);
   }
 
-  refreshInventory(steamId: string, appId: number, contextId: number): Observable<Inventory> {
-    return this.http.get<Inventory>(`${this.apiUrl}/inventory/refresh/${steamId}/${appId}/${contextId}`);
+  createInventory(steamId: string, appId: number, contextId: number): Observable<Inventory> {
+    const body = { steamId, appId, contextId };
+    return this.http.post<Inventory>(`${this.apiUrl}/inventory/create/`, body);
+  }
+
+  refreshInventory(id: string): Observable<Inventory> {
+    return this.http.get<Inventory>(`${this.apiUrl}/inventory/refresh/${id}`);
+  }
+
+  deleteInventory(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/inventory/delete/${id}`);
   }
 }

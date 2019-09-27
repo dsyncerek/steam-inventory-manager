@@ -15,6 +15,10 @@ export enum InventoryActionTypes {
   GetInventorySuccess = '[Inventory] Get inventory - success',
   GetInventoryError = '[Inventory] Get inventory - error',
 
+  CreateInventory = '[Inventory] Create inventory',
+  CreateInventorySuccess = '[Inventory] Create inventory - success',
+  CreateInventoryError = '[Inventory] Create inventory - error',
+
   RefreshInventory = '[Inventory] Refresh inventory',
   RefreshInventorySuccess = '[Inventory] Refresh inventory - success',
   RefreshInventoryError = '[Inventory] Refresh inventory - error',
@@ -59,7 +63,7 @@ export class GetBotInventoriesError extends ErrorAction {
 export class GetInventory implements Action {
   readonly type = InventoryActionTypes.GetInventory;
 
-  constructor(public payload: { steamId: string; appId: string; contextId: string }) {}
+  constructor(public payload: { id: string }) {}
 }
 
 export class GetInventorySuccess implements Action {
@@ -72,10 +76,26 @@ export class GetInventoryError extends ErrorAction {
   readonly type = InventoryActionTypes.GetInventoryError;
 }
 
+export class CreateInventory implements Action {
+  readonly type = InventoryActionTypes.CreateInventory;
+
+  constructor(public payload: { steamId: string; appId: number; contextId: number }) {}
+}
+
+export class CreateInventorySuccess implements Action {
+  readonly type = InventoryActionTypes.CreateInventorySuccess;
+
+  constructor(public payload: { inventory: Inventory }) {}
+}
+
+export class CreateInventoryError extends ErrorAction {
+  readonly type = InventoryActionTypes.CreateInventoryError;
+}
+
 export class RefreshInventory implements Action {
   readonly type = InventoryActionTypes.RefreshInventory;
 
-  constructor(public payload: { steamId: string; appId: string; contextId: string }) {}
+  constructor(public payload: { id: string }) {}
 }
 
 export class RefreshInventorySuccess implements Action {
@@ -114,6 +134,9 @@ export type InventoryActions =
   | GetInventory
   | GetInventorySuccess
   | GetInventoryError
+  | CreateInventory
+  | CreateInventorySuccess
+  | CreateInventoryError
   | RefreshInventory
   | RefreshInventorySuccess
   | RefreshInventoryError
