@@ -16,10 +16,10 @@ export class ItemController {
     return this.itemService.getAllItems();
   }
 
-  @Get('get/:name')
+  @Get('get/:classId')
   @PermissionsAllowed(PermissionsEnum.ItemGetAny)
-  async getItem(@Param('name') name: string): Promise<Item> {
-    return this.itemService.getItem(name);
+  async getItem(@Param('classId') classId: string): Promise<Item> {
+    return this.itemService.getItem(classId);
   }
 
   @Post('create')
@@ -28,15 +28,15 @@ export class ItemController {
     return this.itemService.createItem(body);
   }
 
-  @Put('update/:name')
+  @Put('update/:classId')
   @PermissionsAllowed(PermissionsEnum.ItemUpdateAny)
-  async updateItem(@Param('name') name: string, @Body() body: UpdateItemDto): Promise<Item> {
-    return this.itemService.updateItem(name, body);
+  async updateItem(@Param('classId') classId: string, @Body() body: UpdateItemDto): Promise<Item> {
+    return this.itemService.updateItem(classId, body);
   }
 
-  @Delete('delete/:name')
+  @Delete('delete/:classId')
   @PermissionsAllowed(PermissionsEnum.ItemDeleteAny)
-  async deleteItem(@Param('name') name: string): Promise<void> {
-    return this.itemService.deleteItem(name);
+  async deleteItem(@Param('classId') classId: string): Promise<void> {
+    return this.itemService.deleteItem(classId);
   }
 }

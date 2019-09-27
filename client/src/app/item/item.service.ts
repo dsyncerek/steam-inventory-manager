@@ -14,8 +14,8 @@ export class ItemService {
     return this.http.get<Item[]>(`${this.apiUrl}/item/get-all`);
   }
 
-  getItem(name: string): Observable<Item> {
-    return this.http.get<Item>(`${this.apiUrl}/item/get/${name}`);
+  getItem(classId: string): Observable<Item> {
+    return this.http.get<Item>(`${this.apiUrl}/item/get/${classId}`);
   }
 
   createItem(item: Item): Observable<Item> {
@@ -23,10 +23,10 @@ export class ItemService {
   }
 
   updateItem(item: Item): Observable<Item> {
-    return this.http.put<Item>(`${this.apiUrl}/item/update/${item.name}`, item);
+    return this.http.put<Item>(`${this.apiUrl}/item/update/${item.classId}`, item);
   }
 
-  deleteItem(name: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/item/delete/${name}`);
+  deleteItem(classId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/item/delete/${classId}`);
   }
 }

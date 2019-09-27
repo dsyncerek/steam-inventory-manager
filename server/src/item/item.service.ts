@@ -14,8 +14,8 @@ export class ItemService {
     return this.itemRepository.find();
   }
 
-  async getItem(name: string): Promise<Item> {
-    return this.itemRepository.findOneOrFail({ name });
+  async getItem(classId: string): Promise<Item> {
+    return this.itemRepository.findOneOrFail({ classId });
   }
 
   async createItem(data: CreateItemDto): Promise<Item> {
@@ -24,12 +24,12 @@ export class ItemService {
     return this.getItem(item.name);
   }
 
-  async updateItem(name: string, data: UpdateItemDto): Promise<Item> {
-    await this.itemRepository.update({ name }, data);
-    return this.getItem(name);
+  async updateItem(classId: string, data: UpdateItemDto): Promise<Item> {
+    await this.itemRepository.update({ classId }, data);
+    return this.getItem(classId);
   }
 
-  async deleteItem(name: string): Promise<void> {
-    await this.itemRepository.delete({ name });
+  async deleteItem(classId: string): Promise<void> {
+    await this.itemRepository.delete({ classId });
   }
 }
