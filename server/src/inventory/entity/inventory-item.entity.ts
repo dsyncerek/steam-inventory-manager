@@ -1,9 +1,11 @@
+import { Exclude } from 'class-transformer';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Item } from '../../item/entity/item.entity';
 import { Inventory } from './inventory.entity';
 
 @Entity()
 export class InventoryItem {
+  @Exclude()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
