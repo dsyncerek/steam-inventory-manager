@@ -7,5 +7,5 @@ export interface Inventory {
   contextId: number;
   count: number;
   worth: number;
-  items?: InventoryItem[];
+  items: InventoryItem[];
 }

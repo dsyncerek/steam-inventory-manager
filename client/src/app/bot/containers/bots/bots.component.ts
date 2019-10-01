@@ -18,7 +18,7 @@ export class BotsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new GetUserBots({ steamId: '76561198201500657' }));
-    this.bots$ = this.store.select(selectUserBots('76561198201500657'));
+    this.bots$ = this.store.select(selectUserBots, { steamId: '76561198201500657' });
   }
 
   onBotDelete(steamId: string): void {

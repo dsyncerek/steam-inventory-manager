@@ -1,7 +1,6 @@
 import { Item } from '../../item/models/item';
 
 export interface InventoryItem {
-  id: string;
-  quantity: number;
+  quantity?: number;
   item: Item;
 }

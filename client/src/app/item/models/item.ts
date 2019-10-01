@@ -4,7 +4,7 @@ export interface Item {
   appId: number;
   contextId: number;
   icon: string;
-  price: number;
+  price?: number;
 }
 
 export const selectItemId = (item: Item): string => item.classId;

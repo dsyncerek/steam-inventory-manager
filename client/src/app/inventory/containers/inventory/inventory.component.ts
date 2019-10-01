@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { AppState } from '../../../app.state';
 import { Inventory } from '../../models/inventory';
 import { selectBotInventories } from '../../state/inventory.selectors';
@@ -10,7 +11,7 @@ import { selectBotInventories } from '../../state/inventory.selectors';
   templateUrl: './inventory.component.html',
   styleUrls: ['./inventory.component.scss'],
 })
-export class InventoryComponent {
+export class InventoryComponent implements OnInit {
   @Input() steamId: string;
 
   inventories$: Observable<Inventory[]>;
@@ -18,7 +19,7 @@ export class InventoryComponent {
   constructor(private readonly store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.inventories$ = this.store.select(selectBotInventories(this.steamId));
+    this.inventories$ = this.store.select(selectBotInventories, { steamId: this.steamId }).pipe(tap(console.log));
   }
 
   onInventoryAdd(): void {

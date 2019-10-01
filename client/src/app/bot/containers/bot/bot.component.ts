@@ -19,7 +19,7 @@ export class BotComponent implements OnInit {
 
   ngOnInit(): void {
     const steamId = this.activeRoute.snapshot.params.steamId;
-    this.bot$ = this.store.select(selectBot(steamId));
+    this.bot$ = this.store.select(selectBot, { steamId });
     this.store.dispatch(new GetBot({ steamId }));
   }
 

@@ -1,16 +1,33 @@
+import { Dictionary } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Inventory } from '../models/inventory';
-import { InventoryState } from './inventory.reducer';
+import { adapter, InventoryState } from './inventory.reducer';
+
+const selectors = adapter.getSelectors();
 
 export const selectInventoryState = createFeatureSelector<InventoryState>('inventory');
 
-export const selectInventories = createSelector(
+export const selectInventoryEntities = createSelector(
   selectInventoryState,
-  (state: InventoryState): Inventory[] => Object.values(state.entities),
+  selectors.selectEntities,
 );
 
-export const selectBotInventories = (steamId: string) =>
-  createSelector(
-    selectInventories,
-    (inventories: Inventory[]): Inventory[] => inventories.filter(inv => inv.botSteamId === steamId),
-  );
+export const selectInventoryIds = createSelector(
+  selectInventoryState,
+  selectors.selectIds,
+);
+
+export const selectInventories = createSelector(
+  selectInventoryState,
+  selectors.selectAll,
+);
+
+export const selectInventory = createSelector(
+  selectInventoryEntities,
+  (entities: Dictionary<Inventory>, { classId }): Inventory => entities[classId],
+);
+
+export const selectBotInventories = createSelector(
+  selectInventories,
+  (inventories: Inventory[], { steamId }) => inventories.filter(inventory => inventory.botSteamId === steamId),
+);
