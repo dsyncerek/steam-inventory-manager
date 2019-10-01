@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../../../app.state';
 import { Bot } from '../../models/bot';
-import { GetUserBots } from '../../state/bot.actions';
+import { DeleteBot, GetUserBots } from '../../state/bot.actions';
 import { selectUserBots } from '../../state/bot.selectors';
 
 @Component({
@@ -22,6 +22,6 @@ export class BotsComponent implements OnInit {
   }
 
   onBotDelete(steamId: string): void {
-    console.log(`Delete: ${steamId}`);
+    this.store.dispatch(new DeleteBot({ steamId }));
   }
 }

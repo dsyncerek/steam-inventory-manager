@@ -13,6 +13,6 @@ export class AddBotComponent {
   constructor(private readonly store: Store<AppState>) {}
 
   onAddBot(bot: Bot): void {
-    this.store.dispatch(new CreateBot({ bot: { ...bot, ownerSteamId: '76561198032411432' } }));
+    this.store.dispatch(new CreateBot({ bot: { ...bot, ownerSteamId: '76561198201500657' } }));
   }
 }

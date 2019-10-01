@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AppState } from '../../../app.state';
 import { Inventory } from '../../models/inventory';
+import { CreateInventory, DeleteInventory, GetInventory, RefreshInventory } from '../../state/inventory.actions';
 import { selectBotInventories } from '../../state/inventory.selectors';
 
 @Component({
@@ -23,18 +24,18 @@ export class InventoryComponent implements OnInit {
   }
 
   onInventoryAdd(): void {
-    console.log(`Add`);
+    this.store.dispatch(new CreateInventory({ steamId: this.steamId, appId: 730, contextId: 2 }));
   }
 
   onInventoryShow(id: string): void {
-    console.log(`Show: ${id}`);
+    this.store.dispatch(new GetInventory({ id }));
   }
 
   onInventoryRefresh(id: string): void {
-    console.log(`Refresh: ${id}`);
+    this.store.dispatch(new RefreshInventory({ id }));
   }
 
   onInventoryDelete(id: string): void {
-    console.log(`Delete: ${id}`);
+    this.store.dispatch(new DeleteInventory({ id }));
   }
 }
