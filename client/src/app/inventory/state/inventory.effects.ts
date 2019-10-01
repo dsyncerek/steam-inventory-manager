@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { InventoryService } from '../inventory.service';
 import * as inventoryActions from './inventory.actions';
 import { InventoryActionTypes } from './inventory.actions';
 
 @Injectable()
 export class InventoryEffects {
-  constructor(private readonly actions$: Actions, private readonly inventoryService: InventoryService) {}
+  constructor(
+    private readonly actions$: Actions,
+    private readonly inventoryService: InventoryService,
+    private readonly snackBar: MatSnackBar,
+  ) {}
 
   @Effect()
   getUserInventories$ = this.actions$.pipe(
@@ -49,6 +54,7 @@ export class InventoryEffects {
     mergeMap(({ payload }) => {
       return this.inventoryService.createInventory(payload.steamId, payload.appId, payload.contextId).pipe(
         map(inventory => new inventoryActions.CreateInventorySuccess({ inventory })),
+        tap(() => this.snackBar.open('Inventory has been created!')),
         catchError(error => of(new inventoryActions.CreateInventoryError(error))),
       );
     }),
@@ -60,6 +66,7 @@ export class InventoryEffects {
     mergeMap(({ payload }) => {
       return this.inventoryService.refreshInventory(payload.id).pipe(
         map(inventory => new inventoryActions.RefreshInventorySuccess({ inventory })),
+        tap(() => this.snackBar.open('Inventory has been refreshed!')),
         catchError(error => of(new inventoryActions.RefreshInventoryError(error))),
       );
     }),
@@ -70,7 +77,8 @@ export class InventoryEffects {
     ofType<inventoryActions.DeleteInventory>(InventoryActionTypes.DeleteInventory),
     mergeMap(({ payload }) => {
       return this.inventoryService.deleteInventory(payload.id).pipe(
-        map(inventory => new inventoryActions.DeleteInventorySuccess({ id: payload.id })),
+        map(() => new inventoryActions.DeleteInventorySuccess({ id: payload.id })),
+        tap(() => this.snackBar.open('Inventory has been deleted!')),
         catchError(error => of(new inventoryActions.DeleteInventoryError(error))),
       );
     }),

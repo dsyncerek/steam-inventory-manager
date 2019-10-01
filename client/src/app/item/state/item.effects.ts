@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { ItemService } from '../item.service';
 import * as itemActions from './item.actions';
 import { ItemActionTypes } from './item.actions';
 
 @Injectable()
 export class ItemEffects {
-  constructor(private readonly actions$: Actions, private readonly itemService: ItemService) {}
+  constructor(
+    private readonly actions$: Actions,
+    private readonly itemService: ItemService,
+    private readonly snackBar: MatSnackBar,
+  ) {}
 
   @Effect()
   getAllItems$ = this.actions$.pipe(
@@ -38,6 +43,7 @@ export class ItemEffects {
     mergeMap(({ payload }) => {
       return this.itemService.createItem(payload.item).pipe(
         map(item => new itemActions.CreateItemSuccess({ item })),
+        tap(() => this.snackBar.open('Item has been created!')),
         catchError(error => of(new itemActions.CreateItemError(error))),
       );
     }),
@@ -49,6 +55,7 @@ export class ItemEffects {
     mergeMap(({ payload }) => {
       return this.itemService.updateItem(payload.item).pipe(
         map(item => new itemActions.UpdateItemSuccess({ item })),
+        tap(() => this.snackBar.open('Item has been updated!')),
         catchError(error => of(new itemActions.UpdateItemError(error))),
       );
     }),
@@ -60,6 +67,7 @@ export class ItemEffects {
     mergeMap(({ payload }) => {
       return this.itemService.deleteItem(payload.classId).pipe(
         map(() => new itemActions.DeleteItemSuccess({ classId: payload.classId })),
+        tap(() => this.snackBar.open('Item has been deleted!')),
         catchError(error => of(new itemActions.DeleteItemError(error))),
       );
     }),
