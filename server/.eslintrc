@@ -1,5 +1,5 @@
 {
-  "parserOptions": { "project": "./tsconfig.json", "createDefaultProgram": true },
+  "parserOptions": { "project": "./tsconfig.json" },
   "extends": [
     "eslint-config-standard-with-typescript",
     "eslint-config-prettier",
