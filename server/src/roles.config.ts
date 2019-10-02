@@ -1,5 +1,5 @@
-import { PermissionsEnum } from '../enums/permissions.enum';
-import { RolesEnum } from '../enums/roles.enum';
+import { PermissionsEnum } from './access-control/enums/permissions.enum';
+import { RolesEnum } from './access-control/enums/roles.enum';
 
 export type RolesConfig = { [key in RolesEnum]: PermissionsEnum[] };
 

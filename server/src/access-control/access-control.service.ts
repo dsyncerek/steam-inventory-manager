@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '../user/entity/user.entity';
-import { RolesConfig } from './config/roles.config';
+import { RolesConfig } from '../roles.config';
 import { InjectRolesConfig } from './decorators/inject-roles-config.decorator';
 import { PermissionsEnum } from './enums/permissions.enum';
 

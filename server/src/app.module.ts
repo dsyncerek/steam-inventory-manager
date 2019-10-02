@@ -11,6 +11,7 @@ import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { ConfigModule } from './config/config.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { ItemModule } from './item/item.module';
+import { rolesConfig } from './roles.config';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -18,12 +19,12 @@ import { UserModule } from './user/user.module';
     ServeStaticModule.forRoot({ rootPath: join(__dirname, '../..', 'client/dist') }), // todo: only in prod
     TypeOrmModule.forRoot(),
     ConfigModule,
+    AccessControlModule.register(rolesConfig),
     AuthModule,
     ItemModule,
     BotModule,
     InventoryModule,
     UserModule,
-    AccessControlModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: PermissionsGuard },

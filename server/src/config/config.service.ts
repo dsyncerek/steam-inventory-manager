@@ -4,8 +4,8 @@ import { readFileSync } from 'fs';
 export class ConfigService {
   private readonly envConfig: { [key: string]: string };
 
-  constructor(filePath: string) {
-    this.envConfig = parse(readFileSync(filePath));
+  constructor() {
+    this.envConfig = parse(readFileSync('.env'));
   }
 
   get(key: string): string {
