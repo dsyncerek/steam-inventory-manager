@@ -9,7 +9,6 @@ import { PermissionsGuard } from './access-control/guards/permissions.guard';
 import { AuthModule } from './auth/auth.module';
 import { BotModule } from './bot/bot.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
-import { ConfigModule } from './config/config.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { ItemModule } from './item/item.module';
 import { UserModule } from './user/user.module';
@@ -20,7 +19,6 @@ const clientBuildPath = join(__dirname, '../..', 'client/dist');
   imports: [
     ServeStaticModule.forRoot({ rootPath: clientBuildPath }),
     TypeOrmModule.forRoot(),
-    ConfigModule,
     AccessControlModule.register(rolesConfig),
     AuthModule,
     ItemModule,

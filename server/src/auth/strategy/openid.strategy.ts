@@ -9,8 +9,8 @@ export class OpenidStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly authService: AuthService) {
     super({
       providerURL: 'https://steamcommunity.com/openid',
-      returnURL: 'http://localhost:5000/api/auth/login', // todo
-      realm: 'http://localhost:5000/', // todo
+      returnURL: `${process.env.BASE_URL}/api/auth/login`,
+      realm: process.env.BASE_URL,
       stateless: true,
     });
   }

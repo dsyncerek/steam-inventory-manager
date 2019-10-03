@@ -8,8 +8,8 @@ import { JwtStrategy } from './strategy/jwt.strategy';
 import { OpenidStrategy } from './strategy/openid.strategy';
 
 const jwtConfig: JwtModuleOptions = {
-  secret: 'jwt-secret', // todo
-  signOptions: { expiresIn: 3600 * 24 * 7 }, // todo
+  secret: process.env.JWT_SECRET,
+  signOptions: { expiresIn: +process.env.JWT_EXPIRES_IN },
 };
 
 @Module({
