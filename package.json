@@ -2,20 +2,19 @@
   "name": "steam-inventory-manager",
   "version": "1.0.0",
   "scripts": {
-    "start:dev": "lerna run --parallel start:dev",
-    "start:prod": "lerna run --stream start:prod",
-    "build": "lerna run --stream build",
-    "format": "lerna run --stream format",
-    "lint": "lerna run --stream lint",
-    "postinstall": "lerna bootstrap"
+    "start:dev": "npm --prefix server run start:dev && npm --prefix client run start:dev",
+    "start:prod": "npm --prefix server run start:prod",
+    "build": "npm --prefix server run build && npm --prefix client run build",
+    "format": "npm --prefix server run format && npm --prefix client run format",
+    "lint": "npm --prefix server run lint && npm --prefix client run lint",
+    "postinstall": "npm --prefix server install && npm --prefix client install"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lerna run precommit"
+      "pre-commit": "npm --prefix server run precommit && npm --prefix client run precommit"
     }
   },
   "devDependencies": {
-    "husky": "^3.0.5",
-    "lerna": "^3.16.4"
+    "husky": "^3.0.5"
   }
 }
