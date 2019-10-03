@@ -1,6 +1,5 @@
 import { DynamicModule, Module } from '@nestjs/common';
-import { RolesConfig } from '../roles.config';
-import { AccessControlService } from './access-control.service';
+import { AccessControlService, RolesConfig } from './access-control.service';
 import { ROLES_CONFIG_TOKEN } from './decorators/inject-roles-config.decorator';
 
 @Module({})

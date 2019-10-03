@@ -3,6 +3,7 @@ import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { rolesConfig } from '../config/roles.config';
 import { AccessControlModule } from './access-control/access-control.module';
 import { PermissionsGuard } from './access-control/guards/permissions.guard';
 import { AuthModule } from './auth/auth.module';
@@ -11,12 +12,13 @@ import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { ConfigModule } from './config/config.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { ItemModule } from './item/item.module';
-import { rolesConfig } from './roles.config';
 import { UserModule } from './user/user.module';
+
+const clientBuildPath = join(__dirname, '../..', 'client/dist');
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({ rootPath: join(__dirname, '../..', 'client/dist') }), // todo: only in prod
+    ServeStaticModule.forRoot({ rootPath: clientBuildPath }),
     TypeOrmModule.forRoot(),
     ConfigModule,
     AccessControlModule.register(rolesConfig),

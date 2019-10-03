@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '../user/entity/user.entity';
-import { RolesConfig } from '../roles.config';
 import { InjectRolesConfig } from './decorators/inject-roles-config.decorator';
 import { PermissionsEnum } from './enums/permissions.enum';
+import { RolesEnum } from './enums/roles.enum';
+
+export type RolesConfig = { [key in RolesEnum]: PermissionsEnum[] };
 
 @Injectable()
 export class AccessControlService {
