@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start:dev": "ts-node-dev src/main.ts",
-    "start:prod": "node dist/main.js",
+    "start:prod": "node dist/src/main.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
