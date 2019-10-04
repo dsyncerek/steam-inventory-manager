@@ -1,6 +1,6 @@
-import { RolesConfig } from '../src/access-control/access-control.service';
-import { PermissionsEnum } from '../src/access-control/enums/permissions.enum';
-import { RolesEnum } from '../src/access-control/enums/roles.enum';
+import { RolesConfig } from '../access-control/access-control.service';
+import { PermissionsEnum } from '../access-control/enums/permissions.enum';
+import { RolesEnum } from '../access-control/enums/roles.enum';
 
 export const rolesConfig: RolesConfig = {
   [RolesEnum.User]: [

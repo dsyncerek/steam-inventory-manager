@@ -3,7 +3,7 @@ import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
-import { rolesConfig } from '../config/roles.config';
+import { rolesConfig } from './config/roles.config';
 import { AccessControlModule } from './access-control/access-control.module';
 import { PermissionsGuard } from './access-control/guards/permissions.guard';
 import { AuthModule } from './auth/auth.module';
