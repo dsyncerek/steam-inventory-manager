@@ -1,9 +1,15 @@
 [![Actions Status](https://github.com/dsyncerek/steam-inventory-manager/workflows/CI/badge.svg)](https://github.com/dsyncerek/steam-inventory-manager/actions)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dsyncerek/steam-inventory-manager)](https://dependabot.com)
 
-# Steam Inventory Manager (WIP)
+# Steam Inventory Manager
 
 > A web application which manages all your Steam Inventories in one place.
+
+## Demo (WIP)
+
+Live: [https://steam-inventory-manager.herokuapp.com/](https://steam-inventory-manager.herokuapp.com/).
+
+**NOTE**: Application will load after a short delay. Details [here](https://devcenter.heroku.com/articles/free-dyno-hours).
 
 ## Technologies
 
