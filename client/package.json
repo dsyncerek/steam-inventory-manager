@@ -2,7 +2,7 @@
   "name": "steam-inventory-manager-client",
   "version": "1.0.0",
   "scripts": {
-    "start:dev": "ng serve",
+    "start": "ng serve",
     "build": "ng build --prod",
     "format": "prettier src/**/*.{ts,scss,html} --write",
     "lint": "npm run lint:scripts && npm run lint:styles",
