@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { BotModule } from './bot/bot.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { rolesConfig } from './config/roles.config';
+import { getTypeOrmConfig } from './config/typeorm.config';
 import { InventoryModule } from './inventory/inventory.module';
 import { ItemModule } from './item/item.module';
 import { UserModule } from './user/user.module';
@@ -18,7 +19,7 @@ const clientBuildPath = join(__dirname, '../..', 'client/dist');
 @Module({
   imports: [
     ServeStaticModule.forRoot({ rootPath: clientBuildPath }),
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRootAsync({ useFactory: async () => getTypeOrmConfig() }),
     AccessControlModule.register(rolesConfig),
     AuthModule,
     ItemModule,
