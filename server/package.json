@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "@nestjs/common": "^6.8.2",
-    "@nestjs/core": "^6.8.2",
+    "@nestjs/core": "^6.8.3",
     "@nestjs/jwt": "^6.1.1",
     "@nestjs/passport": "^6.1.0",
-    "@nestjs/platform-express": "^6.8.2",
+    "@nestjs/platform-express": "^6.8.3",
     "@nestjs/serve-static": "^1.0.1",
     "@nestjs/swagger": "^3.1.0",
     "@nestjs/typeorm": "^6.2.0",
@@ -34,9 +34,9 @@
   "devDependencies": {
     "@nestjs/cli": "^6.10.1",
     "@nestjs/schematics": "^6.7.0",
-    "@nestjs/testing": "^6.8.2",
+    "@nestjs/testing": "^6.8.3",
     "@typescript-eslint/eslint-plugin": "^2.3.0",
-    "@typescript-eslint/parser": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.3",
     "eslint": "^6.4.0",
     "eslint-config-prettier": "^6.4.0",
     "eslint-config-standard-with-typescript": "^10.0.0",
@@ -47,6 +47,6 @@
     "lint-staged": "^9.3.0",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.6.4"
   }
 }
