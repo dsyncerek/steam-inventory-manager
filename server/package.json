@@ -11,7 +11,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@nestjs/common": "^6.8.2",
+    "@nestjs/common": "^6.8.3",
     "@nestjs/core": "^6.8.3",
     "@nestjs/jwt": "^6.1.1",
     "@nestjs/passport": "^6.1.0",
