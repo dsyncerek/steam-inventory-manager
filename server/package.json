@@ -6,6 +6,7 @@
     "start:prod": "node dist/main.js",
     "prebuild": "rimraf dist",
     "build": "nest build --path tsconfig.json",
+    "test": "jest",
     "format": "prettier src/**/*.ts --write",
     "lint": "eslint src/**/*.ts --fix",
     "precommit": "lint-staged"
@@ -35,6 +36,7 @@
     "@nestjs/cli": "^6.10.1",
     "@nestjs/schematics": "^6.7.0",
     "@nestjs/testing": "^6.8.3",
+    "@types/jest": "^24.0.18",
     "@typescript-eslint/eslint-plugin": "^2.3.3",
     "@typescript-eslint/parser": "^2.3.3",
     "eslint": "^6.4.0",
@@ -44,9 +46,11 @@
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "jest": "^24.9.0",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
     "typescript": "~3.6.4"
   }
 }
