@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "pre-commit": "npm --prefix server run precommit && npm --prefix client run precommit"
+    "pre-commit": "npm run precommit"
   }
 }

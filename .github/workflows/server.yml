@@ -1,0 +1,31 @@
+name: ServerCI
+
+on:
+  pull_request:
+    paths:
+      - 'server/**'
+  push:
+    branches:
+      - master
+    paths:
+      - 'server/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - name: Install dependencies
+        working-directory: server
+        run: npm install
+      - name: Lint
+        working-directory: server
+        run: npm run lint
+      - name: Build
+        working-directory: server
+        run: npm run build
