@@ -28,5 +28,5 @@ export class CreateItemDto {
 
   @IsInt()
   @IsPositive()
-  price: number;
+  price?: number;
 }
