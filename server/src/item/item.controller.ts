@@ -25,15 +25,13 @@ export class ItemController {
   @Post('create')
   @PermissionsAllowed(PermissionsEnum.ItemCreateAny)
   async createItem(@Body() body: CreateItemDto): Promise<Item> {
-    await this.itemService.createItem(body);
-    return this.itemService.getItem(body.classId);
+    return this.itemService.createItem(body);
   }
 
   @Put('update/:classId')
   @PermissionsAllowed(PermissionsEnum.ItemUpdateAny)
   async updateItem(@Param('classId') classId: string, @Body() body: UpdateItemDto): Promise<Item> {
-    await this.itemService.updateItem(classId, body);
-    return this.itemService.getItem(classId);
+    return this.itemService.updateItem(classId, body);
   }
 
   @Delete('delete/:classId')

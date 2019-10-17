@@ -47,6 +47,6 @@ export class InventoryController {
   @Delete('delete/:id')
   @PermissionsAllowed(PermissionsEnum.InventoryDeleteAny, PermissionsEnum.InventoryDeleteOwn)
   async deleteInventory(@Param('id') id: string): Promise<void> {
-    return this.inventoryService.deleteInventory(id);
+    await this.inventoryService.deleteInventory(id);
   }
 }

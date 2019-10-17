@@ -31,15 +31,13 @@ export class BotController {
   @Post('create')
   @PermissionsAllowed(PermissionsEnum.BotCreateAny, PermissionsEnum.BotCreateOwn)
   async createBot(@Body() body: CreateBotDto): Promise<Bot> {
-    await this.botService.createBot(body);
-    return this.botService.getBot(body.steamId);
+    return this.botService.createBot(body);
   }
 
   @Put('update/:steamId')
   @PermissionsAllowed(PermissionsEnum.BotUpdateAny, PermissionsEnum.BotUpdateOwn)
   async updateBot(@Param('steamId') steamId: string, @Body() body: UpdateBotDto): Promise<Bot> {
-    await this.botService.updateBot(steamId, body);
-    return this.botService.getBot(steamId);
+    return this.botService.updateBot(steamId, body);
   }
 
   @Delete('delete/:steamId')

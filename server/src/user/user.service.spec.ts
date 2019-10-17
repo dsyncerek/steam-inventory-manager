@@ -52,23 +52,29 @@ describe('UserService', () => {
   describe('createUser', () => {
     it('should create user', async () => {
       jest.spyOn(userRepository, 'insert').mockResolvedValue(null);
+      jest.spyOn(userRepository, 'findOneOrFail').mockResolvedValue(USERS[0]);
 
-      await userService.createUser(USERS[0]);
+      const user = await userService.createUser(USERS[0]);
 
+      expect(user).toBe(USERS[0]);
       expect(userRepository.insert).toBeCalledTimes(1);
       expect(userRepository.insert).toBeCalledWith({ ...USERS[0], roles: [RolesEnum.User] });
+      expect(userRepository.findOneOrFail).toBeCalledTimes(1);
     });
   });
 
   describe('updateUser', () => {
     it('should update user', async () => {
       jest.spyOn(userRepository, 'update').mockResolvedValue(null);
+      jest.spyOn(userRepository, 'findOneOrFail').mockResolvedValue(USERS[0]);
 
       const steamId = USERS[0].steamId;
-      await userService.updateUser(steamId, USERS[0]);
+      const user = await userService.updateUser(steamId, USERS[0]);
 
+      expect(user).toBe(USERS[0]);
       expect(userRepository.update).toBeCalledTimes(1);
       expect(userRepository.update).toBeCalledWith({ steamId }, USERS[0]);
+      expect(userRepository.findOneOrFail).toBeCalledTimes(1);
     });
   });
 

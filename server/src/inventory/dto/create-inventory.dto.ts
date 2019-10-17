@@ -5,7 +5,7 @@ export class CreateInventoryDto {
   @IsNotEmpty()
   @IsDefined()
   @Matches(/^\d{17}$/)
-  steamId: string;
+  botSteamId: string;
 
   @IsInt()
   @IsPositive()

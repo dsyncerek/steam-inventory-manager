@@ -9,8 +9,8 @@ import { SteamInventoryDto } from './dto/steam-inventory.dto';
 export class SteamService {
   constructor(private readonly http: HttpService) {}
 
-  async getInventoryBySteamId(steamId: string, appId = 730, contextId = 2): Promise<Inventory> {
-    const { assets, descriptions } = await this.getInventoryFromSteamApi(steamId, appId, contextId);
+  async getInventoryBySteamId(botSteamId: string, appId = 730, contextId = 2): Promise<Inventory> {
+    const { assets, descriptions } = await this.getInventoryFromSteamApi(botSteamId, appId, contextId);
 
     const aggregatedAssets: Array<{ classId: string; quantity: number }> = [];
 
@@ -43,7 +43,7 @@ export class SteamService {
     return new Inventory({
       appId,
       contextId,
-      botSteamId: steamId,
+      botSteamId,
       items,
     });
   }

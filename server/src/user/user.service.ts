@@ -19,12 +19,14 @@ export class UserService {
     return this.userRepository.findOneOrFail({ steamId });
   }
 
-  async createUser(data: CreateUserDto): Promise<void> {
+  async createUser(data: CreateUserDto): Promise<User> {
     await this.userRepository.insert({ ...data, roles: [RolesEnum.User] });
+    return this.getUser(data.steamId);
   }
 
-  async updateUser(steamId: string, data: UpdateUserDto): Promise<void> {
+  async updateUser(steamId: string, data: UpdateUserDto): Promise<User> {
     await this.userRepository.update({ steamId }, data);
+    return this.getUser(steamId);
   }
 
   async deleteUser(steamId: string): Promise<void> {

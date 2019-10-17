@@ -51,23 +51,29 @@ describe('ItemService', () => {
   describe('createItem', () => {
     it('should create item', async () => {
       jest.spyOn(itemRepository, 'insert').mockResolvedValue(null);
+      jest.spyOn(itemRepository, 'findOneOrFail').mockResolvedValue(ITEMS[0]);
 
-      await itemService.createItem(ITEMS[0]);
+      const item = await itemService.createItem(ITEMS[0]);
 
+      expect(item).toBe(ITEMS[0]);
       expect(itemRepository.insert).toBeCalledTimes(1);
       expect(itemRepository.insert).toBeCalledWith(ITEMS[0]);
+      expect(itemRepository.findOneOrFail).toBeCalledTimes(1);
     });
   });
 
   describe('updateItem', () => {
     it('should update item', async () => {
       jest.spyOn(itemRepository, 'update').mockResolvedValue(null);
+      jest.spyOn(itemRepository, 'findOneOrFail').mockResolvedValue(ITEMS[0]);
 
       const classId = ITEMS[0].classId;
-      await itemService.updateItem(classId, ITEMS[0]);
+      const item = await itemService.updateItem(classId, ITEMS[0]);
 
+      expect(item).toBe(ITEMS[0]);
       expect(itemRepository.update).toBeCalledTimes(1);
       expect(itemRepository.update).toBeCalledWith({ classId }, ITEMS[0]);
+      expect(itemRepository.findOneOrFail).toBeCalledTimes(1);
     });
   });
 

@@ -36,7 +36,7 @@ describe('BotService', () => {
   });
 
   describe('getUserBots', () => {
-    it('should get all bots', async () => {
+    it('should get user bots', async () => {
       jest.spyOn(botRepository, 'find').mockResolvedValue(BOTS);
 
       const ownerSteamId = '000';
@@ -64,23 +64,29 @@ describe('BotService', () => {
   describe('createBot', () => {
     it('should create bot', async () => {
       jest.spyOn(botRepository, 'insert').mockResolvedValue(null);
+      jest.spyOn(botRepository, 'findOneOrFail').mockResolvedValue(BOTS[0]);
 
-      await botService.createBot(BOTS[0]);
+      const bot = await botService.createBot(BOTS[0]);
 
+      expect(bot).toBe(BOTS[0]);
       expect(botRepository.insert).toBeCalledTimes(1);
       expect(botRepository.insert).toBeCalledWith(BOTS[0]);
+      expect(botRepository.findOneOrFail).toBeCalledTimes(1);
     });
   });
 
   describe('updateBot', () => {
     it('should update bot', async () => {
       jest.spyOn(botRepository, 'update').mockResolvedValue(null);
+      jest.spyOn(botRepository, 'findOneOrFail').mockResolvedValue(BOTS[0]);
 
       const steamId = BOTS[0].steamId;
-      await botService.updateBot(steamId, BOTS[0]);
+      const bot = await botService.updateBot(steamId, BOTS[0]);
 
+      expect(bot).toBe(BOTS[0]);
       expect(botRepository.update).toBeCalledTimes(1);
       expect(botRepository.update).toBeCalledWith({ steamId }, BOTS[0]);
+      expect(botRepository.findOneOrFail).toBeCalledTimes(1);
     });
   });
 
