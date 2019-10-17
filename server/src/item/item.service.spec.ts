@@ -8,11 +8,7 @@ describe('ItemService', () => {
   let itemService: ItemService;
   let itemRepository: Repository<Item>;
 
-  const ITEMS: Item[] = [
-    { classId: '123', appId: 730, contextId: 2, name: 'AK-47', icon: 'ak-47.png' },
-    { classId: '456', appId: 730, contextId: 2, name: 'AWP', icon: 'awp.png' },
-    { classId: '789', appId: 730, contextId: 2, name: 'M4A4', icon: 'm4a4.png' },
-  ];
+  const ITEMS: Item[] = [new Item({ classId: '123' }), new Item({ classId: '456' }), new Item({ classId: '789' })];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -33,8 +29,9 @@ describe('ItemService', () => {
 
       const items = await itemService.getAllItems();
 
-      expect(items).toHaveLength(3);
+      expect(items).toBe(ITEMS);
       expect(itemRepository.find).toBeCalledTimes(1);
+      expect(itemRepository.find).toBeCalledWith();
     });
   });
 
@@ -53,7 +50,6 @@ describe('ItemService', () => {
 
   describe('createItem', () => {
     it('should create item', async () => {
-      jest.spyOn(itemRepository, 'findOneOrFail').mockResolvedValue(ITEMS[0]);
       jest.spyOn(itemRepository, 'insert').mockResolvedValue(null);
 
       await itemService.createItem(ITEMS[0]);
@@ -65,7 +61,6 @@ describe('ItemService', () => {
 
   describe('updateItem', () => {
     it('should update item', async () => {
-      jest.spyOn(itemRepository, 'findOneOrFail').mockResolvedValue(ITEMS[0]);
       jest.spyOn(itemRepository, 'update').mockResolvedValue(null);
 
       const classId = ITEMS[0].classId;

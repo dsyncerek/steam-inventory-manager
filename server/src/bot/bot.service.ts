@@ -22,15 +22,12 @@ export class BotService {
     return this.botRepository.findOneOrFail({ steamId });
   }
 
-  async createBot(data: CreateBotDto): Promise<Bot> {
-    const bot = new Bot(data);
-    await this.botRepository.insert(bot);
-    return this.getBot(bot.steamId);
+  async createBot(data: CreateBotDto): Promise<void> {
+    await this.botRepository.insert(data);
   }
 
-  async updateBot(steamId: string, data: UpdateBotDto): Promise<Bot> {
+  async updateBot(steamId: string, data: UpdateBotDto): Promise<void> {
     await this.botRepository.update({ steamId }, data);
-    return this.getBot(steamId);
   }
 
   async deleteBot(steamId: string): Promise<void> {

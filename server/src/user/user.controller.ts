@@ -25,18 +25,20 @@ export class UserController {
   @Post('create')
   @PermissionsAllowed(PermissionsEnum.UserCreateAny)
   async createUser(@Body() body: CreateUserDto): Promise<User> {
-    return this.userService.createUser(body);
+    await this.userService.createUser(body);
+    return this.userService.getUser(body.steamId);
   }
 
   @Put('update/:steamId')
   @PermissionsAllowed(PermissionsEnum.UserUpdateAny)
   async updateUser(@Param('steamId') steamId: string, @Body() body: UpdateUserDto): Promise<User> {
-    return this.userService.updateUser(steamId, body);
+    await this.userService.updateUser(steamId, body);
+    return this.userService.getUser(steamId);
   }
 
   @Delete('delete/:steamId')
   @PermissionsAllowed(PermissionsEnum.UserDeleteAny)
   async deleteUser(@Param('steamId') steamId: string): Promise<void> {
-    return this.userService.deleteUser(steamId);
+    await this.userService.deleteUser(steamId);
   }
 }

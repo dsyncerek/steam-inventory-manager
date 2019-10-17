@@ -2,17 +2,17 @@ import { IsBoolean, IsString } from 'class-validator';
 
 export class UpdateBotDto {
   @IsString()
-  name: string;
+  name?: string;
 
   @IsString()
-  login: string;
+  login?: string;
 
   @IsString()
-  tradeLink: string;
+  tradeLink?: string;
 
   @IsBoolean()
-  is2FA: boolean;
+  is2FA?: boolean;
 
   @IsBoolean()
-  isOnline: boolean;
+  isOnline?: boolean;
 }

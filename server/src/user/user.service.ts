@@ -19,26 +19,24 @@ export class UserService {
     return this.userRepository.findOneOrFail({ steamId });
   }
 
-  async createUser(data: CreateUserDto): Promise<User> {
-    const user = new User({ ...data, roles: [RolesEnum.User] });
-    await this.userRepository.save(user);
-    return this.getUser(user.steamId);
+  async createUser(data: CreateUserDto): Promise<void> {
+    await this.userRepository.insert({ ...data, roles: [RolesEnum.User] });
   }
 
-  async updateUser(steamId: string, data: UpdateUserDto): Promise<User> {
+  async updateUser(steamId: string, data: UpdateUserDto): Promise<void> {
     await this.userRepository.update({ steamId }, data);
-    return this.getUser(steamId);
   }
 
   async deleteUser(steamId: string): Promise<void> {
     await this.userRepository.delete({ steamId });
   }
 
+  // TODO
   async upsertUser(data: CreateUserDto): Promise<User> {
     try {
-      return await this.getUser(data.steamId);
-    } catch (e) {
-      return this.createUser(data);
-    }
+      await this.createUser(data);
+    } catch {}
+
+    return this.getUser(data.steamId);
   }
 }

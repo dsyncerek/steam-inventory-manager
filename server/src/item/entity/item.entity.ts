@@ -19,7 +19,7 @@ export class Item {
   icon: string;
 
   @Column({ default: 0 })
-  price?: number;
+  price: number;
 
   constructor(partial: Partial<Item> = {}) {
     Object.assign(this, partial);

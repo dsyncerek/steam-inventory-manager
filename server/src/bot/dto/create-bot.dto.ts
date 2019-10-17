@@ -8,19 +8,19 @@ export class CreateBotDto {
   steamId: string;
 
   @IsString()
-  name: string;
+  name?: string;
 
   @IsString()
-  login: string;
+  login?: string;
 
   @IsString()
-  tradeLink: string;
+  tradeLink?: string;
 
   @IsBoolean()
-  is2FA: boolean;
+  is2FA?: boolean;
 
   @IsBoolean()
-  isOnline: boolean;
+  isOnline?: boolean;
 
   @IsString()
   @IsNotEmpty()

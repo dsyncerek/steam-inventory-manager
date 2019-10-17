@@ -7,6 +7,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build --path tsconfig.json",
     "test": "jest",
+    "test:cov": "jest --coverage",
     "format": "prettier src/**/*.ts --write",
     "lint": "eslint src/**/*.ts --fix",
     "precommit": "lint-staged"

@@ -18,15 +18,12 @@ export class ItemService {
     return this.itemRepository.findOneOrFail({ classId });
   }
 
-  async createItem(data: CreateItemDto): Promise<Item> {
-    const item = new Item(data);
-    await this.itemRepository.insert(item);
-    return this.getItem(item.name);
+  async createItem(data: CreateItemDto): Promise<void> {
+    await this.itemRepository.insert(data);
   }
 
-  async updateItem(classId: string, data: UpdateItemDto): Promise<Item> {
+  async updateItem(classId: string, data: UpdateItemDto): Promise<void> {
     await this.itemRepository.update({ classId }, data);
-    return this.getItem(classId);
   }
 
   async deleteItem(classId: string): Promise<void> {
