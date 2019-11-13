@@ -8,7 +8,7 @@
 
 ## Demo (WIP)
 
-Live: [https://steam-inventory-manager.herokuapp.com/](https://steam-inventory-manager.herokuapp.com/).
+Live: [steam-inventory-manager.herokuapp.com](https://steam-inventory-manager.herokuapp.com/).
 
 **NOTE**: Application will load after a short delay. Details [here](https://devcenter.heroku.com/articles/free-dyno-hours).
 
