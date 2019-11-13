@@ -37,7 +37,7 @@ npm install
 
 ## Configuration
 
-Rename `server/src/.env.example` to `server/src/.env` and edit with your needs.
+Rename `server/.env.example` to `server/.env` and edit with your needs.
 
 File `server/src/config/roles.config.ts` contains information about roles permissons.
 
