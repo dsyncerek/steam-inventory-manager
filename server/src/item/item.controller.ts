@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
 import { PermissionsAllowed } from '../access-control/decorators/permissions-allowed.decorator';
 import { PermissionsEnum } from '../access-control/enums/permissions.enum';
 import { CreateItemDto } from './dto/create-item.dto';
@@ -7,6 +8,8 @@ import { Item } from './entity/item.entity';
 import { ItemService } from './item.service';
 
 @Controller('item')
+@ApiUseTags('item')
+@ApiBearerAuth()
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}
 

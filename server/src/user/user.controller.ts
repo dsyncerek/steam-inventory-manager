@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
 import { PermissionsAllowed } from '../access-control/decorators/permissions-allowed.decorator';
 import { PermissionsEnum } from '../access-control/enums/permissions.enum';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -7,11 +8,14 @@ import { User } from './entity/user.entity';
 import { UserService } from './user.service';
 
 @Controller('user')
+@ApiUseTags('user')
+@ApiBearerAuth()
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('get-all')
   @PermissionsAllowed(PermissionsEnum.UserGetAll)
+  @ApiBearerAuth()
   async getAllUsers(): Promise<User[]> {
     return this.userService.getAllUsers();
   }

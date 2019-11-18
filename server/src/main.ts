@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { SwaggerModule } from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { config } from 'dotenv';
 
 config();
@@ -7,7 +7,16 @@ config();
 (async (): Promise<void> => {
   const AppModule = (await import('./app.module')).AppModule;
   const app = await NestFactory.create(AppModule);
+
   app.setGlobalPrefix('api');
-  SwaggerModule.setup('docs', app, SwaggerModule.createDocument(app, {}));
+
+  const swaggerOptions = new DocumentBuilder()
+    .setTitle('Steam Inventory Manager API')
+    .setBasePath('api')
+    .addBearerAuth()
+    .build();
+
+  SwaggerModule.setup('openapi', app, SwaggerModule.createDocument(app, swaggerOptions));
+
   await app.listen(+process.env.PORT);
 })();

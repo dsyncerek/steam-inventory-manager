@@ -9,6 +9,7 @@
 ## Demo
 
 Live: [steam-inventory-manager.herokuapp.com](https://steam-inventory-manager.herokuapp.com/).
+OpenAPI: [steam-inventory-manager.herokuapp.com/openapi](https://steam-inventory-manager.herokuapp.com/openapi).
 
 **NOTE**: Application will load after a short delay. Details [here](https://devcenter.heroku.com/articles/free-dyno-hours).
 

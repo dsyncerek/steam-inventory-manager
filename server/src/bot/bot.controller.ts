@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
 import { PermissionsAllowed } from '../access-control/decorators/permissions-allowed.decorator';
 import { PermissionsEnum } from '../access-control/enums/permissions.enum';
 import { BotService } from './bot.service';
@@ -7,6 +8,8 @@ import { UpdateBotDto } from './dto/update-bot.dto';
 import { Bot } from './entity/bot.entity';
 
 @Controller('bot')
+@ApiUseTags('bot')
+@ApiBearerAuth()
 export class BotController {
   constructor(private readonly botService: BotService) {}
 
