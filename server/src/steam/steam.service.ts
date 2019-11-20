@@ -1,16 +1,15 @@
-import { HttpService, Injectable } from '@nestjs/common';
-import { map } from 'rxjs/operators';
+import { Injectable } from '@nestjs/common';
 import { InventoryItem } from '../inventory/entity/inventory-item.entity';
 import { Inventory } from '../inventory/entity/inventory.entity';
 import { Item } from '../item/entity/item.entity';
-import { SteamInventoryDto } from './dto/steam-inventory.dto';
+import { SteamApiService } from './steam-api.service';
 
 @Injectable()
 export class SteamService {
-  constructor(private readonly http: HttpService) {}
+  constructor(private readonly steamApiService: SteamApiService) {}
 
   async getInventoryBySteamId(botSteamId: string, appId = 730, contextId = 2): Promise<Inventory> {
-    const { assets, descriptions } = await this.getInventoryFromSteamApi(botSteamId, appId, contextId);
+    const { assets, descriptions } = await this.steamApiService.getInventory(botSteamId, appId, contextId);
 
     const aggregatedAssets: Array<{ classId: string; quantity: number }> = [];
 
@@ -46,14 +45,5 @@ export class SteamService {
       botSteamId,
       items,
     });
-  }
-
-  private async getInventoryFromSteamApi(steamId: string, appId = 730, contextId = 2): Promise<SteamInventoryDto> {
-    const url = `http://steamcommunity.com/inventory/${steamId}/${appId}/${contextId}/?count=5000`;
-
-    return this.http
-      .get<SteamInventoryDto>(url)
-      .pipe(map(({ data }) => data))
-      .toPromise();
   }
 }

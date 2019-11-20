@@ -29,16 +29,15 @@ export class UserService {
     return this.getUser(steamId);
   }
 
-  async deleteUser(steamId: string): Promise<void> {
-    await this.userRepository.delete({ steamId });
-  }
-
-  // TODO
   async upsertUser(data: CreateUserDto): Promise<User> {
     try {
-      await this.createUser(data);
-    } catch {}
+      return await this.createUser(data);
+    } catch {
+      return this.getUser(data.steamId);
+    }
+  }
 
-    return this.getUser(data.steamId);
+  async deleteUser(steamId: string): Promise<void> {
+    await this.userRepository.delete({ steamId });
   }
 }
