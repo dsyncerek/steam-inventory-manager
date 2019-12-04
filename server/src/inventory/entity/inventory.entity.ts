@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiHideProperty } from '@nestjs/swagger';
 import { AfterLoad, BeforeInsert, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { Column } from 'typeorm/decorator/columns/Column';
 import { Bot } from '../../bot/entity/bot.entity';
@@ -8,19 +8,15 @@ import { InventoryItem } from './inventory-item.entity';
 @Unique(['appId', 'contextId', 'botSteamId'])
 export class Inventory {
   @PrimaryGeneratedColumn('uuid')
-  @ApiProperty()
   id: string;
 
   @Column()
-  @ApiProperty()
   appId: number;
 
   @Column()
-  @ApiProperty()
   contextId: number;
 
   @Column()
-  @ApiProperty()
   botSteamId: string;
 
   @ManyToOne(
@@ -28,6 +24,7 @@ export class Inventory {
     bot => bot.inventories,
     { nullable: false, onDelete: 'CASCADE' },
   )
+  @ApiHideProperty()
   bot: Bot;
 
   @OneToMany(
@@ -35,13 +32,9 @@ export class Inventory {
     item => item.inventory,
     { cascade: true, eager: true },
   )
-  @ApiProperty({ type: InventoryItem, isArray: true })
   items: InventoryItem[];
 
-  @ApiProperty()
   count: number;
-
-  @ApiProperty()
   worth: number;
 
   constructor(partial: Partial<Inventory> = {}) {
