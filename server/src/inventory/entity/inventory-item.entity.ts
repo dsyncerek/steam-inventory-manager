@@ -1,4 +1,4 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Item } from '../../item/entity/item.entity';
@@ -11,14 +11,18 @@ export class InventoryItem {
   id: string;
 
   @Column({ default: 1 })
-  @ApiModelProperty()
+  @ApiProperty()
   quantity: number;
 
-  @ManyToOne(() => Inventory, inv => inv.items, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(
+    () => Inventory,
+    inv => inv.items,
+    { nullable: false, onDelete: 'CASCADE' },
+  )
   inventory: Inventory;
 
   @ManyToOne(() => Item, { eager: true, cascade: true, nullable: false, onDelete: 'CASCADE' })
-  @ApiModelProperty({ type: Item })
+  @ApiProperty({ type: Item })
   item: Item;
 
   constructor(partial: Partial<InventoryItem> = {}) {

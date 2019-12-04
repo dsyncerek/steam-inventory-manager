@@ -1,39 +1,39 @@
-import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsDefined, IsInt, IsNotEmpty, IsPositive, IsString } from 'class-validator';
 
 export class CreateItemDto {
   @IsString()
   @IsNotEmpty()
   @IsDefined()
-  @ApiModelProperty()
+  @ApiProperty()
   classId: string;
 
   @IsString()
   @IsNotEmpty()
   @IsDefined()
-  @ApiModelProperty()
+  @ApiProperty()
   name: string;
 
   @IsInt()
   @IsPositive()
   @IsDefined()
-  @ApiModelProperty()
+  @ApiProperty()
   appId: number;
 
   @IsInt()
   @IsPositive()
   @IsDefined()
-  @ApiModelProperty()
+  @ApiProperty()
   contextId: number;
 
   @IsString()
   @IsNotEmpty()
   @IsDefined()
-  @ApiModelProperty()
+  @ApiProperty()
   icon: string;
 
   @IsInt()
   @IsPositive()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   price?: number;
 }

@@ -1,24 +1,24 @@
-import { ApiModelPropertyOptional } from '@nestjs/swagger';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsBoolean, IsString } from 'class-validator';
 
 export class UpdateBotDto {
   @IsString()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   name?: string;
 
   @IsString()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   login?: string;
 
   @IsString()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   tradeLink?: string;
 
   @IsBoolean()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   is2FA?: boolean;
 
   @IsBoolean()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   isOnline?: boolean;
 }

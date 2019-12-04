@@ -1,4 +1,4 @@
-import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsBoolean, IsDefined, IsNotEmpty, IsString, Matches } from 'class-validator';
 
 export class CreateBotDto {
@@ -6,33 +6,33 @@ export class CreateBotDto {
   @IsNotEmpty()
   @IsDefined()
   @Matches(/^\d{17}$/)
-  @ApiModelProperty()
+  @ApiProperty()
   steamId: string;
 
   @IsString()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   name?: string;
 
   @IsString()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   login?: string;
 
   @IsString()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   tradeLink?: string;
 
   @IsBoolean()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   is2FA?: boolean;
 
   @IsBoolean()
-  @ApiModelPropertyOptional()
+  @ApiPropertyOptional()
   isOnline?: boolean;
 
   @IsString()
   @IsNotEmpty()
   @IsDefined()
   @Matches(/^\d{17}$/)
-  @ApiModelProperty()
+  @ApiProperty()
   ownerSteamId: string;
 }

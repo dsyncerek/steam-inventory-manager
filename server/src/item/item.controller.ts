@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { ApiBearerAuth, ApiCreatedResponse, ApiNoContentResponse, ApiOkResponse, ApiUseTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiNoContentResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { PermissionsAllowed } from '../access-control/decorators/permissions-allowed.decorator';
 import { PermissionsEnum } from '../access-control/enums/permissions.enum';
 import { CreateItemDto } from './dto/create-item.dto';
@@ -8,7 +8,7 @@ import { Item } from './entity/item.entity';
 import { ItemService } from './item.service';
 
 @Controller('items')
-@ApiUseTags('Items')
+@ApiTags('Items')
 @ApiBearerAuth()
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}

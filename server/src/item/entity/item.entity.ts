@@ -1,31 +1,31 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, Index, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Item {
   @PrimaryColumn()
-  @ApiModelProperty()
+  @ApiProperty()
   classId: string;
 
   @Column()
   @Index({ unique: true })
-  @ApiModelProperty()
+  @ApiProperty()
   name: string;
 
   @Column()
-  @ApiModelProperty()
+  @ApiProperty()
   appId: number;
 
   @Column()
-  @ApiModelProperty()
+  @ApiProperty()
   contextId: number;
 
   @Column()
-  @ApiModelProperty()
+  @ApiProperty()
   icon: string;
 
   @Column({ default: 0 })
-  @ApiModelProperty()
+  @ApiProperty()
   price: number;
 
   constructor(partial: Partial<Item> = {}) {

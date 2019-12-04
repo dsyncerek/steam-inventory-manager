@@ -12,7 +12,6 @@ config();
 
   const swaggerOptions = new DocumentBuilder()
     .setTitle('Steam Inventory Manager API')
-    .setBasePath('api')
     .addBearerAuth()
     .build();
 

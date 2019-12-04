@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { ApiBearerAuth, ApiCreatedResponse, ApiNoContentResponse, ApiOkResponse, ApiUseTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiNoContentResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { PermissionsAllowed } from '../access-control/decorators/permissions-allowed.decorator';
 import { PermissionsEnum } from '../access-control/enums/permissions.enum';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -8,7 +8,7 @@ import { User } from './entity/user.entity';
 import { UserService } from './user.service';
 
 @Controller('users')
-@ApiUseTags('Users')
+@ApiTags('Users')
 @ApiBearerAuth()
 export class UserController {
   constructor(private readonly userService: UserService) {}

@@ -1,4 +1,4 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { AfterLoad, BeforeInsert, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { Column } from 'typeorm/decorator/columns/Column';
 import { Bot } from '../../bot/entity/bot.entity';
@@ -8,32 +8,40 @@ import { InventoryItem } from './inventory-item.entity';
 @Unique(['appId', 'contextId', 'botSteamId'])
 export class Inventory {
   @PrimaryGeneratedColumn('uuid')
-  @ApiModelProperty()
+  @ApiProperty()
   id: string;
 
   @Column()
-  @ApiModelProperty()
+  @ApiProperty()
   appId: number;
 
   @Column()
-  @ApiModelProperty()
+  @ApiProperty()
   contextId: number;
 
   @Column()
-  @ApiModelProperty()
+  @ApiProperty()
   botSteamId: string;
 
-  @ManyToOne(() => Bot, bot => bot.inventories, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(
+    () => Bot,
+    bot => bot.inventories,
+    { nullable: false, onDelete: 'CASCADE' },
+  )
   bot: Bot;
 
-  @OneToMany(() => InventoryItem, item => item.inventory, { cascade: true, eager: true })
-  @ApiModelProperty({ type: InventoryItem, isArray: true })
+  @OneToMany(
+    () => InventoryItem,
+    item => item.inventory,
+    { cascade: true, eager: true },
+  )
+  @ApiProperty({ type: InventoryItem, isArray: true })
   items: InventoryItem[];
 
-  @ApiModelProperty()
+  @ApiProperty()
   count: number;
 
-  @ApiModelProperty()
+  @ApiProperty()
   worth: number;
 
   constructor(partial: Partial<Inventory> = {}) {

@@ -1,13 +1,13 @@
 import { Controller, Get, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiOkResponse, ApiUseTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { User } from '../user/entity/user.entity';
 import { AuthService } from './auth.service';
 import { InjectUser } from './decorators/inject-user.decorator';
 
 @Controller('auth')
-@ApiUseTags('Auth')
+@ApiTags('Auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 

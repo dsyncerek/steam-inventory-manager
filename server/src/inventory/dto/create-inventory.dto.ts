@@ -1,4 +1,4 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { IsDefined, IsInt, IsNotEmpty, IsPositive, IsString, Matches } from 'class-validator';
 
 export class CreateInventoryDto {
@@ -6,18 +6,18 @@ export class CreateInventoryDto {
   @IsNotEmpty()
   @IsDefined()
   @Matches(/^\d{17}$/)
-  @ApiModelProperty()
+  @ApiProperty()
   botSteamId: string;
 
   @IsInt()
   @IsPositive()
   @IsDefined()
-  @ApiModelProperty()
+  @ApiProperty()
   appId: number;
 
   @IsInt()
   @IsPositive()
   @IsDefined()
-  @ApiModelProperty()
+  @ApiProperty()
   contextId: number;
 }

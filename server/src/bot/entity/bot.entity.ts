@@ -1,4 +1,4 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { BeforeInsert, Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
 import { Inventory } from '../../inventory/entity/inventory.entity';
 import { User } from '../../user/entity/user.entity';
@@ -6,38 +6,46 @@ import { User } from '../../user/entity/user.entity';
 @Entity()
 export class Bot {
   @PrimaryColumn()
-  @ApiModelProperty()
+  @ApiProperty()
   steamId: string;
 
   @Column({ default: '' })
-  @ApiModelProperty()
+  @ApiProperty()
   name: string;
 
   @Column({ default: '' })
-  @ApiModelProperty()
+  @ApiProperty()
   login: string;
 
   @Column({ default: '' })
-  @ApiModelProperty()
+  @ApiProperty()
   tradeLink: string;
 
   @Column({ default: false })
-  @ApiModelProperty()
+  @ApiProperty()
   is2FA: boolean;
 
   @Column({ default: false })
-  @ApiModelProperty()
+  @ApiProperty()
   isOnline: boolean;
 
-  @OneToMany(() => Inventory, inv => inv.bot, { eager: true })
-  @ApiModelProperty({ type: Inventory, isArray: true })
+  @OneToMany(
+    () => Inventory,
+    inv => inv.bot,
+    { eager: true },
+  )
+  @ApiProperty({ type: Inventory, isArray: true })
   inventories: Inventory[];
 
   @Column()
-  @ApiModelProperty()
+  @ApiProperty()
   ownerSteamId: string;
 
-  @ManyToOne(() => User, user => user.bots, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(
+    () => User,
+    user => user.bots,
+    { nullable: false, onDelete: 'CASCADE' },
+  )
   owner: User;
 
   constructor(partial: Partial<Bot> = {}) {
