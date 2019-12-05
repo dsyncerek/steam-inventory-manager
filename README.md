@@ -51,6 +51,8 @@ File `server/src/config/roles.config.ts` contains information about roles permis
 
 `npm run build` builds the project.
 
+`npm run test` tests the project.
+
 `npm run lint` lints the project using [eslint](https://github.com/eslint/eslint) and [stylelint](https://github.com/stylelint/stylelint).
 
 `npm run format` formats the project using [prettier](https://github.com/prettier/prettier).
