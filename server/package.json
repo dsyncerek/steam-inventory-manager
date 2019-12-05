@@ -4,9 +4,9 @@
   "scripts": {
     "start:dev": "nest start --watch --path tsconfig.json",
     "start:prod": "node dist/main.js",
-    "prebuild": "rimraf dist",
     "build": "nest build --path tsconfig.json",
     "test": "jest",
+    "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "format": "prettier src/**/*.ts --write",
     "lint": "eslint src/**/*.ts --fix",
@@ -50,7 +50,6 @@
     "jest": "^24.9.0",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
-    "rimraf": "^3.0.0",
     "ts-jest": "^24.2.0",
     "typescript": "~3.7.3"
   }
