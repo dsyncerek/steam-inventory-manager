@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^6.10.13",
-    "@nestjs/core": "^6.10.12",
+    "@nestjs/core": "^6.10.13",
     "@nestjs/jwt": "^6.1.1",
     "@nestjs/passport": "^6.1.1",
     "@nestjs/platform-express": "^6.10.13",
