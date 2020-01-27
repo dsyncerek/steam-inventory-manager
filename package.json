@@ -12,7 +12,7 @@
     "precommit": "npm --prefix server run precommit && npm --prefix client run precommit"
   },
   "devDependencies": {
-    "concurrently": "^5.0.2",
+    "concurrently": "^5.1.0",
     "husky": "^4.2.1"
   }
 }
