@@ -11,26 +11,26 @@ export class BotService {
   constructor(private readonly http: HttpClient) {}
 
   getAllBots(): Observable<Bot[]> {
-    return this.http.get<Bot[]>(`${this.apiUrl}/bot/get-all`);
+    return this.http.get<Bot[]>(`${this.apiUrl}/bots`);
   }
 
   getUserBots(steamId: string): Observable<Bot[]> {
-    return this.http.get<Bot[]>(`${this.apiUrl}/bot/get-of-user/${steamId}`);
+    return this.http.get<Bot[]>(`${this.apiUrl}/bots/of-user/${steamId}`);
   }
 
   getBot(steamId: string): Observable<Bot> {
-    return this.http.get<Bot>(`${this.apiUrl}/bot/get/${steamId}`);
+    return this.http.get<Bot>(`${this.apiUrl}/bots/${steamId}`);
   }
 
   createBot(bot: Bot): Observable<Bot> {
-    return this.http.post<Bot>(`${this.apiUrl}/bot/create`, bot);
+    return this.http.post<Bot>(`${this.apiUrl}/bots`, bot);
   }
 
   updateBot(bot: Bot): Observable<Bot> {
-    return this.http.put<Bot>(`${this.apiUrl}/bot/update/${bot.steamId}`, bot);
+    return this.http.put<Bot>(`${this.apiUrl}/bots/${bot.steamId}`, bot);
   }
 
   deleteBot(steamId: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/bot/delete/${steamId}`);
+    return this.http.delete<void>(`${this.apiUrl}/bots/${steamId}`);
   }
 }

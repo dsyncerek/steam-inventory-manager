@@ -11,27 +11,27 @@ export class InventoryService {
   constructor(private readonly http: HttpClient) {}
 
   getUserInventories(steamId: string): Observable<Inventory[]> {
-    return this.http.get<Inventory[]>(`${this.apiUrl}/inventory/get-of-user/${steamId}`);
+    return this.http.get<Inventory[]>(`${this.apiUrl}/inventories/of-user/${steamId}`);
   }
 
   getBotInventories(steamId: string): Observable<Inventory[]> {
-    return this.http.get<Inventory[]>(`${this.apiUrl}/inventory/get-of-bot/${steamId}`);
+    return this.http.get<Inventory[]>(`${this.apiUrl}/inventories/of-bot/${steamId}`);
   }
 
   getInventory(id: string): Observable<Inventory> {
-    return this.http.get<Inventory>(`${this.apiUrl}/inventory/get/${id}`);
+    return this.http.get<Inventory>(`${this.apiUrl}/inventories/${id}`);
   }
 
   createInventory(steamId: string, appId: number, contextId: number): Observable<Inventory> {
     const body = { steamId, appId, contextId };
-    return this.http.post<Inventory>(`${this.apiUrl}/inventory/create/`, body);
+    return this.http.post<Inventory>(`${this.apiUrl}/inventories`, body);
   }
 
   refreshInventory(id: string): Observable<Inventory> {
-    return this.http.get<Inventory>(`${this.apiUrl}/inventory/refresh/${id}`);
+    return this.http.get<Inventory>(`${this.apiUrl}/inventories/${id}/refresh`);
   }
 
   deleteInventory(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/inventory/delete/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/inventories/${id}`);
   }
 }
