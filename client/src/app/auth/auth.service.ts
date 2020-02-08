@@ -33,11 +33,11 @@ export class AuthService {
     return this.http.get<User>(`${this.apiUrl}/auth/profile`);
   }
 
-  getToken(): string {
+  getToken(): string | null {
     return this.storage.getItem(this.tokenStorageKey);
   }
 
   isAuthenticated(): boolean {
-    return !!this.getToken();
+    return this.getToken() !== null;
   }
 }
