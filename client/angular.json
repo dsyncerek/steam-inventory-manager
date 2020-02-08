@@ -5,8 +5,7 @@
   "defaultProject": "steam-inventory-manager-client",
   "schematics": {
     "@schematics/angular:component": {
-      "style": "scss",
-      "spec": false
+      "style": "scss"
     }
   },
   "projects": {
@@ -19,6 +18,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "./dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -39,10 +39,9 @@
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "extractLicenses": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -66,5 +65,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
