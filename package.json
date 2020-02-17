@@ -13,6 +13,6 @@
   },
   "devDependencies": {
     "concurrently": "^5.1.0",
-    "husky": "^4.2.1"
+    "husky": "^4.2.3"
   }
 }
