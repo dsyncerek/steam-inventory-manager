@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.1",
-    "@angular/cli": "^9.0.1",
+    "@angular/cli": "^9.0.2",
     "@angular/compiler-cli": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
