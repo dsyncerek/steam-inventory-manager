@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormErrorsService } from '../../../../shared/services/form-errors.service';
 import { CustomValidators } from '../../../../shared/utils/custom-validators';
-import { CreateBotDto } from '../../models/create-bot';
+import { Bot } from '../../models/bot';
 
 @Component({
   selector: 'app-add-bot-form',
@@ -10,14 +10,14 @@ import { CreateBotDto } from '../../models/create-bot';
   styleUrls: ['./add-bot-form.component.scss'],
 })
 export class AddBotFormComponent {
-  @Output() addBot = new EventEmitter<CreateBotDto>();
+  @Output() addBot = new EventEmitter<Bot>();
 
   form: FormGroup = this.formBuilder.group({
     steamId: ['', [Validators.required, CustomValidators.steamId]],
     ownerSteamId: ['', CustomValidators.steamId],
     name: '',
     login: '',
-    tradeitemLink: ['', CustomValidators.tradeLink],
+    tradeLink: ['', CustomValidators.tradeLink],
     is2FA: false,
     isOnline: false,
   });
@@ -29,7 +29,7 @@ export class AddBotFormComponent {
 
   submit(): void {
     if (this.form.valid) {
-      const bot: CreateBotDto = { ...this.form.value };
+      const bot: Bot = { ...this.form.value };
       this.addBot.emit(bot);
     }
   }

@@ -1,8 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Entities } from '../../core/entities/models/entities';
 import { ErrorAction } from '../../shared/utils/error-action';
-import { CreateBotDto } from './models/create-bot';
-import { UpdateBotDto } from './models/update-bot';
+import { Bot } from './models/bot';
 
 export enum BotActionTypes {
   GetUserBots = '[Bot] Get user bots',
@@ -61,7 +60,7 @@ export class GetBotError extends ErrorAction {
 export class CreateBot implements Action {
   readonly type = BotActionTypes.CreateBot;
 
-  constructor(public payload: { bot: CreateBotDto }) {}
+  constructor(public payload: { bot: Bot }) {}
 }
 
 export class CreateBotSuccess implements Action {
@@ -77,7 +76,7 @@ export class CreateBotError extends ErrorAction {
 export class UpdateBot implements Action {
   readonly type = BotActionTypes.UpdateBot;
 
-  constructor(public payload: { bot: UpdateBotDto }) {}
+  constructor(public payload: { bot: Bot }) {}
 }
 
 export class UpdateBotSuccess implements Action {

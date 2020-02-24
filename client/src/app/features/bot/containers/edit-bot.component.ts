@@ -6,7 +6,6 @@ import { AppState } from '../../../core/core.state';
 import { GetBot, UpdateBot } from '../bot.actions';
 import { selectBot } from '../bot.selectors';
 import { Bot } from '../models/bot';
-import { UpdateBotDto } from '../models/update-bot';
 
 @Component({
   selector: 'app-edit-bot',
@@ -25,7 +24,7 @@ export class EditBotComponent implements OnInit {
     this.store.dispatch(new GetBot({ steamId }));
   }
 
-  onEditBot(bot: UpdateBotDto): void {
+  onEditBot(bot: Bot): void {
     this.store.dispatch(new UpdateBot({ bot }));
   }
 }

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormErrorsService } from '../../../../shared/services/form-errors.service';
 import { CustomValidators } from '../../../../shared/utils/custom-validators';
 import { Bot } from '../../models/bot';
-import { UpdateBotDto } from '../../models/update-bot';
 
 @Component({
   selector: 'app-edit-bot-form',
@@ -12,7 +11,7 @@ import { UpdateBotDto } from '../../models/update-bot';
 })
 export class EditBotFormComponent implements OnChanges {
   @Input() bot: Bot;
-  @Output() editBot = new EventEmitter<UpdateBotDto>();
+  @Output() editBot = new EventEmitter<Bot>();
 
   form: FormGroup = this.formBuilder.group({
     steamId: { value: '', disabled: true },
@@ -33,7 +32,7 @@ export class EditBotFormComponent implements OnChanges {
 
   submit(): void {
     if (this.form.valid) {
-      const bot: UpdateBotDto = { ...this.bot, ...this.form.value };
+      const bot: Bot = { ...this.bot, ...this.form.value };
       this.editBot.emit(bot);
     }
   }
