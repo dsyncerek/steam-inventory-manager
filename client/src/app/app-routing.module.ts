@@ -4,7 +4,7 @@ import { Route, RouterModule } from '@angular/router';
 const routes: Route[] = [
   {
     path: 'bot',
-    loadChildren: async () => import('./bot/bot.module').then(m => m.BotModule),
+    loadChildren: async () => import('./features/bot/bot.module').then(m => m.BotModule),
   },
 ];
 
