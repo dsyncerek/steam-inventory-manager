@@ -6,7 +6,7 @@ export class FormErrorsService {
   getControlErrorMessage(form: FormGroup, controlName: string): string {
     const control = form.get(controlName);
 
-    if (!control.errors) {
+    if (!control || !control.errors) {
       return null;
     }
 

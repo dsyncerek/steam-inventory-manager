@@ -1,4 +1,4 @@
-import { Column, Entity, Index, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Item {
@@ -6,7 +6,7 @@ export class Item {
   classId: string;
 
   @Column()
-  @Index({ unique: true })
+  // todo: @Index({ unique: true })
   name: string;
 
   @Column()

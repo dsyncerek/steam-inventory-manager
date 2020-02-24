@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
-@import '../app/bot/components/bot-details/bot-details.component';
-@import '../app/item/components/item-details/item-details.component';
+@import '../app/features/bot/components/bot-details/bot-details.component';
+@import '../app/features/item/components/item-details/item-details.component';
 @import '../app/layout/sidebar/sidebar.component';
 
 @mixin material-core($typography-config) {
