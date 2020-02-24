@@ -18,7 +18,7 @@
     "@nestjs/jwt": "^6.1.2",
     "@nestjs/passport": "^6.2.0",
     "@nestjs/platform-express": "^6.11.8",
-    "@nestjs/serve-static": "^1.0.2",
+    "@nestjs/serve-static": "^2.0.0",
     "@nestjs/swagger": "^4.3.1",
     "@nestjs/typeorm": "^6.3.3",
     "class-transformer": "^0.2.3",
