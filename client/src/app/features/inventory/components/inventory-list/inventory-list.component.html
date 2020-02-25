@@ -7,7 +7,13 @@
       ></app-inventory-details>
     </mat-tab>
 
-    <mat-tab *ngFor="let inventory of inventories" [label]="inventory.appId + '/' + inventory.contextId">
+    <mat-tab *ngFor="let inventory of inventories">
+      <ng-template mat-tab-label>
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
+          <img [width]="16" [height]="16" src="/assets/games/{{ inventory.appId }}.png" alt="" />
+          <span>{{ inventory.appId + '/' + inventory.contextId }}</span>
+        </div>
+      </ng-template>
       <app-inventory-details
         [inventory]="inventory"
         (inventoryRefresh)="inventoryRefresh.emit($event)"
