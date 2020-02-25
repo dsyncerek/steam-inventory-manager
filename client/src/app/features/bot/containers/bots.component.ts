@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { selectLoading } from '../../../core/async/async.selectors';
 import { AppState } from '../../../core/core.state';
-import { DeleteBot, GetUserBots } from '../bot.actions';
+import { BotActionTypes, DeleteBot, GetUserBots } from '../bot.actions';
 import { selectUserBots } from '../bot.selectors';
 import { Bot } from '../models/bot';
 
 @Component({
   selector: 'app-bots',
   template: `
-    <app-bot-list [bots]="bots$ | async" (botDelete)="onBotDelete($event)"></app-bot-list>
+    <app-bot-list [bots]="bots$ | async" [loading]="loading$ | async" (botDelete)="onBotDelete($event)"></app-bot-list>
   `,
 })
 export class BotsComponent implements OnInit {
   bots$: Observable<Bot[]>;
+  loading$ = this.store.select(selectLoading, { types: [BotActionTypes.GetUserBots, BotActionTypes.GetBot] });
 
   constructor(private readonly store: Store<AppState>) {}
 

@@ -1,10 +1,16 @@
-<div fxLayout="column" fxLayoutGap="20px">
-  <app-bot-details *ngFor="let bot of bots" [bot]="bot" (botDelete)="botDelete.emit($event)"></app-bot-details>
+<ng-container *ngIf="!loading">
+  <div fxLayout="column" fxLayoutGap="20px">
+    <app-bot-details *ngFor="let bot of bots" [bot]="bot" (botDelete)="botDelete.emit($event)"></app-bot-details>
 
-  <div fxLayoutAlign="center center">
-    <a mat-button routerLink="/bot/add">
-      <mat-icon>add</mat-icon>
-      Add Bot
-    </a>
+    <div fxLayoutAlign="center center">
+      <a mat-button routerLink="/bot/add">
+        <mat-icon>add</mat-icon>
+        Add Bot
+      </a>
+    </div>
   </div>
+</ng-container>
+
+<div *ngIf="loading" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
 </div>

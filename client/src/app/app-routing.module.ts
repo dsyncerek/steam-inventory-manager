@@ -6,6 +6,10 @@ const routes: Route[] = [
     path: 'bot',
     loadChildren: async () => import('./features/bot/bot.module').then(m => m.BotModule),
   },
+  {
+    path: '**',
+    redirectTo: 'bot',
+  },
 ];
 
 @NgModule({

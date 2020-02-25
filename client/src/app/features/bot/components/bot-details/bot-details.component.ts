@@ -8,6 +8,7 @@ import { Bot } from '../../models/bot';
 })
 export class BotDetailsComponent {
   @Input() bot: Bot;
+  @Input() loading: boolean = false;
   @Output() botDelete = new EventEmitter<string>();
 
   get steamProfileUrl(): string {

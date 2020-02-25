@@ -8,5 +8,6 @@ import { Bot } from '../../models/bot';
 })
 export class BotListComponent {
   @Input() bots: Bot[];
+  @Input() loading: boolean = false;
   @Output() botDelete = new EventEmitter<string>();
 }
