@@ -10,16 +10,4 @@ export class AuthEffects {
     private readonly authService: AuthService,
     private readonly router: Router,
   ) {}
-
-  // @Effect({ dispatch: false })
-  // login$ = this.actions$.pipe(
-  //   ofType<authActions.Login>(AuthActionTypes.Login),
-  //   tap(() => {}),
-  // );
-
-  // @Effect({ dispatch: false })
-  // logout$ = this.actions$.pipe(
-  //   ofType<authActions.Logout>(AuthActionTypes.Logout),
-  //   tap(() => {}),
-  // );
 }

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { getUrlSearchParams } from '../../shared/utils/url.utils';
 import { User } from '../../features/user/models/user';
+import { getUrlSearchParams } from '../../shared/utils/url.utils';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -26,7 +26,6 @@ export class AuthService {
 
   logout(): void {
     this.storage.removeItem(this.tokenStorageKey);
-    this.router.navigate(['/']);
   }
 
   getUser(): Observable<User> {
@@ -35,9 +34,5 @@ export class AuthService {
 
   getToken(): string | null {
     return this.storage.getItem(this.tokenStorageKey);
-  }
-
-  isAuthenticated(): boolean {
-    return this.getToken() !== null;
   }
 }

@@ -76,7 +76,7 @@ describe('InventoryService', () => {
   describe('createInventory', () => {
     it('should create inventory', async () => {
       jest.spyOn(steamService, 'getInventoryBySteamId').mockResolvedValue(INVENTORIES[0]);
-      jest.spyOn(inventoryRepository, 'insert').mockResolvedValue(null);
+      jest.spyOn(inventoryRepository, 'save').mockResolvedValue(null);
       jest.spyOn(inventoryRepository, 'findOneOrFail').mockResolvedValue(INVENTORIES[0]);
 
       const { botSteamId, appId, contextId } = INVENTORIES[0];
@@ -85,8 +85,8 @@ describe('InventoryService', () => {
       expect(inventory).toBe(INVENTORIES[0]);
       expect(steamService.getInventoryBySteamId).toBeCalledTimes(1);
       expect(steamService.getInventoryBySteamId).toBeCalledWith(botSteamId, appId, contextId);
-      expect(inventoryRepository.insert).toBeCalledTimes(1);
-      expect(inventoryRepository.insert).toBeCalledWith(INVENTORIES[0]);
+      expect(inventoryRepository.save).toBeCalledTimes(1);
+      expect(inventoryRepository.save).toBeCalledWith(INVENTORIES[0]);
       expect(inventoryRepository.findOneOrFail).toBeCalledTimes(1);
     });
   });
@@ -95,7 +95,7 @@ describe('InventoryService', () => {
     it('should refresh inventory', async () => {
       jest.spyOn(steamService, 'getInventoryBySteamId').mockResolvedValue(INVENTORIES[1]);
       jest.spyOn(inventoryRepository, 'delete').mockResolvedValue(null);
-      jest.spyOn(inventoryRepository, 'insert').mockResolvedValue(null);
+      jest.spyOn(inventoryRepository, 'save').mockResolvedValue(null);
       jest.spyOn(inventoryRepository, 'findOneOrFail').mockResolvedValue(INVENTORIES[1]);
 
       const { id, botSteamId, appId, contextId } = INVENTORIES[1];
@@ -106,8 +106,8 @@ describe('InventoryService', () => {
       expect(steamService.getInventoryBySteamId).toBeCalledWith(botSteamId, appId, contextId);
       expect(inventoryRepository.delete).toBeCalledTimes(1);
       expect(inventoryRepository.delete).toBeCalledWith({ id });
-      expect(inventoryRepository.insert).toBeCalledTimes(1);
-      expect(inventoryRepository.insert).toBeCalledWith(INVENTORIES[1]);
+      expect(inventoryRepository.save).toBeCalledTimes(1);
+      expect(inventoryRepository.save).toBeCalledWith(INVENTORIES[1]);
       expect(inventoryRepository.findOneOrFail).toBeCalledTimes(2);
     });
   });
