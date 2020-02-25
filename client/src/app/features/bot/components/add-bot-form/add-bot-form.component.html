@@ -34,5 +34,8 @@
       <mat-slide-toggle formControlName="isOnline">Online</mat-slide-toggle>
     </div>
   </div>
-  <button color="primary" mat-flat-button mat-lg-button>Submit</button>
+  <div fxLayout="column">
+    <button color="primary" mat-flat-button mat-lg-button [disabled]="adding">Submit</button>
+    <mat-progress-bar *ngIf="adding" mode="indeterminate"></mat-progress-bar>
+  </div>
 </form>

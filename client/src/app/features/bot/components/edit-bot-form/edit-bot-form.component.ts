@@ -11,6 +11,7 @@ import { Bot } from '../../models/bot';
 })
 export class EditBotFormComponent implements OnChanges {
   @Input() bot: Bot;
+  @Input() editing: boolean = false;
   @Output() editBot = new EventEmitter<Bot>();
 
   form: FormGroup = this.formBuilder.group({

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormErrorsService } from '../../../../shared/services/form-errors.service';
 import { CustomValidators } from '../../../../shared/utils/custom-validators';
@@ -10,6 +10,7 @@ import { Bot } from '../../models/bot';
   styleUrls: ['./add-bot-form.component.scss'],
 })
 export class AddBotFormComponent {
+  @Input() adding: boolean = false;
   @Output() addBot = new EventEmitter<Bot>();
 
   form: FormGroup = this.formBuilder.group({

@@ -5,12 +5,12 @@ import { AsyncState, AsyncStateSlice } from './async.reducer';
 
 export const selectAsyncState = createFeatureSelector<AppState, AsyncState>('async');
 
-export const loadingSelector = createSelector<AppState, { types: string[] }, AsyncStateSlice[], boolean>(
+export const selectLoading = createSelector<AppState, { types: string[] }, AsyncStateSlice[], boolean>(
   (state, { types }) => types.map(type => state.async[type]).filter(Boolean),
   actions => actions.some(action => action.loading),
 );
 
-export const errorSelector = createSelector<
+export const selectError = createSelector<
   AppState,
   { types: string[] },
   AsyncStateSlice[],

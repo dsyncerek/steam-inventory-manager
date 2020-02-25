@@ -4,6 +4,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -26,6 +27,7 @@ import { MatButtonLgDirective } from './mat-button-lg.directive';
     MatIconModule,
     MatRippleModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatButtonLgDirective,
     MatSnackBarModule,
   ],
