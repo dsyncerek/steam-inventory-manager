@@ -1,4 +1,5 @@
 import { ApiHideProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
 import { AfterLoad, BeforeInsert, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { Column } from 'typeorm/decorator/columns/Column';
 import { Bot } from '../../bot/entity/bot.entity';
@@ -32,6 +33,7 @@ export class Inventory {
     item => item.inventory,
     { cascade: true, eager: true },
   )
+  @Expose({ groups: ['inventory'] })
   items: InventoryItem[];
 
   count: number;
