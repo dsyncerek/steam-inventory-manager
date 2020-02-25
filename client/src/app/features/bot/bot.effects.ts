@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
@@ -8,6 +9,8 @@ import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import * as botActions from './bot.actions';
 import { BotActionTypes } from './bot.actions';
 import { BotService } from './bot.service';
+import { AddBotComponent } from './containers/add-bot.component';
+import { EditBotComponent } from './containers/edit-bot.component';
 import { botSchema } from './models/bot';
 
 @Injectable()
@@ -17,7 +20,20 @@ export class BotEffects {
     private readonly botService: BotService,
     private readonly snackBar: MatSnackBar,
     private readonly router: Router,
+    private readonly dialog: MatDialog,
   ) {}
+
+  @Effect({ dispatch: false })
+  openAddBotDialog = this.actions$.pipe(
+    ofType(BotActionTypes.OpenAddBotDialog),
+    tap(() => this.dialog.open(AddBotComponent)),
+  );
+
+  @Effect({ dispatch: false })
+  openEditBotDialog = this.actions$.pipe(
+    ofType<botActions.OpenEditBotDialog>(BotActionTypes.OpenEditBotDialog),
+    tap(({ payload }) => this.dialog.open(EditBotComponent, { data: { steamId: payload.steamId } })),
+  );
 
   @Effect()
   getUserBots$ = this.actions$.pipe(
@@ -47,10 +63,7 @@ export class BotEffects {
     mergeMap(({ payload }) => {
       return this.botService.createBot(payload.bot).pipe(
         map(bot => new botActions.CreateBotSuccess({ entities: normalize(bot, botSchema).entities })),
-        tap(() => {
-          this.snackBar.open('Bot has been created!');
-          this.router.navigate(['/bot']);
-        }),
+        tap(() => this.snackBar.open('Bot has been created!')),
         catchError(error => of(new botActions.CreateBotError(error))),
       );
     }),
@@ -62,10 +75,7 @@ export class BotEffects {
     mergeMap(({ payload }) => {
       return this.botService.updateBot(payload.bot).pipe(
         map(bot => new botActions.UpdateBotSuccess({ entities: normalize(bot, botSchema).entities })),
-        tap(() => {
-          this.snackBar.open('Bot has been updated!');
-          this.router.navigate(['/bot']);
-        }),
+        tap(() => this.snackBar.open('Bot has been updated!')),
         catchError(error => of(new botActions.UpdateBotError(error))),
       );
     }),

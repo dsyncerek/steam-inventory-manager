@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { filter, first } from 'rxjs/operators';
 import { selectLoading } from '../../../core/async/async.selectors';
 import { AppState } from '../../../core/core.state';
-import { BotActionTypes, GetBot, UpdateBot } from '../bot.actions';
+import { BotActionTypes, UpdateBot } from '../bot.actions';
 import { selectBot } from '../bot.selectors';
 import { Bot } from '../models/bot';
 
@@ -18,19 +18,26 @@ import { Bot } from '../models/bot';
     ></app-edit-bot-form>
   `,
 })
-export class EditBotComponent implements OnInit {
-  bot$: Observable<Bot>;
+export class EditBotComponent {
+  bot$ = this.store.select(selectBot, { steamId: this.data.steamId });
   editing$ = this.store.select(selectLoading, { types: [BotActionTypes.UpdateBot] });
 
-  constructor(private readonly store: Store<AppState>, private readonly activeRoute: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    const steamId = this.activeRoute.snapshot.params.steamId;
-    this.bot$ = this.store.select(selectBot, { steamId });
-    this.store.dispatch(new GetBot({ steamId }));
-  }
+  constructor(
+    private readonly store: Store<AppState>,
+    private readonly dialogRef: MatDialogRef<EditBotComponent>,
+    @Inject(MAT_DIALOG_DATA) private readonly data: { steamId: string },
+  ) {}
 
   onEditBot(bot: Bot): void {
     this.store.dispatch(new UpdateBot({ bot }));
+
+    this.editing$
+      .pipe(
+        filter(editing => !editing),
+        first(),
+      )
+      .subscribe(() => {
+        this.dialogRef.close();
+      });
   }
 }

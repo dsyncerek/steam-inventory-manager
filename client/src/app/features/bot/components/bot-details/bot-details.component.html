@@ -15,7 +15,7 @@
       <nav fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center center">
         <a target="_blank" [href]="steamProfileUrl" mat-stroked-button>Steam</a>
         <a *ngIf="bot.tradeLink" target="_blank" [href]="bot.tradeLink" mat-stroked-button>Trade</a>
-        <a mat-stroked-button [routerLink]="['/bot/edit', bot.steamId]">Edit</a>
+        <button mat-stroked-button (click)="botEdit.emit(bot.steamId)">Edit</button>
         <button mat-stroked-button color="warn" (click)="botDelete.emit(bot.steamId)">Delete</button>
       </nav>
     </header>

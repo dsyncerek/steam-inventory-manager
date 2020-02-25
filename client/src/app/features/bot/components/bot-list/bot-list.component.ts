@@ -9,5 +9,7 @@ import { Bot } from '../../models/bot';
 export class BotListComponent {
   @Input() bots: Bot[];
   @Input() loading: boolean = false;
+  @Output() botAdd = new EventEmitter<string>();
+  @Output() botEdit = new EventEmitter<string>();
   @Output() botDelete = new EventEmitter<string>();
 }

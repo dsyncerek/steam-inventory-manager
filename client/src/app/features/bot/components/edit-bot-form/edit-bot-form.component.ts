@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormErrorsService } from '../../../../shared/services/form-errors.service';
 import { CustomValidators } from '../../../../shared/utils/custom-validators';
@@ -27,8 +27,10 @@ export class EditBotFormComponent implements OnChanges {
 
   constructor(private readonly formBuilder: FormBuilder, private readonly formErrors: FormErrorsService) {}
 
-  ngOnChanges(): void {
-    this.form.patchValue({ ...this.bot });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.bot) {
+      this.form.patchValue({ ...this.bot });
+    }
   }
 
   submit(): void {

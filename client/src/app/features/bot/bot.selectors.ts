@@ -6,7 +6,7 @@ import { selectEntitiesState } from '../../core/entities/entities.selectors';
 import { Bot, botSchema } from './models/bot';
 
 export const selectBots = createSelector<AppState, EntitiesState, Bot[]>(selectEntitiesState, entities =>
-  denormalize(Object.keys(entities.bots), [botSchema], entities),
+  denormalize(Object.keys(entities.bots), [botSchema], entities).sort((a, b) => (a.name < b.name ? -1 : 1)),
 );
 
 export const selectUserBots = createSelector<AppState, { steamId: string }, Bot[], Bot[]>(

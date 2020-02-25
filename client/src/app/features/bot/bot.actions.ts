@@ -4,6 +4,9 @@ import { ErrorAction } from '../../shared/utils/error-action';
 import { Bot } from './models/bot';
 
 export enum BotActionTypes {
+  OpenAddBotDialog = 'BOT_OPEN_ADD_BOT_DIALOG',
+  OpenEditBotDialog = 'BOT_OPEN_EDIT_BOT_DIALOG',
+
   GetUserBots = 'BOT_GET_USER_BOTS',
   GetUserBotsSuccess = 'BOT_GET_USER_BOTS_SUCCESS',
   GetUserBotsError = 'BOT_GET_USER_BOTS_ERROR',
@@ -23,6 +26,16 @@ export enum BotActionTypes {
   DeleteBot = 'BOT_DELETE_BOT',
   DeleteBotSuccess = 'BOT_DELETE_BOT_SUCCESS',
   DeleteBotError = 'BOT_DELETE_BOT_ERROR',
+}
+
+export class OpenAddBotDialog implements Action {
+  readonly type = BotActionTypes.OpenAddBotDialog;
+}
+
+export class OpenEditBotDialog implements Action {
+  readonly type = BotActionTypes.OpenEditBotDialog;
+
+  constructor(public payload: { steamId: string }) {}
 }
 
 export class GetUserBots implements Action {
@@ -106,6 +119,7 @@ export class DeleteBotError extends ErrorAction {
 }
 
 export type BotAction =
+  | OpenEditBotDialog
   | GetUserBots
   | GetUserBotsSuccess
   | GetUserBotsError

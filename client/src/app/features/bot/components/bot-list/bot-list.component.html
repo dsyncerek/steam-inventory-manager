@@ -1,9 +1,14 @@
 <ng-container *ngIf="!loading">
   <div fxLayout="column" fxLayoutGap="20px">
-    <app-bot-details *ngFor="let bot of bots" [bot]="bot" (botDelete)="botDelete.emit($event)"></app-bot-details>
+    <app-bot-details
+      *ngFor="let bot of bots"
+      [bot]="bot"
+      (botEdit)="botEdit.emit($event)"
+      (botDelete)="botDelete.emit($event)"
+    ></app-bot-details>
 
     <div fxLayoutAlign="center center">
-      <a mat-button routerLink="/bot/add">
+      <a mat-button (click)="botAdd.emit()">
         <mat-icon>add</mat-icon>
         Add Bot
       </a>
