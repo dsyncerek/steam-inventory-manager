@@ -2,6 +2,7 @@ import { Dictionary } from '@ngrx/entity';
 import { Bot } from '../../features/bot/models/bot';
 import { Inventory } from '../../features/inventory/models/inventory';
 import { Item } from '../../features/item/models/item';
+import { AnyAction } from '../../shared/utils/any-action';
 import { Entities } from './models/entities';
 
 export interface EntitiesState {
@@ -16,8 +17,7 @@ export const initialState: EntitiesState = {
   items: {},
 };
 
-// todo
-export function entitiesReducer(state: EntitiesState = initialState, action: any): EntitiesState {
+export function entitiesReducer(state: EntitiesState = initialState, action: AnyAction): EntitiesState {
   if (action.payload?.entities !== undefined) {
     return mergeEntities(state, action.payload.entities);
   }

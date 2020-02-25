@@ -4,25 +4,25 @@ import { ErrorAction } from '../../shared/utils/error-action';
 import { Bot } from './models/bot';
 
 export enum BotActionTypes {
-  GetUserBots = '[Bot] Get user bots',
-  GetUserBotsSuccess = '[Bot] Get user bots - success',
-  GetUserBotsError = '[Bot] Get user bots - error',
+  GetUserBots = 'BOT_GET_USER_BOTS',
+  GetUserBotsSuccess = 'BOT_GET_USER_BOTS_SUCCESS',
+  GetUserBotsError = 'BOT_GET_USER_BOTS_ERROR',
 
-  GetBot = '[Bot] Get bot',
-  GetBotSuccess = '[Bot] Get bot - success',
-  GetBotError = '[Bot] Get bot - error',
+  GetBot = 'BOT_GET_BOT',
+  GetBotSuccess = 'BOT_GET_BOT_SUCCESS',
+  GetBotError = 'BOT_GET_BOT_ERROR',
 
-  CreateBot = '[Bot] Create bot',
-  CreateBotSuccess = '[Bot] Create bot - success',
-  CreateBotError = '[Bot] Create bot - error',
+  CreateBot = 'BOT_CREATE_BOT',
+  CreateBotSuccess = 'BOT_CREATE_BOT_SUCCESS',
+  CreateBotError = 'BOT_CREATE_BOT_ERROR',
 
-  UpdateBot = '[Bot] Update bot',
-  UpdateBotSuccess = '[Bot] Update bot - success',
-  UpdateBotError = '[Bot] Update bot - error',
+  UpdateBot = 'BOT_UPDATE_BOT',
+  UpdateBotSuccess = 'BOT_UPDATE_BOT_SUCCESS',
+  UpdateBotError = 'BOT_UPDATE_BOT_ERROR',
 
-  DeleteBot = '[Bot] Delete bot',
-  DeleteBotSuccess = '[Bot] Delete bot - success',
-  DeleteBotError = '[Bot] Delete bot - error',
+  DeleteBot = 'BOT_DELETE_BOT',
+  DeleteBotSuccess = 'BOT_DELETE_BOT_SUCCESS',
+  DeleteBotError = 'BOT_DELETE_BOT_ERROR',
 }
 
 export class GetUserBots implements Action {

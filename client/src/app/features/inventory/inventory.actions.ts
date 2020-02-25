@@ -3,29 +3,29 @@ import { Entities } from '../../core/entities/models/entities';
 import { ErrorAction } from '../../shared/utils/error-action';
 
 export enum InventoryActionTypes {
-  GetUserInventories = '[Inventory] Get user inventories',
-  GetUserInventoriesSuccess = '[Inventory] Get user inventories - success',
-  GetUserInventoriesError = '[Inventory] Get user inventories - error',
+  GetUserInventories = 'INVENTORY_GET_USER_INVENTORIES',
+  GetUserInventoriesSuccess = 'INVENTORY_GET_USER_INVENTORIES_SUCCESS',
+  GetUserInventoriesError = 'INVENTORY_GET_USER_INVENTORIES_ERROR',
 
-  GetBotInventories = '[Inventory] Get bot inventories',
-  GetBotInventoriesSuccess = '[Inventory] Get bot inventories - success',
-  GetBotInventoriesError = '[Inventory] Get bot inventories - error',
+  GetBotInventories = 'INVENTORY_GET_BOT_INVENTORIES',
+  GetBotInventoriesSuccess = 'INVENTORY_GET_BOT_INVENTORIES_SUCCESS',
+  GetBotInventoriesError = 'INVENTORY_GET_BOT_INVENTORIES_ERROR',
 
-  GetInventory = '[Inventory] Get inventory',
-  GetInventorySuccess = '[Inventory] Get inventory - success',
-  GetInventoryError = '[Inventory] Get inventory - error',
+  GetInventory = 'INVENTORY_GET_INVENTORY',
+  GetInventorySuccess = 'INVENTORY_GET_INVENTORY_SUCCESS',
+  GetInventoryError = 'INVENTORY_GET_INVENTORY_ERROR',
 
-  CreateInventory = '[Inventory] Create inventory',
-  CreateInventorySuccess = '[Inventory] Create inventory - success',
-  CreateInventoryError = '[Inventory] Create inventory - error',
+  CreateInventory = 'INVENTORY_CREATE_INVENTORY',
+  CreateInventorySuccess = 'INVENTORY_CREATE_INVENTORY_SUCCESS',
+  CreateInventoryError = 'INVENTORY_CREATE_INVENTORY_ERROR',
 
-  RefreshInventory = '[Inventory] Refresh inventory',
-  RefreshInventorySuccess = '[Inventory] Refresh inventory - success',
-  RefreshInventoryError = '[Inventory] Refresh inventory - error',
+  RefreshInventory = 'INVENTORY_REFRESH_INVENTORY',
+  RefreshInventorySuccess = 'INVENTORY_REFRESH_INVENTORY_SUCCESS',
+  RefreshInventoryError = 'INVENTORY_REFRESH_INVENTORY_ERROR',
 
-  DeleteInventory = '[Inventory] Delete inventory',
-  DeleteInventorySuccess = '[Inventory] Delete inventory - success',
-  DeleteInventoryError = '[Inventory] Delete inventory - error',
+  DeleteInventory = 'INVENTORY_DELETE_INVENTORY',
+  DeleteInventorySuccess = 'INVENTORY_DELETE_INVENTORY_SUCCESS',
+  DeleteInventoryError = 'INVENTORY_DELETE_INVENTORY_ERROR',
 }
 
 export class GetUserInventories implements Action {
