@@ -27,7 +27,7 @@ export class InventoryService {
   async createInventory(data: CreateInventoryDto): Promise<Inventory> {
     const { appId, contextId, botSteamId } = data;
     const inventory = await this.steamService.getInventoryBySteamId(botSteamId, appId, contextId);
-    await this.inventoryRepository.insert(inventory);
+    await this.inventoryRepository.save(inventory);
     return this.getInventory(inventory.id);
   }
 
@@ -37,7 +37,7 @@ export class InventoryService {
     const inventoryFromSteam = await this.steamService.getInventoryBySteamId(botSteamId, appId, contextId);
     const inventoryToSave = { ...inventoryFromSteam, id };
     await this.deleteInventory(id);
-    await this.inventoryRepository.insert(inventoryToSave);
+    await this.inventoryRepository.save(inventoryToSave);
     return this.getInventory(id);
   }
 
