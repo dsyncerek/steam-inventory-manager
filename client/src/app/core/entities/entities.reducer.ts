@@ -18,7 +18,7 @@ export const initialState: EntitiesState = {
 };
 
 export function entitiesReducer(state: EntitiesState = initialState, action: AnyAction): EntitiesState {
-  if (action.payload?.entities !== undefined) {
+  if ('payload' in action && 'entities' in action.payload) {
     return mergeEntities(state, action.payload.entities);
   }
 
