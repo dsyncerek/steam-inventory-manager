@@ -9,7 +9,7 @@ import { selectBot } from '../bot.selectors';
 import { Bot } from '../models/bot';
 
 @Component({
-  selector: 'app-edit-bot',
+  selector: 'app-edit-bot-dialog',
   template: `
     <app-edit-bot-form
       [bot]="bot$ | async"
@@ -18,13 +18,13 @@ import { Bot } from '../models/bot';
     ></app-edit-bot-form>
   `,
 })
-export class EditBotComponent {
+export class EditBotDialogComponent {
   bot$ = this.store.select(selectBot, { steamId: this.data.steamId });
   editing$ = this.store.select(selectLoading, { types: [BotActionTypes.UpdateBot] });
 
   constructor(
     private readonly store: Store<AppState>,
-    private readonly dialogRef: MatDialogRef<EditBotComponent>,
+    private readonly dialogRef: MatDialogRef<EditBotDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private readonly data: { steamId: string },
   ) {}
 

@@ -8,15 +8,18 @@ import { BotActionTypes, CreateBot } from '../bot.actions';
 import { Bot } from '../models/bot';
 
 @Component({
-  selector: 'app-add-bot',
+  selector: 'app-add-bot-dialog',
   template: `
     <app-add-bot-form [adding]="adding$ | async" (addBot)="onAddBot($event)"></app-add-bot-form>
   `,
 })
-export class AddBotComponent {
+export class AddBotDialogComponent {
   adding$ = this.store.select(selectLoading, { types: [BotActionTypes.CreateBot] });
 
-  constructor(private readonly store: Store<AppState>, private readonly dialogRef: MatDialogRef<AddBotComponent>) {}
+  constructor(
+    private readonly store: Store<AppState>,
+    private readonly dialogRef: MatDialogRef<AddBotDialogComponent>,
+  ) {}
 
   onAddBot(bot: Bot): void {
     // todo

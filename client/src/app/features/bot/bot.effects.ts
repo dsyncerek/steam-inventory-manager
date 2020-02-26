@@ -9,8 +9,8 @@ import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import * as botActions from './bot.actions';
 import { BotActionTypes } from './bot.actions';
 import { BotService } from './bot.service';
-import { AddBotComponent } from './containers/add-bot.component';
-import { EditBotComponent } from './containers/edit-bot.component';
+import { AddBotDialogComponent } from './containers/add-bot-dialog.component';
+import { EditBotDialogComponent } from './containers/edit-bot-dialog.component';
 import { botSchema } from './models/bot';
 
 @Injectable()
@@ -26,13 +26,13 @@ export class BotEffects {
   @Effect({ dispatch: false })
   openAddBotDialog = this.actions$.pipe(
     ofType(BotActionTypes.OpenAddBotDialog),
-    tap(() => this.dialog.open(AddBotComponent)),
+    tap(() => this.dialog.open(AddBotDialogComponent)),
   );
 
   @Effect({ dispatch: false })
   openEditBotDialog = this.actions$.pipe(
     ofType<botActions.OpenEditBotDialog>(BotActionTypes.OpenEditBotDialog),
-    tap(({ payload }) => this.dialog.open(EditBotComponent, { data: { steamId: payload.steamId } })),
+    tap(({ payload }) => this.dialog.open(EditBotDialogComponent, { data: { steamId: payload.steamId } })),
   );
 
   @Effect()

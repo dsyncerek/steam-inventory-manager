@@ -11,10 +11,10 @@ import { BotLayoutComponent } from './components/bot-layout/bot-layout.component
 import { BotListComponent } from './components/bot-list/bot-list.component';
 import { BotSidebarComponent } from './components/bot-sidebar/bot-sidebar.component';
 import { EditBotFormComponent } from './components/edit-bot-form/edit-bot-form.component';
-import { AddBotComponent } from './containers/add-bot.component';
+import { AddBotDialogComponent } from './containers/add-bot-dialog.component';
 import { BotComponent } from './containers/bot.component';
 import { BotsComponent } from './containers/bots.component';
-import { EditBotComponent } from './containers/edit-bot.component';
+import { EditBotDialogComponent } from './containers/edit-bot-dialog.component';
 
 @NgModule({
   imports: [SharedModule, BotRoutingModule, EffectsModule.forFeature([BotEffects]), InventoryModule, LayoutModule],
@@ -22,8 +22,8 @@ import { EditBotComponent } from './containers/edit-bot.component';
     BotDetailsComponent,
     AddBotFormComponent,
     EditBotFormComponent,
-    AddBotComponent,
-    EditBotComponent,
+    AddBotDialogComponent,
+    EditBotDialogComponent,
     BotComponent,
     BotsComponent,
     BotListComponent,
