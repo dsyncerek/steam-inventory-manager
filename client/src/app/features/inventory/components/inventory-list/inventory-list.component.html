@@ -10,7 +10,7 @@
     <mat-tab *ngFor="let inventory of inventories">
       <ng-template mat-tab-label>
         <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
-          <img [width]="16" [height]="16" src="/assets/games/{{ inventory.appId }}.png" alt="" />
+          <img [width]="16" [height]="16" src="/assets/games/{{ inventory.appId }}.jpg" alt="" />
           <span>{{ inventory.appId + '/' + inventory.contextId }}</span>
         </div>
       </ng-template>

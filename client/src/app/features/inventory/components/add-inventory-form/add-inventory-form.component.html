@@ -3,12 +3,14 @@
   <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
     <mat-form-field fxFlex="grow">
       <mat-label>AppID</mat-label>
-      <input type="number" formControlName="appId" matInput />
+      <input type="number" formControlName="appId" matInput placeholder="730" />
+      <mat-hint>Find it <a target="_blank" rel="nofollow" [href]="appIdHintLink">here</a>.</mat-hint>
       <mat-error>{{ getControlErrorMessage('appId') }}</mat-error>
     </mat-form-field>
     <mat-form-field fxFlex="grow">
       <mat-label>ContextID</mat-label>
-      <input type="number" formControlName="contextId" matInput />
+      <input type="number" formControlName="contextId" matInput placeholder="2" />
+      <mat-hint>Usually 2.</mat-hint>
       <mat-error>{{ getControlErrorMessage('contextId') }}</mat-error>
     </mat-form-field>
   </div>

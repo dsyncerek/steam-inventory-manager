@@ -17,6 +17,8 @@ export class AddInventoryFormComponent {
     contextId: ['', Validators.required],
   });
 
+  appIdHintLink = 'https://steamdb.info/';
+
   constructor(private readonly formBuilder: FormBuilder, private readonly formErrors: FormErrorsService) {}
 
   submit(): void {
