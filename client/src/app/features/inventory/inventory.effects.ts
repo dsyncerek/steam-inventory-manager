@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { normalize } from 'normalizr';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { AddInventoryDialogComponent } from './containers/add-inventory-dialog.component';
 import * as inventoryActions from './inventory.actions';
 import { InventoryActionTypes } from './inventory.actions';
 import { InventoryService } from './inventory.service';
@@ -15,7 +17,14 @@ export class InventoryEffects {
     private readonly actions$: Actions,
     private readonly inventoryService: InventoryService,
     private readonly snackBar: MatSnackBar,
+    private readonly dialog: MatDialog,
   ) {}
+
+  @Effect({ dispatch: false })
+  openAddInventoryDialog = this.actions$.pipe(
+    ofType<inventoryActions.OpenAddInventoryDialog>(InventoryActionTypes.OpenAddInventoryDialog),
+    tap(({ payload }) => this.dialog.open(AddInventoryDialogComponent, { data: { steamId: payload.steamId } })),
+  );
 
   @Effect()
   getUserInventories$ = this.actions$.pipe(

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../core/core.state';
-import { CreateInventory, DeleteInventory, GetInventory, RefreshInventory } from '../inventory.actions';
+import { DeleteInventory, GetInventory, OpenAddInventoryDialog, RefreshInventory } from '../inventory.actions';
 import { Inventory } from '../models/inventory';
 
 @Component({
@@ -23,8 +23,7 @@ export class InventoryComponent {
   constructor(private readonly store: Store<AppState>) {}
 
   onInventoryAdd(): void {
-    // todo
-    this.store.dispatch(new CreateInventory({ steamId: this.steamId, appId: 730, contextId: 2 }));
+    this.store.dispatch(new OpenAddInventoryDialog({ steamId: this.steamId }));
   }
 
   onInventoryShow(id: string): void {

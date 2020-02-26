@@ -3,6 +3,8 @@ import { Entities } from '../../core/entities/models/entities';
 import { ErrorAction } from '../../shared/utils/error-action';
 
 export enum InventoryActionTypes {
+  OpenAddInventoryDialog = 'INVENTORY_OPEN_ADD_INVENTORY_DIALOG',
+
   GetUserInventories = 'INVENTORY_GET_USER_INVENTORIES',
   GetUserInventoriesSuccess = 'INVENTORY_GET_USER_INVENTORIES_SUCCESS',
   GetUserInventoriesError = 'INVENTORY_GET_USER_INVENTORIES_ERROR',
@@ -26,6 +28,12 @@ export enum InventoryActionTypes {
   DeleteInventory = 'INVENTORY_DELETE_INVENTORY',
   DeleteInventorySuccess = 'INVENTORY_DELETE_INVENTORY_SUCCESS',
   DeleteInventoryError = 'INVENTORY_DELETE_INVENTORY_ERROR',
+}
+
+export class OpenAddInventoryDialog implements Action {
+  readonly type = InventoryActionTypes.OpenAddInventoryDialog;
+
+  constructor(public payload: { steamId: string }) {}
 }
 
 export class GetUserInventories implements Action {
