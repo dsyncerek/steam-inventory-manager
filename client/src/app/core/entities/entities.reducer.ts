@@ -1,8 +1,10 @@
 import { Dictionary } from '@ngrx/entity';
+import { BotActionTypes } from '../../features/bot/bot.actions';
 import { Bot } from '../../features/bot/models/bot';
+import { InventoryActionTypes } from '../../features/inventory/inventory.actions';
 import { Inventory } from '../../features/inventory/models/inventory';
 import { Item } from '../../features/item/models/item';
-import { AnyAction } from '../../shared/utils/any-action';
+import { AppAction } from '../core.state';
 import { Entities } from './models/entities';
 
 export interface EntitiesState {
@@ -17,12 +19,21 @@ export const initialState: EntitiesState = {
   items: {},
 };
 
-export function entitiesReducer(state: EntitiesState = initialState, action: AnyAction): EntitiesState {
+export function entitiesReducer(state: EntitiesState = initialState, action: AppAction): EntitiesState {
   if ('payload' in action && 'entities' in action.payload) {
     return mergeEntities(state, action.payload.entities);
   }
 
-  return state;
+  switch (action.type) {
+    case BotActionTypes.DeleteBotSuccess:
+      return { ...state, bots: deleteEntity(state.bots, action.payload.steamId) };
+
+    case InventoryActionTypes.DeleteInventorySuccess:
+      return { ...state, inventories: deleteEntity(state.inventories, action.payload.id) };
+
+    default:
+      return state;
+  }
 }
 
 function mergeEntities(state: EntitiesState, newEntities: Entities): EntitiesState {
@@ -32,4 +43,9 @@ function mergeEntities(state: EntitiesState, newEntities: Entities): EntitiesSta
     inventories: { ...state.inventories, ...newEntities.inventories },
     items: { ...state.items, ...newEntities.items },
   };
+}
+
+function deleteEntity<T>(entities: Dictionary<T>, id: string): Dictionary<T> {
+  const { [id]: toRemove, ...rest } = entities;
+  return rest;
 }
