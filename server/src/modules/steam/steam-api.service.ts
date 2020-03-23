@@ -11,7 +11,7 @@ export class SteamApiService {
   public async getInventory(steamId: string, appId = 730, contextId = 2): Promise<SteamInventoryDto> {
     const url = `${this.baseUrl}/inventory/${steamId}/${appId}/${contextId}/?count=5000`;
 
-    return this.http
+    return await this.http
       .get<SteamInventoryDto>(url)
       .pipe(map(({ data }) => data))
       .toPromise();

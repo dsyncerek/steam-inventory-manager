@@ -22,6 +22,6 @@ export class OpenidStrategy extends PassportStrategy(Strategy) {
 
   async validate(identifier: string): Promise<User> {
     const steamId = OpenidStrategy.getSteamIdFromIdentifier(identifier);
-    return this.authService.validateUser(steamId);
+    return await this.authService.validateUser(steamId);
   }
 }

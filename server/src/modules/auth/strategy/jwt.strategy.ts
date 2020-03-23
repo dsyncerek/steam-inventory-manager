@@ -15,6 +15,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate({ steamId }: JwtPayload): Promise<User> {
-    return this.authService.validateUser(steamId);
+    return await this.authService.validateUser(steamId);
   }
 }

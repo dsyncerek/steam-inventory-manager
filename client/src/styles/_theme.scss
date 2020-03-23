@@ -1,6 +1,6 @@
 @import 'mixins';
 
-$font-stack: Roboto, 'Helvetica Neue', sans-serif;
+$font-stack: 'Roboto', 'Helvetica Neue', sans-serif;
 $typography-config: mat-typography-config($font-stack);
 
 $primary: mat-palette($mat-blue);

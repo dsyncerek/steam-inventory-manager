@@ -11,21 +11,21 @@ export class ItemService {
   private readonly itemRepository: Repository<Item>;
 
   async getAllItems(): Promise<Item[]> {
-    return this.itemRepository.find();
+    return await this.itemRepository.find();
   }
 
   async getItem(classId: string): Promise<Item> {
-    return this.itemRepository.findOneOrFail({ classId });
+    return await this.itemRepository.findOneOrFail({ classId });
   }
 
   async createItem(data: CreateItemDto): Promise<Item> {
     await this.itemRepository.insert(data);
-    return this.getItem(data.classId);
+    return await this.getItem(data.classId);
   }
 
   async updateItem(classId: string, data: UpdateItemDto): Promise<Item> {
     await this.itemRepository.update({ classId }, data);
-    return this.getItem(classId);
+    return await this.getItem(classId);
   }
 
   async deleteItem(classId: string): Promise<void> {

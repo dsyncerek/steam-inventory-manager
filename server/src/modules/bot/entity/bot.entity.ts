@@ -23,21 +23,13 @@ export class Bot {
   @Column({ default: false })
   isOnline: boolean;
 
-  @OneToMany(
-    () => Inventory,
-    inv => inv.bot,
-    { eager: true },
-  )
+  @OneToMany(() => Inventory, inv => inv.bot, { eager: true })
   inventories: Inventory[];
 
   @Column()
   ownerSteamId: string;
 
-  @ManyToOne(
-    () => User,
-    user => user.bots,
-    { nullable: false, onDelete: 'CASCADE' },
-  )
+  @ManyToOne(() => User, user => user.bots, { nullable: false, onDelete: 'CASCADE' })
   @ApiHideProperty()
   owner: User;
 

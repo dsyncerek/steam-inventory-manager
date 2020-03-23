@@ -19,7 +19,7 @@ const clientBuildPath = join(__dirname, '../..', 'client/dist');
 @Module({
   imports: [
     ServeStaticModule.forRoot({ rootPath: clientBuildPath }),
-    TypeOrmModule.forRootAsync({ useFactory: async () => getTypeOrmConfig() }),
+    TypeOrmModule.forRootAsync({ useFactory: async () => await getTypeOrmConfig() }),
     AccessControlModule.register(rolesConfig),
     AuthModule,
     ItemModule,

@@ -6,7 +6,7 @@
           <span *ngIf="bot.name" class="bot-details__name">{{ bot.name }}</span>
           <span *ngIf="bot.login" class="bot-details__login"> {{ bot.login }}</span>
         </div>
-        <span class="bot-details__steamid">{{ bot.steamId }}</span>
+        <a class="bot-details__steamid" [routerLink]="['/bot', bot.steamId]">{{ bot.steamId }}</a>
         <span>
           <mat-icon matTooltip="2FA" matTooltipPosition="below">{{ bot.is2FA ? 'check' : 'close' }}</mat-icon>
           <mat-icon matTooltip="Online" matTooltipPosition="below">{{ bot.isOnline ? 'check' : 'close' }}</mat-icon>

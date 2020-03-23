@@ -9,10 +9,7 @@ export class User {
   @PrimaryColumn()
   steamId: string;
 
-  @OneToMany(
-    () => Bot,
-    bot => bot.owner,
-  )
+  @OneToMany(() => Bot, bot => bot.owner)
   @ApiHideProperty()
   bots: Bot[];
 

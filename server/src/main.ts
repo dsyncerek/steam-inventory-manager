@@ -10,10 +10,7 @@ config();
 
   app.setGlobalPrefix('api');
 
-  const swaggerOptions = new DocumentBuilder()
-    .setTitle('Steam Inventory Manager API')
-    .addBearerAuth()
-    .build();
+  const swaggerOptions = new DocumentBuilder().setTitle('Steam Inventory Manager API').addBearerAuth().build();
 
   SwaggerModule.setup('openapi', app, SwaggerModule.createDocument(app, swaggerOptions));
 

@@ -20,19 +20,11 @@ export class Inventory {
   @Column()
   botSteamId: string;
 
-  @ManyToOne(
-    () => Bot,
-    bot => bot.inventories,
-    { nullable: false, onDelete: 'CASCADE' },
-  )
+  @ManyToOne(() => Bot, bot => bot.inventories, { nullable: false, onDelete: 'CASCADE' })
   @ApiHideProperty()
   bot: Bot;
 
-  @OneToMany(
-    () => InventoryItem,
-    item => item.inventory,
-    { cascade: true, eager: true },
-  )
+  @OneToMany(() => InventoryItem, item => item.inventory, { cascade: true, eager: true })
   @Expose({ groups: ['inventory'] })
   items: InventoryItem[];
 

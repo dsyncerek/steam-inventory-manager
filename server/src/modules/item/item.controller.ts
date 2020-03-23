@@ -16,25 +16,25 @@ export class ItemController {
   @Get()
   @PermissionsAllowed(PermissionsEnum.ItemGetAll)
   async getAllItems(): Promise<Item[]> {
-    return this.itemService.getAllItems();
+    return await this.itemService.getAllItems();
   }
 
   @Get(':classId')
   @PermissionsAllowed(PermissionsEnum.ItemGetAny)
   async getItem(@Param('classId') classId: string): Promise<Item> {
-    return this.itemService.getItem(classId);
+    return await this.itemService.getItem(classId);
   }
 
   @Post()
   @PermissionsAllowed(PermissionsEnum.ItemCreateAny)
   async createItem(@Body() body: CreateItemDto): Promise<Item> {
-    return this.itemService.createItem(body);
+    return await this.itemService.createItem(body);
   }
 
   @Patch(':classId')
   @PermissionsAllowed(PermissionsEnum.ItemUpdateAny)
   async updateItem(@Param('classId') classId: string, @Body() body: UpdateItemDto): Promise<Item> {
-    return this.itemService.updateItem(classId, body);
+    return await this.itemService.updateItem(classId, body);
   }
 
   @Delete(':classId')

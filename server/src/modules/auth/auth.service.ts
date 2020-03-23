@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private readonly userService: UserService, private readonly jwtService: JwtService) {}
 
   async validateUser(steamId: string): Promise<User> {
-    return this.userService.upsertUser({ steamId });
+    return await this.userService.upsertUser({ steamId });
   }
 
   generateToken({ steamId, roles }: User): string {

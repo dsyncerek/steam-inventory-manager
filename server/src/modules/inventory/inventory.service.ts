@@ -13,22 +13,22 @@ export class InventoryService {
   constructor(private readonly steamService: SteamService) {}
 
   async getUserInventories(steamId: string): Promise<Inventory[]> {
-    return this.inventoryRepository.find({ bot: { owner: { steamId } } });
+    return await this.inventoryRepository.find({ bot: { owner: { steamId } } });
   }
 
   async getBotInventories(steamId: string): Promise<Inventory[]> {
-    return this.inventoryRepository.find({ bot: { steamId } });
+    return await this.inventoryRepository.find({ bot: { steamId } });
   }
 
   async getInventory(id: string): Promise<Inventory> {
-    return this.inventoryRepository.findOneOrFail({ id });
+    return await this.inventoryRepository.findOneOrFail({ id });
   }
 
   async createInventory(data: CreateInventoryDto): Promise<Inventory> {
     const { appId, contextId, botSteamId } = data;
     const inventory = await this.steamService.getInventoryBySteamId(botSteamId, appId, contextId);
     await this.inventoryRepository.save(inventory);
-    return this.getInventory(inventory.id);
+    return await this.getInventory(inventory.id);
   }
 
   async refreshInventory(id: string): Promise<Inventory> {
@@ -38,7 +38,7 @@ export class InventoryService {
     const inventoryToSave = { ...inventoryFromSteam, id };
     await this.deleteInventory(id);
     await this.inventoryRepository.save(inventoryToSave);
-    return this.getInventory(id);
+    return await this.getInventory(id);
   }
 
   async deleteInventory(id: string): Promise<void> {

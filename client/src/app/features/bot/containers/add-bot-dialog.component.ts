@@ -9,9 +9,7 @@ import { Bot } from '../models/bot';
 
 @Component({
   selector: 'app-add-bot-dialog',
-  template: `
-    <app-add-bot-form [adding]="adding$ | async" (addBot)="onAddBot($event)"></app-add-bot-form>
-  `,
+  template: ` <app-add-bot-form [adding]="adding$ | async" (addBot)="onAddBot($event)"></app-add-bot-form> `,
 })
 export class AddBotDialogComponent {
   adding$ = this.store.select(selectLoading, { types: [BotActionTypes.CreateBot] });

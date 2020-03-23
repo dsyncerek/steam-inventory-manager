@@ -12,28 +12,28 @@ export class UserService {
   private readonly userRepository: Repository<User>;
 
   async getAllUsers(): Promise<User[]> {
-    return this.userRepository.find();
+    return await this.userRepository.find();
   }
 
   async getUser(steamId: string): Promise<User> {
-    return this.userRepository.findOneOrFail({ steamId });
+    return await this.userRepository.findOneOrFail({ steamId });
   }
 
   async createUser(data: CreateUserDto): Promise<User> {
     await this.userRepository.insert({ ...data, roles: [RolesEnum.User] });
-    return this.getUser(data.steamId);
+    return await this.getUser(data.steamId);
   }
 
   async updateUser(steamId: string, data: UpdateUserDto): Promise<User> {
     await this.userRepository.update({ steamId }, data);
-    return this.getUser(steamId);
+    return await this.getUser(steamId);
   }
 
   async upsertUser(data: CreateUserDto): Promise<User> {
     try {
       return await this.createUser(data);
     } catch {
-      return this.getUser(data.steamId);
+      return await this.getUser(data.steamId);
     }
   }
 

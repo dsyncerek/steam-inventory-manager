@@ -13,11 +13,7 @@ export class InventoryItem {
   @Column({ default: 1 })
   quantity: number;
 
-  @ManyToOne(
-    () => Inventory,
-    inv => inv.items,
-    { nullable: false, onDelete: 'CASCADE' },
-  )
+  @ManyToOne(() => Inventory, inv => inv.items, { nullable: false, onDelete: 'CASCADE' })
   @ApiHideProperty()
   inventory: Inventory;
 

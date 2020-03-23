@@ -11,25 +11,25 @@ export class BotService {
   private readonly botRepository: Repository<Bot>;
 
   async getAllBots(): Promise<Bot[]> {
-    return this.botRepository.find();
+    return await this.botRepository.find();
   }
 
   async getUserBots(steamId: string): Promise<Bot[]> {
-    return this.botRepository.find({ owner: { steamId } });
+    return await this.botRepository.find({ owner: { steamId } });
   }
 
   async getBot(steamId: string): Promise<Bot> {
-    return this.botRepository.findOneOrFail({ steamId });
+    return await this.botRepository.findOneOrFail({ steamId });
   }
 
   async createBot(data: CreateBotDto): Promise<Bot> {
     await this.botRepository.insert(data);
-    return this.getBot(data.steamId);
+    return await this.getBot(data.steamId);
   }
 
   async updateBot(steamId: string, data: UpdateBotDto): Promise<Bot> {
     await this.botRepository.update({ steamId }, data);
-    return this.getBot(steamId);
+    return await this.getBot(steamId);
   }
 
   async deleteBot(steamId: string): Promise<void> {
