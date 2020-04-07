@@ -10,7 +10,17 @@
     "emitDecoratorMetadata": true,
     "removeComments": true,
     "declaration": false,
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@env/*": ["src/environments/*"],
+      "@app/*": ["src/app/*"],
+      "@core/*": ["src/app/core/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@bot/*": ["src/app/features/bot/*"],
+      "@inventory/*": ["src/app/features/inventory/*"],
+      "@item/*": ["src/app/features/item/*"],
+      "@user/*": ["src/app/features/user/*"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

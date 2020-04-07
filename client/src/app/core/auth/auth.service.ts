@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '@env/environment';
+import { getUrlSearchParams } from '@shared/utils/url.utils';
+import { User } from '@user/models/user';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { User } from '../../features/user/models/user';
-import { getUrlSearchParams } from '../../shared/utils/url.utils';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

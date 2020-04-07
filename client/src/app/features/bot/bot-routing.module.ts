@@ -1,18 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { BotLayoutComponent } from './components/bot-layout/bot-layout.component';
-import { BotComponent } from './containers/bot.component';
-import { BotsComponent } from './containers/bots.component';
+import { BotViewComponent } from '@bot/components/bot-view/bot-view.component';
+import { BotsViewComponent } from '@bot/components/bots-view/bots-view.component';
 
 const routes: Route[] = [
-  {
-    path: '',
-    component: BotLayoutComponent,
-    children: [
-      { path: '', component: BotsComponent },
-      { path: ':steamId', component: BotComponent },
-    ],
-  },
+  { path: '', component: BotsViewComponent },
+  { path: ':steamId', component: BotViewComponent },
 ];
 
 @NgModule({

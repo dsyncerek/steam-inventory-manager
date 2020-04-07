@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Bot } from '@bot/models/bot';
+import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { Bot } from './models/bot';
 
 @Injectable({ providedIn: 'root' })
 export class BotService {

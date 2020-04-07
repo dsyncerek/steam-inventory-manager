@@ -1,7 +1,7 @@
 @import '~@angular/material/theming';
-@import '../app/features/bot/components/bot-details/bot-details.component';
+@import '../app/features/bot/components/bot-view/bot-details/bot-details.component';
 @import '../app/features/item/components/item-details/item-details.component';
-@import '../app/layout/sidebar/sidebar.component';
+@import '../app/shared/components/layout/sidebar/sidebar.component';
 
 @mixin material-core($typography-config) {
   $font-stack: map-get($typography-config, font-family);

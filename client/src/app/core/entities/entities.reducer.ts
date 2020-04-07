@@ -1,11 +1,13 @@
+import { deleteBotSuccess } from '@bot/bot.actions';
+import { Bot } from '@bot/models/bot';
+import { Entities } from '@core/entities/models/entities';
+import { deleteInventorySuccess } from '@inventory/inventory.actions';
+import { Inventory } from '@inventory/models/inventory';
+import { Item } from '@item/models/item';
 import { Dictionary } from '@ngrx/entity';
-import { BotActionTypes } from '../../features/bot/bot.actions';
-import { Bot } from '../../features/bot/models/bot';
-import { InventoryActionTypes } from '../../features/inventory/inventory.actions';
-import { Inventory } from '../../features/inventory/models/inventory';
-import { Item } from '../../features/item/models/item';
-import { AppAction } from '../core.state';
-import { Entities } from './models/entities';
+import { AnyAction } from '@shared/utils/any-action';
+
+export const entitiesFeatureKey = 'entities';
 
 export interface EntitiesState {
   bots: Dictionary<Bot>;
@@ -19,16 +21,16 @@ export const initialState: EntitiesState = {
   items: {},
 };
 
-export function entitiesReducer(state: EntitiesState = initialState, action: AppAction): EntitiesState {
-  if ('payload' in action && 'entities' in action.payload) {
-    return mergeEntities(state, action.payload.entities);
+export function entitiesReducer(state: EntitiesState = initialState, action: AnyAction): EntitiesState {
+  if ('entities' in action) {
+    return mergeEntities(state, action.entities);
   }
 
   switch (action.type) {
-    case BotActionTypes.DeleteBotSuccess:
+    case deleteBotSuccess.type:
       return { ...state, bots: deleteEntity(state.bots, action.payload.steamId) };
 
-    case InventoryActionTypes.DeleteInventorySuccess:
+    case deleteInventorySuccess.type:
       return { ...state, inventories: deleteEntity(state.inventories, action.payload.id) };
 
     default:

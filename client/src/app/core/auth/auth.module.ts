@@ -1,11 +1,11 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
-import { AuthRoutingModule } from './auth-routing.module';
-import { AuthInterceptor } from './auth.interceptor';
-import { CallbackComponent } from './containers/callback.component';
-import { LoginComponent } from './containers/login.component';
-import { LogoutComponent } from './containers/logout.component';
+import { AuthRoutingModule } from '@core/auth/auth-routing.module';
+import { AuthInterceptor } from '@core/auth/auth.interceptor';
+import { CallbackComponent } from '@core/auth/components/callback.component';
+import { LoginComponent } from '@core/auth/components/login.component';
+import { LogoutComponent } from '@core/auth/components/logout.component';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   imports: [SharedModule, AuthRoutingModule],

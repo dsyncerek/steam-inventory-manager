@@ -1,153 +1,59 @@
-import { Action } from '@ngrx/store';
-import { Entities } from '../../core/entities/models/entities';
-import { ErrorAction } from '../../shared/utils/error-action';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Entities } from '@core/entities/models/entities';
+import { createAction, props } from '@ngrx/store';
 
-export enum InventoryActionTypes {
-  OpenAddInventoryDialog = 'INVENTORY_OPEN_ADD_INVENTORY_DIALOG',
+export const openAddInventoryDialog = createAction('INVENTORY_OPEN_ADD_INVENTORY_DIALOG', props<{ steamId: string }>());
 
-  GetUserInventories = 'INVENTORY_GET_USER_INVENTORIES',
-  GetUserInventoriesSuccess = 'INVENTORY_GET_USER_INVENTORIES_SUCCESS',
-  GetUserInventoriesError = 'INVENTORY_GET_USER_INVENTORIES_ERROR',
+export const getUserInventories = createAction('INVENTORY_GET_USER_INVENTORIES', props<{ steamId: string }>());
+export const getUserInventoriesSuccess = createAction(
+  'INVENTORY_GET_USER_INVENTORIES_SUCCESS',
+  props<{ entities: Entities }>(),
+);
+export const getUserInventoriesError = createAction(
+  'INVENTORY_GET_USER_INVENTORIES_ERROR',
+  props<{ error: HttpErrorResponse }>(),
+);
 
-  GetBotInventories = 'INVENTORY_GET_BOT_INVENTORIES',
-  GetBotInventoriesSuccess = 'INVENTORY_GET_BOT_INVENTORIES_SUCCESS',
-  GetBotInventoriesError = 'INVENTORY_GET_BOT_INVENTORIES_ERROR',
+export const getBotInventories = createAction('INVENTORY_GET_BOT_INVENTORIES', props<{ steamId: string }>());
+export const getBotInventoriesSuccess = createAction(
+  'INVENTORY_GET_BOT_INVENTORIES_SUCCESS',
+  props<{ entities: Entities }>(),
+);
+export const getBotInventoriesError = createAction(
+  'INVENTORY_GET_BOT_INVENTORIES_ERROR',
+  props<{ error: HttpErrorResponse }>(),
+);
 
-  GetInventory = 'INVENTORY_GET_INVENTORY',
-  GetInventorySuccess = 'INVENTORY_GET_INVENTORY_SUCCESS',
-  GetInventoryError = 'INVENTORY_GET_INVENTORY_ERROR',
+export const getInventory = createAction('INVENTORY_GET_INVENTORY', props<{ id: string }>());
+export const getInventorySuccess = createAction('INVENTORY_GET_INVENTORY_SUCCESS', props<{ entities: Entities }>());
+export const getInventoryError = createAction('INVENTORY_GET_INVENTORY_ERROR', props<{ error: HttpErrorResponse }>());
 
-  CreateInventory = 'INVENTORY_CREATE_INVENTORY',
-  CreateInventorySuccess = 'INVENTORY_CREATE_INVENTORY_SUCCESS',
-  CreateInventoryError = 'INVENTORY_CREATE_INVENTORY_ERROR',
+export const createInventory = createAction(
+  'INVENTORY_CREATE_INVENTORY',
+  props<{ steamId: string; appId: number; contextId: number }>(),
+);
+export const createInventorySuccess = createAction(
+  'INVENTORY_CREATE_INVENTORY_SUCCESS',
+  props<{ entities: Entities }>(),
+);
+export const createInventoryError = createAction(
+  'INVENTORY_CREATE_INVENTORY_ERROR',
+  props<{ error: HttpErrorResponse }>(),
+);
 
-  RefreshInventory = 'INVENTORY_REFRESH_INVENTORY',
-  RefreshInventorySuccess = 'INVENTORY_REFRESH_INVENTORY_SUCCESS',
-  RefreshInventoryError = 'INVENTORY_REFRESH_INVENTORY_ERROR',
+export const refreshInventory = createAction('INVENTORY_REFRESH_INVENTORY', props<{ id: string }>());
+export const refreshInventorySuccess = createAction(
+  'INVENTORY_REFRESH_INVENTORY_SUCCESS',
+  props<{ entities: Entities }>(),
+);
+export const refreshInventoryError = createAction(
+  'INVENTORY_REFRESH_INVENTORY_ERROR',
+  props<{ error: HttpErrorResponse }>(),
+);
 
-  DeleteInventory = 'INVENTORY_DELETE_INVENTORY',
-  DeleteInventorySuccess = 'INVENTORY_DELETE_INVENTORY_SUCCESS',
-  DeleteInventoryError = 'INVENTORY_DELETE_INVENTORY_ERROR',
-}
-
-export class OpenAddInventoryDialog implements Action {
-  readonly type = InventoryActionTypes.OpenAddInventoryDialog;
-
-  constructor(public payload: { steamId: string }) {}
-}
-
-export class GetUserInventories implements Action {
-  readonly type = InventoryActionTypes.GetUserInventories;
-
-  constructor(public payload: { steamId: string }) {}
-}
-
-export class GetUserInventoriesSuccess implements Action {
-  readonly type = InventoryActionTypes.GetUserInventoriesSuccess;
-
-  constructor(public payload: { entities: Entities }) {}
-}
-
-export class GetUserInventoriesError extends ErrorAction {
-  readonly type = InventoryActionTypes.GetUserInventoriesError;
-}
-
-export class GetBotInventories implements Action {
-  readonly type = InventoryActionTypes.GetBotInventories;
-
-  constructor(public payload: { steamId: string }) {}
-}
-
-export class GetBotInventoriesSuccess implements Action {
-  readonly type = InventoryActionTypes.GetBotInventoriesSuccess;
-
-  constructor(public payload: { entities: Entities }) {}
-}
-
-export class GetBotInventoriesError extends ErrorAction {
-  readonly type = InventoryActionTypes.GetBotInventoriesError;
-}
-
-export class GetInventory implements Action {
-  readonly type = InventoryActionTypes.GetInventory;
-
-  constructor(public payload: { id: string }) {}
-}
-
-export class GetInventorySuccess implements Action {
-  readonly type = InventoryActionTypes.GetInventorySuccess;
-
-  constructor(public payload: { entities: Entities }) {}
-}
-
-export class GetInventoryError extends ErrorAction {
-  readonly type = InventoryActionTypes.GetInventoryError;
-}
-
-export class CreateInventory implements Action {
-  readonly type = InventoryActionTypes.CreateInventory;
-
-  constructor(public payload: { steamId: string; appId: number; contextId: number }) {}
-}
-
-export class CreateInventorySuccess implements Action {
-  readonly type = InventoryActionTypes.CreateInventorySuccess;
-
-  constructor(public payload: { entities: Entities }) {}
-}
-
-export class CreateInventoryError extends ErrorAction {
-  readonly type = InventoryActionTypes.CreateInventoryError;
-}
-
-export class RefreshInventory implements Action {
-  readonly type = InventoryActionTypes.RefreshInventory;
-
-  constructor(public payload: { id: string }) {}
-}
-
-export class RefreshInventorySuccess implements Action {
-  readonly type = InventoryActionTypes.RefreshInventorySuccess;
-
-  constructor(public payload: { entities: Entities }) {}
-}
-
-export class RefreshInventoryError extends ErrorAction {
-  readonly type = InventoryActionTypes.RefreshInventoryError;
-}
-
-export class DeleteInventory implements Action {
-  readonly type = InventoryActionTypes.DeleteInventory;
-
-  constructor(public payload: { id: string }) {}
-}
-
-export class DeleteInventorySuccess implements Action {
-  readonly type = InventoryActionTypes.DeleteInventorySuccess;
-
-  constructor(public payload: { id: string }) {}
-}
-
-export class DeleteInventoryError extends ErrorAction {
-  readonly type = InventoryActionTypes.DeleteInventoryError;
-}
-
-export type InventoryAction =
-  | GetUserInventories
-  | GetUserInventoriesSuccess
-  | GetUserInventoriesError
-  | GetBotInventories
-  | GetBotInventoriesSuccess
-  | GetBotInventoriesError
-  | GetInventory
-  | GetInventorySuccess
-  | GetInventoryError
-  | CreateInventory
-  | CreateInventorySuccess
-  | CreateInventoryError
-  | RefreshInventory
-  | RefreshInventorySuccess
-  | RefreshInventoryError
-  | DeleteInventory
-  | DeleteInventorySuccess
-  | DeleteInventoryError;
+export const deleteInventory = createAction('INVENTORY_DELETE_INVENTORY', props<{ id: string }>());
+export const deleteInventorySuccess = createAction('INVENTORY_DELETE_INVENTORY_SUCCESS', props<{ id: string }>());
+export const deleteInventoryError = createAction(
+  'INVENTORY_DELETE_INVENTORY_ERROR',
+  props<{ error: HttpErrorResponse }>(),
+);

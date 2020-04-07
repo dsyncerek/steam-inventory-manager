@@ -11,7 +11,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatButtonLgDirective } from './mat-button-lg.directive';
+import { MatButtonLgDirective } from '@shared/material/mat-button-lg.directive';
 
 @NgModule({
   providers: [
@@ -22,6 +22,7 @@ import { MatButtonLgDirective } from './mat-button-lg.directive';
   ],
   declarations: [MatButtonLgDirective],
   exports: [
+    MatButtonLgDirective,
     MatButtonModule,
     MatInputModule,
     MatSlideToggleModule,
@@ -31,7 +32,6 @@ import { MatButtonLgDirective } from './mat-button-lg.directive';
     MatRippleModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    MatButtonLgDirective,
     MatSnackBarModule,
     MatDialogModule,
   ],

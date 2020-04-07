@@ -1,6 +1,6 @@
+import { InventoryItem } from '@inventory/models/inventory-item';
+import { itemSchema } from '@item/models/item';
 import { schema } from 'normalizr';
-import { itemSchema } from '../../item/models/item';
-import { InventoryItem } from './inventory-item';
 
 export interface Inventory {
   id: string;

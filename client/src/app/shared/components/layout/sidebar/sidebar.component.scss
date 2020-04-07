@@ -1,0 +1,14 @@
+.sidebar {
+  padding: 20px;
+  position: sticky;
+  top: 20px;
+}
+
+@mixin sidebar-theme($theme) {
+  $text-color: map-get(map-get($theme, foreground), base);
+
+  .sidebar {
+    border: 1px solid rgba($text-color, 0.25);
+    background: rgba($text-color, 0.025);
+  }
+}

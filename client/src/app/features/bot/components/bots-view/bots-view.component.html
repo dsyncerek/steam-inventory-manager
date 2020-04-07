@@ -1,0 +1,7 @@
+<app-bot-list
+  [bots]="bots$ | async"
+  [loading]="loading$ | async"
+  (botAdd)="onBotAdd()"
+  (botEdit)="onBotEdit($event)"
+  (botDelete)="onBotDelete($event)"
+></app-bot-list>

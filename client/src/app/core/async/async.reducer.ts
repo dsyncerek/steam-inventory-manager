@@ -1,5 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { AnyAction } from '../../shared/utils/any-action';
+import { AnyAction } from '@shared/utils/any-action';
+
+export const asyncFeatureKey = 'async';
 
 export interface AsyncStateSlice {
   loading: boolean;
@@ -18,7 +20,7 @@ const asyncActionSuccessSuffix = '_SUCCESS';
 export function asyncReducer(state: AsyncState = initialState, action: AnyAction): AsyncState {
   if (action.type.endsWith(asyncActionErrorSuffix)) {
     const key = action.type.replace(asyncActionErrorSuffix, '');
-    return { ...state, [key]: { loading: false, error: action.payload.error } };
+    return { ...state, [key]: { loading: false, error: action.error } };
   }
 
   if (action.type.endsWith(asyncActionSuccessSuffix)) {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
+import { selectIsAuthenticated } from '@core/auth/auth.selectors';
+import { AppState } from '@core/core.state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from '../core.state';
-import { selectIsAuthenticated } from './auth.selectors';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

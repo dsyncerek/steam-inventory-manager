@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
-import { Item } from '../../models/item';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Item } from '@item/models/item';
 
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemDetailsComponent {
   @Input() quantity: number;

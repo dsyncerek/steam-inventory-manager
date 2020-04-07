@@ -1,4 +1,6 @@
-import { AuthAction, AuthActionTypes } from './auth.actions';
+import { AuthAction, AuthActionTypes } from '@core/auth/auth.actions';
+
+export const authFeatureKey = 'auth';
 
 export interface AuthState {
   isAuthenticated: boolean;

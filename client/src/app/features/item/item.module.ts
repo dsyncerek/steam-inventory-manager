@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
-import { ItemDetailsComponent } from './components/item-details/item-details.component';
+import { ItemDetailsComponent } from '@item/components/item-details/item-details.component';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   imports: [SharedModule],

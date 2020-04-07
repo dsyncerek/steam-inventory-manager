@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@core/auth/auth.service';
 import { Actions } from '@ngrx/effects';
-import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthEffects {

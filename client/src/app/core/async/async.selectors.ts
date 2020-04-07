@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { AsyncState, AsyncStateSlice, asyncFeatureKey } from '@core/async/async.reducer';
+import { AppState } from '@core/core.state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from '../core.state';
-import { AsyncState, AsyncStateSlice } from './async.reducer';
 
-export const selectAsyncState = createFeatureSelector<AppState, AsyncState>('async');
+export const selectAsyncState = createFeatureSelector<AppState, AsyncState>(asyncFeatureKey);
 
 export const selectLoading = createSelector<AppState, { types: string[] }, AsyncStateSlice[], boolean>(
   (state, { types }) => types.map(type => state.async[type]).filter(Boolean),

@@ -1,5 +1,5 @@
+import { Inventory, inventorySchema } from '@inventory/models/inventory';
 import { schema } from 'normalizr';
-import { Inventory, inventorySchema } from '../../inventory/models/inventory';
 
 export interface Bot {
   steamId: string;

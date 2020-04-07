@@ -3,12 +3,12 @@ import { Route, RouterModule } from '@angular/router';
 
 const routes: Route[] = [
   {
-    path: 'bot',
+    path: 'bots',
     loadChildren: async () => await import('./features/bot/bot.module').then(m => m.BotModule),
   },
   {
     path: '**',
-    redirectTo: 'bot',
+    redirectTo: 'bots',
   },
 ];
 
