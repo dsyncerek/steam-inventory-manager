@@ -1,5 +1,5 @@
 <ng-container *ngIf="inventories">
-  <mat-tab-group mat-align-tabs="center" [dynamicHeight]="true">
+  <mat-tab-group mat-align-tabs="center" [dynamicHeight]="true" (selectedTabChange)="onTabChange($event)">
     <mat-tab label="All">
       <app-inventory-details
         [inventory]="mergedInventory"
@@ -17,7 +17,6 @@
       <app-inventory-details
         [inventory]="inventory"
         (inventoryRefresh)="inventoryRefresh.emit($event)"
-        (inventoryShow)="inventoryShow.emit($event)"
         (inventoryDelete)="inventoryDelete.emit($event)"
       ></app-inventory-details>
     </mat-tab>

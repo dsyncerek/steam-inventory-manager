@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Inventory } from '@inventory/models/inventory';
 
 @Component({
@@ -19,5 +20,13 @@ export class InventoryListComponent {
     const worth = this.inventories.reduce((a, b) => a + b.worth, 0);
 
     return { id: null, botSteamId: null, appId: null, contextId: null, items: [], worth, count };
+  }
+
+  onTabChange({ index }: MatTabChangeEvent): void {
+    const selected = this.inventories[index - 1];
+
+    if (!selected.items) {
+      this.inventoryShow.emit(selected.id);
+    }
   }
 }

@@ -12,7 +12,6 @@
     </div>
     <nav fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center center">
       <ng-container *ngIf="inventory.id">
-        <button mat-stroked-button (click)="inventoryShow.emit(inventory.id)">Show</button>
         <button mat-stroked-button (click)="inventoryRefresh.emit(inventory.id)">Refresh</button>
         <button mat-stroked-button color="warn" (click)="inventoryDelete.emit(inventory.id)">Delete</button>
       </ng-container>
