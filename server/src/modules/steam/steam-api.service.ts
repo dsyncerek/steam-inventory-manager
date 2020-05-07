@@ -1,6 +1,6 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { map } from 'rxjs/operators';
-import { SteamInventoryDto } from './dto/steam-inventory.dto';
+import { SteamInventoryResponseDto } from './dto/steam-inventory-response.dto';
 
 @Injectable()
 export class SteamApiService {
@@ -8,11 +8,11 @@ export class SteamApiService {
 
   constructor(private readonly http: HttpService) {}
 
-  public async getInventory(steamId: string, appId = 730, contextId = 2): Promise<SteamInventoryDto> {
+  public async getInventory(steamId: string, appId = 730, contextId = 2): Promise<SteamInventoryResponseDto> {
     const url = `${this.baseUrl}/inventory/${steamId}/${appId}/${contextId}/?count=5000`;
 
     return await this.http
-      .get<SteamInventoryDto>(url)
+      .get<SteamInventoryResponseDto>(url)
       .pipe(map(({ data }) => data))
       .toPromise();
   }

@@ -1,5 +1,6 @@
 import { ClassSerializerInterceptor, Module, ValidationPipe } from '@nestjs/common';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { ScheduleModule } from '@nestjs/schedule';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
@@ -20,6 +21,7 @@ const clientBuildPath = join(__dirname, '../..', 'client/dist');
   imports: [
     ServeStaticModule.forRoot({ rootPath: clientBuildPath }),
     TypeOrmModule.forRootAsync({ useFactory: async () => await getTypeOrmConfig() }),
+    ScheduleModule.forRoot(),
     AccessControlModule.register(rolesConfig),
     AuthModule,
     ItemModule,

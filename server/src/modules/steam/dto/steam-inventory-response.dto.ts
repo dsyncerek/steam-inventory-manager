@@ -1,4 +1,4 @@
-export class SteamInventoryDto {
+export class SteamInventoryResponseDto {
   total_inventory_count: number;
   success: number;
   assets: SteamAssetDto[];

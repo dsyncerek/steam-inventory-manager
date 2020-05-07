@@ -18,7 +18,7 @@ export class Item {
   @Column()
   icon: string;
 
-  @Column({ default: 0 })
+  @Column({ default: 0, type: 'float' })
   price: number;
 
   constructor(partial: Partial<Item> = {}) {
