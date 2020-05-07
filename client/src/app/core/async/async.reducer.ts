@@ -1,15 +1,10 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { AsyncStatus } from '@core/async/models/async-status';
 import { AnyAction } from '@shared/utils/any-action';
 
 export const asyncFeatureKey = 'async';
 
-export interface AsyncStateSlice {
-  loading: boolean;
-  error?: HttpErrorResponse;
-}
-
 export interface AsyncState {
-  [key: string]: AsyncStateSlice;
+  [key: string]: AsyncStatus;
 }
 
 export const initialState: AsyncState = {};

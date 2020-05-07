@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { normalize } from '@core/entities/normalize';
 import { AddInventoryDialogComponent } from '@inventory/components/add-inventory-dialog/add-inventory-dialog.component';
 import * as inventoryActions from '@inventory/inventory.actions';
 import { InventoryService } from '@inventory/inventory.service';
 import { inventorySchema } from '@inventory/models/inventory';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { normalize } from '@shared/utils/normalize';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 

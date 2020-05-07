@@ -9,4 +9,6 @@ export interface Item {
   price: number;
 }
 
-export const itemSchema = new schema.Entity('items', {}, { idAttribute: 'classId' });
+const idAttribute: keyof Item = 'classId';
+export const itemSchema = new schema.Entity('items', {}, { idAttribute });
+export const selectItemId = (item: Item): string => item[idAttribute];

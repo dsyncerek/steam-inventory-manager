@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Entities } from '@core/entities/models/entities';
+import { Entities } from '@shared/models/entities';
 import { createAction, props } from '@ngrx/store';
 
 export const openAddInventoryDialog = createAction('INVENTORY_OPEN_ADD_INVENTORY_DIALOG', props<{ steamId: string }>());

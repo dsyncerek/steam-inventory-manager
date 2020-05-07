@@ -1,5 +1,5 @@
 <app-inventory-list
-  [inventories]="inventories"
+  [inventories]="inventories$ | async"
   (inventoryRefresh)="onInventoryRefresh($event)"
   (inventoryDelete)="onInventoryDelete($event)"
   (inventoryShow)="onInventoryShow($event)"

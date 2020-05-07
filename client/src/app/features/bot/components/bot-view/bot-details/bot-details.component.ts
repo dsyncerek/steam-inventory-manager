@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Bot } from '@bot/models/bot';
 
 @Component({
   selector: 'app-bot-details',
   templateUrl: './bot-details.component.html',
   styleUrls: ['./bot-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BotDetailsComponent {
   @Input() bot: Bot;

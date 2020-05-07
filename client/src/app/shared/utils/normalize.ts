@@ -1,4 +1,4 @@
-import { Entities } from '@core/entities/models/entities';
+import { Entities } from '@shared/models/entities';
 import { denormalize as denormalizr, normalize as normalizr, Schema } from 'normalizr';
 
 export function normalize<T>(input: T, schema: Schema): Entities {

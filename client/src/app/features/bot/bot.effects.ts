@@ -7,8 +7,8 @@ import { BotService } from '@bot/bot.service';
 import { AddBotDialogComponent } from '@bot/components/add-bot-dialog/add-bot-dialog.component';
 import { EditBotDialogComponent } from '@bot/components/edit-bot-dialog/edit-bot-dialog.component';
 import { botSchema } from '@bot/models/bot';
-import { normalize } from '@core/entities/normalize';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { normalize } from '@shared/utils/normalize';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 
