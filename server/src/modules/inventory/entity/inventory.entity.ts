@@ -41,6 +41,11 @@ export class Inventory {
     this.worth = this.items.map(invItem => invItem.quantity * invItem.item.price).reduce((a, b) => a + b, 0);
   }
 
+  @AfterLoad()
+  sortItemsByPrice(): void {
+    this.items.sort((a, b) => b.item.price - a.item.price);
+  }
+
   @BeforeInsert()
   setBot(): void {
     this.bot = new Bot({ steamId: this.botSteamId });
