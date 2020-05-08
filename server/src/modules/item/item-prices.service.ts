@@ -25,8 +25,11 @@ export class ItemPricesService {
     const items = await this.itemService.getAllItems();
 
     items.forEach(item => {
-      const price = prices.items_list[item.name].price['7_days'].average;
-      this.itemService.updateItem(item.classId, { price }).catch(console.log);
+      const price = prices.items_list[item.name]?.price?.['7_days']?.average;
+
+      if (price) {
+        this.itemService.updateItem(item.classId, { price }).catch(console.log);
+      }
     });
   }
 }
