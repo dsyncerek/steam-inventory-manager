@@ -1,1 +1,5 @@
-<app-add-bot-form [adding]="adding$ | async" (addBot)="onAddBot($event)"></app-add-bot-form>
+<app-add-bot-form
+  [adding]="adding$ | async"
+  [error]="(addingError$ | async)?.message"
+  (addBot)="onAddBot($event)"
+></app-add-bot-form>

@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { createBot } from '@bot/bot.actions';
 import { Bot } from '@bot/models/bot';
-import { selectLoading } from '@core/async/async.selectors';
+import { selectError, selectLoading } from '@core/async/async.selectors';
 import { AppState } from '@core/core.state';
 import { Store } from '@ngrx/store';
+import { combineLatest } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 
 @Component({
@@ -14,6 +15,7 @@ import { filter, first } from 'rxjs/operators';
 })
 export class AddBotDialogComponent {
   adding$ = this.store.select(selectLoading, { types: [createBot.type] });
+  addingError$ = this.store.select(selectError, { types: [createBot.type] });
 
   constructor(
     private readonly store: Store<AppState>,
@@ -24,10 +26,11 @@ export class AddBotDialogComponent {
     // todo
     this.store.dispatch(createBot({ bot: { ...bot, ownerSteamId: '76561198201500657' } }));
 
-    this.adding$
+    combineLatest([this.addingError$, this.adding$])
       .pipe(
-        filter(adding => !adding),
+        filter(([, adding]) => !adding),
         first(),
+        filter(([error]) => !error),
       )
       .subscribe(() => {
         this.dialogRef.close();

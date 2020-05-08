@@ -3,9 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { updateBot } from '@bot/bot.actions';
 import { selectBot } from '@bot/bot.selectors';
 import { Bot } from '@bot/models/bot';
-import { selectLoading } from '@core/async/async.selectors';
+import { selectError, selectLoading } from '@core/async/async.selectors';
 import { AppState } from '@core/core.state';
 import { Store } from '@ngrx/store';
+import { combineLatest } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 
 @Component({
@@ -16,6 +17,7 @@ import { filter, first } from 'rxjs/operators';
 export class EditBotDialogComponent {
   bot$ = this.store.select(selectBot, { steamId: this.data.steamId });
   editing$ = this.store.select(selectLoading, { types: [updateBot.type] });
+  editingError$ = this.store.select(selectError, { types: [updateBot.type] });
 
   constructor(
     private readonly store: Store<AppState>,
@@ -26,10 +28,11 @@ export class EditBotDialogComponent {
   onEditBot(bot: Bot): void {
     this.store.dispatch(updateBot({ bot }));
 
-    this.editing$
+    combineLatest([this.editingError$, this.editing$])
       .pipe(
-        filter(editing => !editing),
+        filter(([, loading]) => !loading),
         first(),
+        filter(([error]) => !error),
       )
       .subscribe(() => {
         this.dialogRef.close();

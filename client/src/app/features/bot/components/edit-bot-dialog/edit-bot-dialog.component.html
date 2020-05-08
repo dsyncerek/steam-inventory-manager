@@ -1,1 +1,6 @@
-<app-edit-bot-form [bot]="bot$ | async" [editing]="editing$ | async" (editBot)="onEditBot($event)"></app-edit-bot-form>
+<app-edit-bot-form
+  [bot]="bot$ | async"
+  [editing]="editing$ | async"
+  [error]="(editingError$ | async)?.message"
+  (editBot)="onEditBot($event)"
+></app-edit-bot-form>

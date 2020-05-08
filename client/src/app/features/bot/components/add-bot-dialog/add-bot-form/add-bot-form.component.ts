@@ -11,6 +11,7 @@ import { CustomValidators } from '@shared/utils/custom-validators';
 })
 export class AddBotFormComponent {
   @Input() adding: boolean = false;
+  @Input() error: string;
   @Output() addBot = new EventEmitter<Bot>();
 
   form: FormGroup = this.formBuilder.group({

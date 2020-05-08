@@ -20,6 +20,7 @@ import { CustomValidators } from '@shared/utils/custom-validators';
 export class EditBotFormComponent implements OnChanges {
   @Input() bot: Bot;
   @Input() editing: boolean = false;
+  @Input() error: string;
   @Output() editBot = new EventEmitter<Bot>();
 
   form: FormGroup = this.formBuilder.group({

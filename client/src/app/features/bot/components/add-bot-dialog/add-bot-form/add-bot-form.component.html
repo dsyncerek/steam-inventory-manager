@@ -1,5 +1,6 @@
 <form (ngSubmit)="submit()" [formGroup]="form" fxLayout="column" fxLayoutGap="20px">
   <h3 class="mat-headline">Add Bot</h3>
+  <mat-error *ngIf="error" class="mat-caption">Error: {{ error }}</mat-error>
   <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
     <mat-form-field fxFlex="grow">
       <mat-label>SteamID64</mat-label>
