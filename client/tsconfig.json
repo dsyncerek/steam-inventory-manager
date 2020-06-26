@@ -1,32 +1,6 @@
 {
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "target": "es6",
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "removeComments": true,
-    "declaration": false,
-    "incremental": true,
-    "paths": {
-      "@env/*": ["src/environments/*"],
-      "@app/*": ["src/app/*"],
-      "@core/*": ["src/app/core/*"],
-      "@shared/*": ["src/app/shared/*"],
-      "@bot/*": ["src/app/features/bot/*"],
-      "@inventory/*": ["src/app/features/inventory/*"],
-      "@item/*": ["src/app/features/item/*"],
-      "@user/*": ["src/app/features/user/*"]
-    }
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  },
-  "files": ["src/main.ts", "src/polyfills.ts"],
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" }
+  ]
 }

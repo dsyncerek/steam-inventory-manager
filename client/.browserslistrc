@@ -1,8 +1,13 @@
 [production]
->0.2%
-not dead
-not op_mini all
-not IE <=11
+last 2 Chrome major version
+last 2 Firefox major version
+last 2 Edge major version
+last 2 Safari major version
+last 2 iOS major versions
+Firefox ESR
 
 [development]
-last 1 chrome version
+last 1 Chrome major version
+last 1 Firefox major version
+last 1 Edge major version
+last 1 Safari major version
