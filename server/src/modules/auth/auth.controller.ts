@@ -1,4 +1,4 @@
-import { Controller, Get, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Query, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
@@ -13,9 +13,9 @@ export class AuthController {
 
   @Get('login')
   @UseGuards(AuthGuard('openid'))
-  login(@InjectUser() user: User, @Res() res: Response): void {
+  login(@InjectUser() user: User, @Query('returnUrl') returnUrl: string, @Res() res: Response): void {
     const token = this.authService.generateToken(user);
-    res.redirect(`${process.env.AUTH_RETURN_URL}/?token=${token}`);
+    res.redirect(`${returnUrl || process.env.AUTH_RETURN_URL}/?token=${token}`);
   }
 
   @Get('profile')
