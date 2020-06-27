@@ -6,7 +6,7 @@
           <span *ngIf="bot.name" class="bot-details__name">{{ bot.name }}</span>
           <span *ngIf="bot.login" class="bot-details__login"> {{ bot.login }}</span>
         </div>
-        <a class="bot-details__steamid" [routerLink]="['/bots', bot.steamId]">{{ bot.steamId }}</a>
+        <a class="bot-details__steamid" [routerLink]="[bot.steamId]">{{ bot.steamId }}</a>
         <span>
           <mat-icon [matTooltip]="'2FA ' + (bot.is2FA ? 'enabled' : 'disabled')" matTooltipPosition="below">
             {{ bot.is2FA ? 'check' : 'close' }}
@@ -19,8 +19,8 @@
       <nav fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center center">
         <a target="_blank" [href]="steamProfileUrl" mat-stroked-button>Steam</a>
         <a *ngIf="bot.tradeLink" target="_blank" [href]="bot.tradeLink" mat-stroked-button>Trade</a>
-        <button mat-stroked-button (click)="botEdit.emit(bot.steamId)">Edit</button>
-        <button mat-stroked-button color="warn" (click)="botDelete.emit(bot.steamId)">Delete</button>
+        <button mat-stroked-button (click)="editBot()">Edit</button>
+        <button mat-stroked-button color="warn" (click)="deleteBot()">Delete</button>
       </nav>
     </header>
     <app-inventories-view [steamId]="bot.steamId" [inventoryIds]="bot.inventories"></app-inventories-view>

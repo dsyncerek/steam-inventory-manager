@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { selectIsAuthenticated } from '@core/auth/auth.selectors';
+import { selectIsAuthenticated, selectLoggedUser } from '@core/auth/auth.selectors';
 import { AppState } from '@core/core.state';
 import { environment } from '@env/environment';
 import { Store } from '@ngrx/store';
@@ -17,15 +17,19 @@ export class AuthService {
   private readonly storage: Storage = localStorage;
 
   isAuthenticated$ = this.store.select(selectIsAuthenticated);
-  isAuthenticated = false;
+  isAuthenticated: boolean;
+
+  user$ = this.store.select(selectLoggedUser);
+  user: User;
 
   constructor(
     private readonly http: HttpClient,
     private readonly router: Router,
     private readonly store: Store<AppState>,
   ) {
-    this.isAuthenticated$.subscribe(isAuthenticated => {
-      this.isAuthenticated = isAuthenticated;
+    this.user$.subscribe(user => {
+      this.user = user;
+      this.isAuthenticated = !!user;
     });
   }
 

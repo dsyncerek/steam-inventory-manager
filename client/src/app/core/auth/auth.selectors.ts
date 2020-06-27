@@ -5,3 +5,5 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 export const selectAuthState = createFeatureSelector<AppState, AuthState>('auth');
 
 export const selectIsAuthenticated = createSelector(selectAuthState, state => state.isAuthenticated);
+
+export const selectLoggedUser = createSelector(selectAuthState, state => state.user);

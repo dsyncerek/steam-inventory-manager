@@ -1,5 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { openAddBotDialog } from '@bot/bot.actions';
 import { Bot } from '@bot/models/bot';
+import { AppState } from '@core/core.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-bot-list',
@@ -10,7 +13,10 @@ import { Bot } from '@bot/models/bot';
 export class BotListComponent {
   @Input() bots: Bot[];
   @Input() loading: boolean = false;
-  @Output() botAdd = new EventEmitter<string>();
-  @Output() botEdit = new EventEmitter<string>();
-  @Output() botDelete = new EventEmitter<string>();
+
+  constructor(private readonly store: Store<AppState>) {}
+
+  addBot(): void {
+    this.store.dispatch(openAddBotDialog());
+  }
 }
