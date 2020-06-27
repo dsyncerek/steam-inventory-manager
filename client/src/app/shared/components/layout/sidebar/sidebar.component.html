@@ -1,3 +1,4 @@
 <div class="sidebar">
-  <a href="/login">Login</a>
+  <a *ngIf="!authService.isAuthenticated" routerLink="/login">Login</a>
+  <a *ngIf="authService.isAuthenticated" routerLink="/logout">Logout</a>
 </div>

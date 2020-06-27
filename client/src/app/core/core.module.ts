@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { AuthEffects } from '@core/auth/auth.effects';
 import { AuthModule } from '@core/auth/auth.module';
 import { reducers } from '@core/core.state';
 import { EffectsModule } from '@ngrx/effects';
@@ -11,7 +10,7 @@ import { SharedModule } from '@shared/shared.module';
   imports: [
     SharedModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument(),
     AuthModule,
   ],

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AuthService } from '@core/auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  constructor(public readonly authService: AuthService) {}
+}

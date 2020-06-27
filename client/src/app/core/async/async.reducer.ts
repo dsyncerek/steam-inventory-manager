@@ -1,5 +1,5 @@
 import { AsyncStatus } from '@core/async/models/async-status';
-import { AnyAction } from '@shared/utils/any-action';
+import { AnyAction } from '@shared/models/any-action';
 
 export const asyncFeatureKey = 'async';
 
