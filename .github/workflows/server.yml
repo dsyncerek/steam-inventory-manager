@@ -14,21 +14,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v1
-      - name: Use Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Install dependencies
-        working-directory: server
-        run: npm install
-      - name: Lint
-        working-directory: server
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-server-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-server-npm-
+      - working-directory: server
+        run: npm ci
+      - working-directory: server
         run: npm run lint
-      - name: Test
-        working-directory: server
+      - working-directory: server
         run: npm run test
-      - name: Build
-        working-directory: server
+      - working-directory: server
         run: npm run build
