@@ -2,17 +2,19 @@
   "name": "steam-inventory-manager",
   "version": "1.0.0",
   "scripts": {
+    "start": "npm run start:prod",
     "start:dev": "concurrently -n server,client \"npm --prefix server run start:dev\" \"npm --prefix client run start\"",
     "start:prod": "npm --prefix server run start:prod",
     "build": "npm --prefix server run build && npm --prefix client run build",
     "test": "npm --prefix server run test && npm --prefix client run test",
     "format": "npm --prefix server run format && npm --prefix client run format",
     "lint": "npm --prefix server run lint && npm --prefix client run lint",
-    "postinstall": "npm --prefix server install && npm --prefix client install",
+    "postinstall": "npm --prefix server ci && npm --prefix client ci",
     "precommit": "npm --prefix server run precommit && npm --prefix client run precommit"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
     "husky": "^4.2.5"
-  }
+  },
+  "cacheDirectories": ["node_modules", "client/node_modules", "server/node_modules"]
 }
