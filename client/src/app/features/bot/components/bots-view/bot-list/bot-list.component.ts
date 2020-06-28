@@ -19,4 +19,8 @@ export class BotListComponent {
   addBot(): void {
     this.store.dispatch(openAddBotDialog());
   }
+
+  trackByFn(index: number, item: Bot): string {
+    return item.steamId;
+  }
 }

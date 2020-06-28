@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { selectLoading } from '@core/async/async.selectors';
 import { AppState } from '@core/core.state';
@@ -12,6 +12,7 @@ import { requestFulfilled } from '../../../../core/async/utils/request-fulfilled
   selector: 'app-add-inventory-dialog',
   templateUrl: './add-inventory-dialog.component.html',
   styleUrls: ['./add-inventory-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddInventoryDialogComponent {
   adding$ = this.store.select(selectLoading, { types: [createInventory.type] });

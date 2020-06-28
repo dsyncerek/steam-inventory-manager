@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { getBot, getUserBots } from '@bot/bot.actions';
 import { selectUserBots } from '@bot/bot.selectors';
@@ -13,10 +13,11 @@ import { Observable } from 'rxjs';
   selector: 'app-bots-view',
   templateUrl: './bots-view.component.html',
   styleUrls: ['./bots-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BotsViewComponent implements OnInit {
-  bots$: Observable<Bot[]>;
   loading$ = this.store.select(selectLoading, { types: [getUserBots.type, getBot.type] });
+  bots$: Observable<Bot[]>;
 
   constructor(
     private readonly store: Store<AppState>,

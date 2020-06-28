@@ -5,7 +5,8 @@
   "defaultProject": "steam-inventory-manager-client",
   "schematics": {
     "@schematics/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "changeDetection": "OnPush"
     }
   },
   "projects": {

@@ -1,6 +1,6 @@
 <ng-container *ngIf="!loading">
   <div fxLayout="column" fxLayoutGap="20px">
-    <app-bot-details *ngFor="let bot of bots" [bot]="bot"></app-bot-details>
+    <app-bot-details *ngFor="let bot of bots; trackBy: trackByFn" [bot]="bot"></app-bot-details>
 
     <div fxLayoutAlign="center center">
       <a mat-button (click)="addBot()">

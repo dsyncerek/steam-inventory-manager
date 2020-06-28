@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { updateBot } from '@bot/bot.actions';
 import { selectBot } from '@bot/bot.selectors';
@@ -12,6 +12,7 @@ import { requestFulfilled } from '../../../../core/async/utils/request-fulfilled
   selector: 'app-edit-bot-dialog',
   templateUrl: './edit-bot-dialog.component.html',
   styleUrls: ['./edit-bot-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditBotDialogComponent {
   bot$ = this.store.select(selectBot, { steamId: this.data.steamId });

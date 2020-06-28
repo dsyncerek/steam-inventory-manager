@@ -2,21 +2,25 @@
   <mat-tab-group
     mat-align-tabs="center"
     [dynamicHeight]="true"
-    [selectedIndex]="selectedIndex"
+    [(selectedIndex)]="selectedIndex"
     (animationDone)="onTabChange()"
   >
     <mat-tab label="All">
       <app-inventory-details [steamId]="steamId" [inventory]="mergedInventory"></app-inventory-details>
     </mat-tab>
 
-    <mat-tab *ngFor="let inventory of inventories">
+    <mat-tab *ngFor="let inventory of inventories; trackBy: trackByFn">
       <ng-template mat-tab-label>
         <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
           <img [width]="16" [height]="16" src="/assets/games/{{ inventory.appId }}.jpg" alt="" />
           <span>{{ inventory.appId + '/' + inventory.contextId }}</span>
         </div>
       </ng-template>
-      <app-inventory-details [steamId]="steamId" [inventory]="inventory"></app-inventory-details>
+      <app-inventory-details
+        [steamId]="steamId"
+        [inventory]="inventory"
+        [loading]="loading$ | async"
+      ></app-inventory-details>
     </mat-tab>
   </mat-tab-group>
 </ng-container>

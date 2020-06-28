@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { createBot } from '@bot/bot.actions';
 import { Bot } from '@bot/models/bot';
@@ -12,6 +12,7 @@ import { requestFulfilled } from '../../../../core/async/utils/request-fulfilled
   selector: 'app-add-bot-dialog',
   templateUrl: './add-bot-dialog.component.html',
   styleUrls: ['./add-bot-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddBotDialogComponent {
   adding$ = this.store.select(selectLoading, { types: [createBot.type] });

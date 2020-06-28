@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { getBot } from '@bot/bot.actions';
 import { selectBot } from '@bot/bot.selectors';
@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
   selector: 'app-bot-view',
   templateUrl: './bot-view.component.html',
   styleUrls: ['./bot-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BotViewComponent implements OnInit {
   bot$: Observable<Bot>;
