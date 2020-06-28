@@ -2,14 +2,11 @@
   <mat-tab-group
     mat-align-tabs="center"
     [dynamicHeight]="true"
-    [(selectedIndex)]="selectedIndex"
+    [selectedIndex]="selectedIndex"
     (animationDone)="onTabChange()"
   >
     <mat-tab label="All">
-      <app-inventory-details
-        [inventory]="mergedInventory"
-        (inventoryAdd)="inventoryAdd.emit($event)"
-      ></app-inventory-details>
+      <app-inventory-details [steamId]="steamId" [inventory]="mergedInventory"></app-inventory-details>
     </mat-tab>
 
     <mat-tab *ngFor="let inventory of inventories">
@@ -19,11 +16,7 @@
           <span>{{ inventory.appId + '/' + inventory.contextId }}</span>
         </div>
       </ng-template>
-      <app-inventory-details
-        [inventory]="inventory"
-        (inventoryRefresh)="inventoryRefresh.emit($event)"
-        (inventoryDelete)="inventoryDelete.emit($event)"
-      ></app-inventory-details>
+      <app-inventory-details [steamId]="steamId" [inventory]="inventory"></app-inventory-details>
     </mat-tab>
   </mat-tab-group>
 </ng-container>

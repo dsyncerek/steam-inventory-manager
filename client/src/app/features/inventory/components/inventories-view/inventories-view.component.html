@@ -1,7 +1,1 @@
-<app-inventory-list
-  [inventories]="inventories$ | async"
-  (inventoryRefresh)="onInventoryRefresh($event)"
-  (inventoryDelete)="onInventoryDelete($event)"
-  (inventoryShow)="onInventoryShow($event)"
-  (inventoryAdd)="onInventoryAdd()"
-></app-inventory-list>
+<app-inventory-list [steamId]="steamId" [inventories]="inventories$ | async"></app-inventory-list>

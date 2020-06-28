@@ -1,5 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Inventory } from '@inventory/models/inventory';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../../core/core.state';
+import { getInventory } from '../../../inventory.actions';
 
 @Component({
   selector: 'app-inventory-list',
@@ -8,13 +11,9 @@ import { Inventory } from '@inventory/models/inventory';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryListComponent {
+  @Input() steamId: string;
+  @Input() selectedIndex: number = 0;
   @Input() inventories: Inventory[] = [];
-  @Output() inventoryAdd = new EventEmitter<void>();
-  @Output() inventoryShow = new EventEmitter<string>();
-  @Output() inventoryRefresh = new EventEmitter<string>();
-  @Output() inventoryDelete = new EventEmitter<string>();
-
-  selectedIndex = 0;
 
   get mergedInventory(): Inventory {
     const count = this.inventories.reduce((a, b) => a + b.count, 0);
@@ -23,12 +22,14 @@ export class InventoryListComponent {
     return { id: null, botSteamId: null, appId: null, contextId: null, items: [], worth, count };
   }
 
+  constructor(private readonly store: Store<AppState>) {}
+
   onTabChange(): void {
     if (this.selectedIndex > 0) {
       const selected = this.inventories[this.selectedIndex - 1];
 
       if (!selected.items) {
-        this.inventoryShow.emit(selected.id);
+        this.store.dispatch(getInventory({ id: selected.id }));
       }
     }
   }

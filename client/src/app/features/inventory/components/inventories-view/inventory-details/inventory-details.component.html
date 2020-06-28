@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutGap="20px">
-  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+  <div *ngIf="inventory" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between center" fxLayoutGap="20px">
     <div fxLayout="column" fxLayoutAlign.lt-sm="center center">
       <div>
         <span class="mat-small">Count: </span>
@@ -12,16 +12,20 @@
     </div>
     <nav fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center center">
       <ng-container *ngIf="inventory.id">
-        <button mat-stroked-button (click)="inventoryRefresh.emit(inventory.id)">Refresh</button>
-        <button mat-stroked-button color="warn" (click)="inventoryDelete.emit(inventory.id)">Delete</button>
+        <button mat-stroked-button (click)="refreshInventory()">Refresh</button>
+        <button mat-stroked-button color="warn" (click)="deleteInventory()">Delete</button>
       </ng-container>
       <ng-container *ngIf="!inventory.id">
-        <button mat-stroked-button (click)="inventoryAdd.emit()">Add</button>
+        <button mat-stroked-button (click)="addInventory()">Add</button>
       </ng-container>
     </nav>
   </div>
 
-  <div *ngIf="inventory.items && inventory.items.length > 0" fxLayout="row wrap" fxLayoutAlign="center center">
+  <div *ngIf="loading" fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="inventory?.items?.length > 0" fxLayout="row wrap" fxLayoutAlign="center center">
     <app-item-details
       *ngFor="let inventoryItem of inventory.items"
       [item]="inventoryItem.item"

@@ -6,8 +6,7 @@ import { Bot } from '@bot/models/bot';
 import { selectError, selectLoading } from '@core/async/async.selectors';
 import { AppState } from '@core/core.state';
 import { Store } from '@ngrx/store';
-import { combineLatest } from 'rxjs';
-import { filter, first } from 'rxjs/operators';
+import { requestFulfilled } from '../../../../core/async/utils/request-fulfilled';
 
 @Component({
   selector: 'app-edit-bot-dialog',
@@ -28,14 +27,8 @@ export class EditBotDialogComponent {
   onEditBot(bot: Bot): void {
     this.store.dispatch(updateBot({ bot }));
 
-    combineLatest([this.editingError$, this.editing$])
-      .pipe(
-        filter(([, loading]) => !loading),
-        first(),
-        filter(([error]) => !error),
-      )
-      .subscribe(() => {
-        this.dialogRef.close();
-      });
+    requestFulfilled(this.editing$, this.editingError$).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 }

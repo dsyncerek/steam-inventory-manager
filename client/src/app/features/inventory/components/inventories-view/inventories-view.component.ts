@@ -1,13 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { AppState } from '@core/core.state';
-import { deleteInventory, getInventory, openAddInventoryDialog, refreshInventory } from '@inventory/inventory.actions';
 import { selectInventoriesByIds } from '@inventory/inventory.selectors';
 import { Inventory } from '@inventory/models/inventory';
 import { Store } from '@ngrx/store';
-import { ConfirmationDialogComponent } from '@shared/components/confirmation-dialog/confirmation-dialog.component';
 import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { selectLoading } from '../../../../core/async/async.selectors';
+import { getInventory, refreshInventory } from '../../inventory.actions';
 
 @Component({
   selector: 'app-inventories-view',
@@ -18,35 +16,11 @@ export class InventoriesViewComponent implements OnInit {
   @Input() steamId: string;
   @Input() inventoryIds: string[];
   inventories$: Observable<Inventory[]>;
+  inventoryLoading$ = this.store.select(selectLoading, { types: [getInventory.type, refreshInventory.type] });
 
-  constructor(private readonly store: Store<AppState>, private readonly dialog: MatDialog) {}
+  constructor(private readonly store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.inventories$ = this.store.select(selectInventoriesByIds, { ids: this.inventoryIds });
-  }
-
-  onInventoryAdd(): void {
-    this.store.dispatch(openAddInventoryDialog({ steamId: this.steamId }));
-  }
-
-  onInventoryShow(id: string): void {
-    this.store.dispatch(getInventory({ id }));
-  }
-
-  onInventoryRefresh(id: string): void {
-    this.store.dispatch(refreshInventory({ id }));
-  }
-
-  onInventoryDelete(id: string): void {
-    this.dialog
-      .open(ConfirmationDialogComponent, {
-        width: '500px',
-        data: { message: `Do you really want to delete inventory?` },
-      })
-      .afterClosed()
-      .pipe(filter(Boolean))
-      .subscribe(() => {
-        this.store.dispatch(deleteInventory({ id }));
-      });
   }
 }

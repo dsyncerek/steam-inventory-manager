@@ -5,7 +5,8 @@ import { AppState } from '@core/core.state';
 import { createInventory } from '@inventory/inventory.actions';
 import { Inventory } from '@inventory/models/inventory';
 import { Store } from '@ngrx/store';
-import { filter, first } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { requestFulfilled } from '../../../../core/async/utils/request-fulfilled';
 
 @Component({
   selector: 'app-add-inventory-dialog',
@@ -24,13 +25,8 @@ export class AddInventoryDialogComponent {
   onAddInventory({ appId, contextId }: Inventory): void {
     this.store.dispatch(createInventory({ steamId: this.data.steamId, appId, contextId }));
 
-    this.adding$
-      .pipe(
-        filter(adding => !adding),
-        first(),
-      )
-      .subscribe(() => {
-        this.dialogRef.close();
-      });
+    requestFulfilled(this.adding$, of(null)).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 }

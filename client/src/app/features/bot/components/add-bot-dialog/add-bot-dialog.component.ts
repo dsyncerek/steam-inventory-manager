@@ -6,8 +6,7 @@ import { selectError, selectLoading } from '@core/async/async.selectors';
 import { AuthService } from '@core/auth/auth.service';
 import { AppState } from '@core/core.state';
 import { Store } from '@ngrx/store';
-import { combineLatest } from 'rxjs';
-import { filter, first } from 'rxjs/operators';
+import { requestFulfilled } from '../../../../core/async/utils/request-fulfilled';
 
 @Component({
   selector: 'app-add-bot-dialog',
@@ -27,14 +26,8 @@ export class AddBotDialogComponent {
   onAddBot(bot: Bot): void {
     this.store.dispatch(createBot({ bot: { ...bot, ownerSteamId: this.authService.user.steamId } }));
 
-    combineLatest([this.addingError$, this.adding$])
-      .pipe(
-        filter(([, adding]) => !adding),
-        first(),
-        filter(([error]) => !error),
-      )
-      .subscribe(() => {
-        this.dialogRef.close();
-      });
+    requestFulfilled(this.adding$, this.addingError$).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 }
