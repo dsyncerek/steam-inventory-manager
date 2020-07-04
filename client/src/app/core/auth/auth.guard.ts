@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class AuthGuard implements CanActivate {
   constructor(private readonly store: Store<AppState>) {}
 
-  canActivate(): Observable<boolean> {
+  public canActivate(): Observable<boolean> {
     return this.store.select(selectIsAuthenticated);
   }
 }

@@ -10,27 +10,27 @@ export class BotService {
 
   constructor(private readonly http: HttpClient) {}
 
-  getAllBots(): Observable<Bot[]> {
+  public getAllBots(): Observable<Bot[]> {
     return this.http.get<Bot[]>(`${this.apiUrl}/bots`);
   }
 
-  getUserBots(steamId: string): Observable<Bot[]> {
+  public getUserBots(steamId: string): Observable<Bot[]> {
     return this.http.get<Bot[]>(`${this.apiUrl}/bots/of-user/${steamId}`);
   }
 
-  getBot(steamId: string): Observable<Bot> {
+  public getBot(steamId: string): Observable<Bot> {
     return this.http.get<Bot>(`${this.apiUrl}/bots/${steamId}`);
   }
 
-  createBot(bot: Bot): Observable<Bot> {
+  public createBot(bot: Bot): Observable<Bot> {
     return this.http.post<Bot>(`${this.apiUrl}/bots`, bot);
   }
 
-  updateBot(bot: Bot): Observable<Bot> {
+  public updateBot(bot: Bot): Observable<Bot> {
     return this.http.patch<Bot>(`${this.apiUrl}/bots/${bot.steamId}`, bot);
   }
 
-  deleteBot(steamId: string): Observable<void> {
+  public deleteBot(steamId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/bots/${steamId}`);
   }
 }

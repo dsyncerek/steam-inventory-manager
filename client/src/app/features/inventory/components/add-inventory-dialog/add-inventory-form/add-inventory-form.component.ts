@@ -9,19 +9,22 @@ import { Inventory } from '@inventory/models/inventory';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddInventoryFormComponent {
-  @Input() adding: boolean = false;
-  @Output() addInventory = new EventEmitter<Inventory>();
+  @Input()
+  public adding = false;
 
-  form: FormGroup = this.formBuilder.group({
+  @Output()
+  public addInventory = new EventEmitter<Inventory>();
+
+  public form: FormGroup = this.formBuilder.group({
     appId: ['', Validators.required],
     contextId: ['', Validators.required],
   });
 
-  appIdHintLink = 'https://steamdb.info/';
+  public appIdHintLink = 'https://steamdb.info/';
 
   constructor(private readonly formBuilder: FormBuilder) {}
 
-  submit(): void {
+  public submit(): void {
     if (this.form.valid) {
       const inventory: Inventory = { ...this.form.value };
       this.addInventory.emit(inventory);

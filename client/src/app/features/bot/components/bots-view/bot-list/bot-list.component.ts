@@ -11,16 +11,19 @@ import { Store } from '@ngrx/store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BotListComponent {
-  @Input() bots: Bot[];
-  @Input() loading: boolean = false;
+  @Input()
+  public bots: Bot[];
+
+  @Input()
+  public loading = false;
 
   constructor(private readonly store: Store<AppState>) {}
 
-  addBot(): void {
+  public addBot(): void {
     this.store.dispatch(openAddBotDialog());
   }
 
-  trackByFn(index: number, item: Bot): string {
+  public trackByFn(index: number, item: Bot): string {
     return item.steamId;
   }
 }

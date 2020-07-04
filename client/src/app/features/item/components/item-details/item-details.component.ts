@@ -8,14 +8,17 @@ import { Item } from '@item/models/item';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemDetailsComponent {
-  @Input() quantity: number;
-  @Input() item: Item;
+  @Input()
+  public quantity: number;
 
-  get steamMarketUrl(): string {
+  @Input()
+  public item: Item;
+
+  public get steamMarketUrl(): string {
     return `http://steamcommunity.com/market/listings/${this.item.appId}/${this.item.name}`;
   }
 
-  get steamIconUrl(): string {
+  public get steamIconUrl(): string {
     return `https://steamcommunity-a.akamaihd.net/economy/image/${this.item.icon}`;
   }
 }

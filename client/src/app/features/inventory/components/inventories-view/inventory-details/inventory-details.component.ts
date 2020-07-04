@@ -12,21 +12,26 @@ import { deleteInventory, openAddInventoryDialog, refreshInventory } from '../..
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryDetailsComponent {
-  @Input() steamId: string;
-  @Input() inventory: Inventory;
-  @Input() loading: boolean;
+  @Input()
+  public steamId: string;
+
+  @Input()
+  public inventory: Inventory;
+
+  @Input()
+  public loading: boolean;
 
   constructor(private readonly store: Store<AppState>, private readonly dialogService: DialogService) {}
 
-  refreshInventory(): void {
+  public refreshInventory(): void {
     this.store.dispatch(refreshInventory({ id: this.inventory.id }));
   }
 
-  addInventory(): void {
+  public addInventory(): void {
     this.store.dispatch(openAddInventoryDialog({ steamId: this.steamId }));
   }
 
-  deleteInventory(): void {
+  public deleteInventory(): void {
     const message = `Do you really want to delete inventory ${this.inventory.appId}/${this.inventory.contextId}?`;
 
     this.dialogService.openConfirmationDialog(message).subscribe(() => {

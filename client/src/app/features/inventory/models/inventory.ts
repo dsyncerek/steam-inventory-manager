@@ -9,7 +9,7 @@ export interface Inventory {
   contextId: number;
   count: number;
   worth: number;
-  items: InventoryItem[];
+  items?: InventoryItem[];
 }
 
 export const inventorySchema = new schema.Entity('inventories', { items: [{ item: itemSchema }] });

@@ -1,6 +1,7 @@
 {
   "parserOptions": { "project": "./tsconfig.base.json" },
   "extends": [
+    "plugin:@typescript-eslint/recommended",
     "eslint-config-standard-with-typescript",
     "eslint-config-prettier",
     "eslint-config-prettier/@typescript-eslint"
@@ -8,8 +9,9 @@
   "rules": {
     "@typescript-eslint/no-extraneous-class": "off",
     "@typescript-eslint/default-param-last": "warn",
-    "@typescript-eslint/strict-boolean-expressions": "warn",
+    "@typescript-eslint/strict-boolean-expressions": ["warn", { }], // use default options
     "@typescript-eslint/no-floating-promises": "warn",
-    "@typescript-eslint/no-invalid-void-type": "warn"
+    "@typescript-eslint/no-invalid-void-type": "warn",
+    "@typescript-eslint/explicit-member-accessibility": ["error", { "overrides": { "constructors": "no-public" } }]
   }
 }

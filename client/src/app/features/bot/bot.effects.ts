@@ -22,7 +22,7 @@ export class BotEffects {
     private readonly dialog: MatDialog,
   ) {}
 
-  openAddBotDialog$ = createEffect(
+  public openAddBotDialog$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(botActions.openAddBotDialog),
@@ -31,7 +31,7 @@ export class BotEffects {
     { dispatch: false },
   );
 
-  openEditBotDialog$ = createEffect(
+  public openEditBotDialog$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(botActions.openEditBotDialog),
@@ -40,7 +40,7 @@ export class BotEffects {
     { dispatch: false },
   );
 
-  getUserBots$ = createEffect(() =>
+  public getUserBots$ = createEffect(() =>
     this.actions$.pipe(
       ofType(botActions.getUserBots),
       mergeMap(({ steamId }) =>
@@ -52,7 +52,7 @@ export class BotEffects {
     ),
   );
 
-  getBot$ = createEffect(() =>
+  public getBot$ = createEffect(() =>
     this.actions$.pipe(
       ofType(botActions.getBot),
       mergeMap(({ steamId }) =>
@@ -64,7 +64,7 @@ export class BotEffects {
     ),
   );
 
-  createBot$ = createEffect(() =>
+  public createBot$ = createEffect(() =>
     this.actions$.pipe(
       ofType(botActions.createBot),
       mergeMap(({ bot }) =>
@@ -77,7 +77,7 @@ export class BotEffects {
     ),
   );
 
-  updateBot$ = createEffect(() =>
+  public updateBot$ = createEffect(() =>
     this.actions$.pipe(
       ofType(botActions.updateBot),
       mergeMap(({ bot }) =>
@@ -90,7 +90,7 @@ export class BotEffects {
     ),
   );
 
-  deleteBot$ = createEffect(() =>
+  public deleteBot$ = createEffect(() =>
     this.actions$.pipe(
       ofType(botActions.deleteBot),
       mergeMap(({ steamId }) =>
@@ -98,7 +98,7 @@ export class BotEffects {
           map(() => botActions.deleteBotSuccess({ steamId })),
           tap(() => {
             this.snackBar.open('Bot has been deleted!');
-            this.router.navigate(['/bots']);
+            this.router.navigate(['/bots']).catch(console.error);
           }),
           catchError(error => of(botActions.deleteBotError(error))),
         ),

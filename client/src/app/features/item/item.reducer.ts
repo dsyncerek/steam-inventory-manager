@@ -12,7 +12,6 @@ import { Action, createReducer, on } from '@ngrx/store';
 export const itemFeatureKey = 'item';
 export const itemAdapter = createEntityAdapter<Item>({ selectId: selectItemId });
 
-// eslint-disable-next-line
 export interface ItemState extends EntityState<Item> {}
 
 const initialState: ItemState = itemAdapter.getInitialState();

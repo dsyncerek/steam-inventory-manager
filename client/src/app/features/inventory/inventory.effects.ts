@@ -19,7 +19,7 @@ export class InventoryEffects {
     private readonly dialog: MatDialog,
   ) {}
 
-  openAddInventoryDialog$ = createEffect(
+  public openAddInventoryDialog$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(inventoryActions.openAddInventoryDialog),
@@ -28,7 +28,7 @@ export class InventoryEffects {
     { dispatch: false },
   );
 
-  getUserInventories$ = createEffect(() =>
+  public getUserInventories$ = createEffect(() =>
     this.actions$.pipe(
       ofType(inventoryActions.getUserInventories),
       mergeMap(({ steamId }) =>
@@ -42,7 +42,7 @@ export class InventoryEffects {
     ),
   );
 
-  getBotInventories$ = createEffect(() =>
+  public getBotInventories$ = createEffect(() =>
     this.actions$.pipe(
       ofType(inventoryActions.getBotInventories),
       mergeMap(({ steamId }) =>
@@ -56,7 +56,7 @@ export class InventoryEffects {
     ),
   );
 
-  getInventory$ = createEffect(() =>
+  public getInventory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(inventoryActions.getInventory),
       mergeMap(({ id }) =>
@@ -68,7 +68,7 @@ export class InventoryEffects {
     ),
   );
 
-  createInventory$ = createEffect(() =>
+  public createInventory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(inventoryActions.createInventory),
       mergeMap(({ steamId, appId, contextId }) =>
@@ -83,7 +83,7 @@ export class InventoryEffects {
     ),
   );
 
-  refreshInventory$ = createEffect(() =>
+  public refreshInventory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(inventoryActions.refreshInventory),
       mergeMap(({ id }) =>
@@ -98,7 +98,7 @@ export class InventoryEffects {
     ),
   );
 
-  deleteInventory$ = createEffect(() =>
+  public deleteInventory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(inventoryActions.deleteInventory),
       mergeMap(({ id }) =>

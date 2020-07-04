@@ -14,7 +14,6 @@ import { Action, createReducer, on } from '@ngrx/store';
 export const inventoryFeatureKey = 'inventory';
 export const inventoryAdapter = createEntityAdapter<Inventory>();
 
-// eslint-disable-next-line
 export interface InventoryState extends EntityState<Inventory> {}
 
 const initialState: InventoryState = inventoryAdapter.getInitialState();

@@ -16,8 +16,8 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BotsViewComponent implements OnInit {
-  loading$ = this.store.select(selectLoading, { types: [getUserBots.type, getBot.type] });
-  bots$: Observable<Bot[]>;
+  public loading$ = this.store.select(selectLoading, { types: [getUserBots.type, getBot.type] });
+  public bots$: Observable<Bot[]>;
 
   constructor(
     private readonly store: Store<AppState>,
@@ -25,7 +25,7 @@ export class BotsViewComponent implements OnInit {
     private readonly authService: AuthService,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const steamId = this.authService.user.steamId;
     this.store.dispatch(getUserBots({ steamId }));
     this.bots$ = this.store.select(selectUserBots, { steamId });

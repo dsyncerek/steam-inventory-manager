@@ -15,7 +15,7 @@ import { requestFulfilled } from '../../../../core/async/utils/request-fulfilled
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddInventoryDialogComponent {
-  adding$ = this.store.select(selectLoading, { types: [createInventory.type] });
+  public adding$ = this.store.select(selectLoading, { types: [createInventory.type] });
 
   constructor(
     private readonly store: Store<AppState>,
@@ -23,7 +23,7 @@ export class AddInventoryDialogComponent {
     @Inject(MAT_DIALOG_DATA) private readonly data: { steamId: string },
   ) {}
 
-  onAddInventory({ appId, contextId }: Inventory): void {
+  public onAddInventory({ appId, contextId }: Inventory): void {
     this.store.dispatch(createInventory({ steamId: this.data.steamId, appId, contextId }));
 
     requestFulfilled(this.adding$, of(null)).subscribe(() => {

@@ -15,9 +15,9 @@ import { requestFulfilled } from '../../../../core/async/utils/request-fulfilled
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditBotDialogComponent {
-  bot$ = this.store.select(selectBot, { steamId: this.data.steamId });
-  editing$ = this.store.select(selectLoading, { types: [updateBot.type] });
-  editingError$ = this.store.select(selectError, { types: [updateBot.type] });
+  public bot$ = this.store.select(selectBot, { steamId: this.data.steamId });
+  public editing$ = this.store.select(selectLoading, { types: [updateBot.type] });
+  public editingError$ = this.store.select(selectError, { types: [updateBot.type] });
 
   constructor(
     private readonly store: Store<AppState>,
@@ -25,7 +25,7 @@ export class EditBotDialogComponent {
     @Inject(MAT_DIALOG_DATA) private readonly data: { steamId: string },
   ) {}
 
-  onEditBot(bot: Bot): void {
+  public onEditBot(bot: Bot): void {
     this.store.dispatch(updateBot({ bot }));
 
     requestFulfilled(this.editing$, this.editingError$).subscribe(() => {

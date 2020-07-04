@@ -8,27 +8,28 @@ import { AbstractControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormErrorMessageComponent {
-  @Input() control: AbstractControl;
+  @Input()
+  public control: AbstractControl;
 
-  get message(): string {
+  public get message(): string {
     if (!this.control || !this.control.errors) {
       return null;
     }
 
     if (this.control.errors.required) {
-      return `Field is required.`;
+      return 'Field is required.';
     }
 
     if (this.control.errors.email) {
-      return `Field should be an email address.`;
+      return 'Field should be an email address.';
     }
 
     if (this.control.errors.steamId) {
-      return `Field should be a SteamID.`;
+      return 'Field should be a SteamID.';
     }
 
     if (this.control.errors.tradeLink) {
-      return `Field should be a Trade URL.`;
+      return 'Field should be a Trade URL.';
     }
 
     return null;

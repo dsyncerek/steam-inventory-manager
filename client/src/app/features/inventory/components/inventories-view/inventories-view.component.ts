@@ -12,13 +12,17 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoriesViewComponent implements OnInit {
-  @Input() steamId: string;
-  @Input() inventoryIds: string[];
-  inventories$: Observable<Inventory[]>;
+  @Input()
+  public steamId: string;
+
+  @Input()
+  public inventoryIds: string[];
+
+  public inventories$: Observable<Inventory[]>;
 
   constructor(private readonly store: Store<AppState>) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.inventories$ = this.store.select(selectInventoriesByIds, { ids: this.inventoryIds });
   }
 }

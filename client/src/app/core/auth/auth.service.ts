@@ -5,7 +5,6 @@ import { selectIsAuthenticated, selectLoggedUser } from '@core/auth/auth.selecto
 import { AppState } from '@core/core.state';
 import { environment } from '@env/environment';
 import { Store } from '@ngrx/store';
-import { getUrlSearchParams } from '@shared/utils/url.utils';
 import { User } from '@user/models/user';
 import { Observable } from 'rxjs';
 import { login, logout } from './auth.actions';
@@ -13,14 +12,15 @@ import { login, logout } from './auth.actions';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly apiUrl = environment.apiUrl;
+
   private readonly tokenStorageKey = 'token';
+
   private readonly storage: Storage = localStorage;
 
-  isAuthenticated$ = this.store.select(selectIsAuthenticated);
-  isAuthenticated: boolean;
-
-  user$ = this.store.select(selectLoggedUser);
-  user: User;
+  public isAuthenticated$ = this.store.select(selectIsAuthenticated);
+  public isAuthenticated: boolean;
+  public user$ = this.store.select(selectLoggedUser);
+  public user: User;
 
   constructor(
     private readonly http: HttpClient,
@@ -33,7 +33,7 @@ export class AuthService {
     });
   }
 
-  async init(): Promise<boolean> {
+  public async init(): Promise<boolean> {
     return await new Promise<boolean>(resolve => {
       if (this.getToken()) {
         this.getUser().subscribe(user => {
@@ -46,28 +46,29 @@ export class AuthService {
     });
   }
 
-  login(): void {
+  public login(): void {
     window.location.href = `${this.apiUrl}/auth/login`;
   }
 
-  async handleAuthentication(): Promise<void> {
-    const { token } = getUrlSearchParams(window.location.search);
+  public async handleAuthentication(): Promise<void> {
+    const queryParams = new URLSearchParams(window.location.search.substring(1));
+    const token = queryParams.get('token');
     this.storage.setItem(this.tokenStorageKey, token);
     await this.init();
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).catch(console.error);
   }
 
-  logout(): void {
+  public logout(): void {
     this.storage.removeItem(this.tokenStorageKey);
     this.store.dispatch(logout());
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).catch(console.error);
   }
 
-  getUser(): Observable<User> {
+  public getUser(): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/auth/profile`);
   }
 
-  getToken(): string | null {
+  public getToken(): string | null {
     return this.storage.getItem(this.tokenStorageKey);
   }
 }

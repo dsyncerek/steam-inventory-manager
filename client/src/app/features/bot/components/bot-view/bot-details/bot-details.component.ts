@@ -13,10 +13,13 @@ import { DialogService } from '../../../../../core/dialog.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BotDetailsComponent {
-  @Input() bot: Bot;
-  @Input() loading: boolean = false;
+  @Input()
+  public bot: Bot;
 
-  get steamProfileUrl(): string {
+  @Input()
+  public loading = false;
+
+  public get steamProfileUrl(): string {
     return `http://steamcommunity.com/profiles/${this.bot.steamId}`;
   }
 
@@ -26,11 +29,11 @@ export class BotDetailsComponent {
     private readonly dialogService: DialogService,
   ) {}
 
-  editBot(): void {
+  public editBot(): void {
     this.store.dispatch(openEditBotDialog({ steamId: this.bot.steamId }));
   }
 
-  deleteBot(): void {
+  public deleteBot(): void {
     const message = `Do you really want to delete bot ${this.bot.steamId}?`;
 
     this.dialogService.openConfirmationDialog(message).subscribe(() => {

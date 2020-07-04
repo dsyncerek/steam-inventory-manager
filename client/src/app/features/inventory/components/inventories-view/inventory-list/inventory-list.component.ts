@@ -12,13 +12,16 @@ import { getInventory, refreshInventory } from '../../../inventory.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryListComponent {
-  @Input() steamId: string;
-  @Input() inventories: Inventory[] = [];
+  @Input()
+  public steamId: string;
 
-  loading$ = this.store.select(selectLoading, { types: [getInventory.type, refreshInventory.type] });
-  selectedIndex: number = 0;
+  @Input()
+  public inventories: Inventory[] = [];
 
-  get mergedInventory(): Inventory {
+  public loading$ = this.store.select(selectLoading, { types: [getInventory.type, refreshInventory.type] });
+  public selectedIndex = 0;
+
+  public get mergedInventory(): Inventory {
     const count = this.inventories.reduce((a, b) => a + b.count, 0);
     const worth = this.inventories.reduce((a, b) => a + b.worth, 0);
 
@@ -27,7 +30,7 @@ export class InventoryListComponent {
 
   constructor(private readonly store: Store<AppState>) {}
 
-  onTabChange(): void {
+  public onTabChange(): void {
     if (this.selectedIndex > 0) {
       const selected = this.inventories[this.selectedIndex - 1];
 
@@ -37,7 +40,7 @@ export class InventoryListComponent {
     }
   }
 
-  trackByFn(index: number, item: Inventory): string {
+  public trackByFn(index: number, item: Inventory): string {
     return item.id;
   }
 }

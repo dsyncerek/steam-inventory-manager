@@ -10,11 +10,16 @@ import { CustomValidators } from '@shared/utils/custom-validators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddBotFormComponent {
-  @Input() adding: boolean = false;
-  @Input() error: string;
-  @Output() addBot = new EventEmitter<Bot>();
+  @Input()
+  public adding = false;
 
-  form: FormGroup = this.formBuilder.group({
+  @Input()
+  public error: string;
+
+  @Output()
+  private readonly addBot = new EventEmitter<Bot>();
+
+  public form: FormGroup = this.formBuilder.group({
     steamId: ['', [Validators.required, CustomValidators.steamId]],
     ownerSteamId: ['', CustomValidators.steamId],
     name: '',
@@ -24,12 +29,12 @@ export class AddBotFormComponent {
     isOnline: false,
   });
 
-  tradeLinkHintLink = 'https://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url';
-  steamIdHintLink = 'https://steamidfinder.com';
+  public tradeLinkHintLink = 'https://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url';
+  public steamIdHintLink = 'https://steamidfinder.com';
 
   constructor(private readonly formBuilder: FormBuilder) {}
 
-  submit(): void {
+  public submit(): void {
     if (this.form.valid) {
       const bot: Bot = { ...this.form.value };
       this.addBot.emit(bot);

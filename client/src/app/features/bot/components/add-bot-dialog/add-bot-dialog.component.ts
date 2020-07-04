@@ -15,8 +15,8 @@ import { requestFulfilled } from '../../../../core/async/utils/request-fulfilled
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddBotDialogComponent {
-  adding$ = this.store.select(selectLoading, { types: [createBot.type] });
-  addingError$ = this.store.select(selectError, { types: [createBot.type] });
+  public adding$ = this.store.select(selectLoading, { types: [createBot.type] });
+  public addingError$ = this.store.select(selectError, { types: [createBot.type] });
 
   constructor(
     private readonly authService: AuthService,
@@ -24,7 +24,7 @@ export class AddBotDialogComponent {
     private readonly dialogRef: MatDialogRef<AddBotDialogComponent>,
   ) {}
 
-  onAddBot(bot: Bot): void {
+  public onAddBot(bot: Bot): void {
     this.store.dispatch(createBot({ bot: { ...bot, ownerSteamId: this.authService.user.steamId } }));
 
     requestFulfilled(this.adding$, this.addingError$).subscribe(() => {

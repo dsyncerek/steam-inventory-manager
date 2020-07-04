@@ -18,12 +18,19 @@ import { CustomValidators } from '@shared/utils/custom-validators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditBotFormComponent implements OnChanges {
-  @Input() bot: Bot;
-  @Input() editing: boolean = false;
-  @Input() error: string;
-  @Output() editBot = new EventEmitter<Bot>();
+  @Input()
+  public bot: Bot;
 
-  form: FormGroup = this.formBuilder.group({
+  @Input()
+  public editing = false;
+
+  @Input()
+  public error: string;
+
+  @Output()
+  public editBot = new EventEmitter<Bot>();
+
+  public form: FormGroup = this.formBuilder.group({
     steamId: { value: '', disabled: true },
     name: '',
     login: '',
@@ -32,17 +39,17 @@ export class EditBotFormComponent implements OnChanges {
     isOnline: false,
   });
 
-  tradeLinkHintLink = 'https://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url';
+  public tradeLinkHintLink = 'https://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url';
 
   constructor(private readonly formBuilder: FormBuilder) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes.bot) {
       this.form.patchValue({ ...this.bot });
     }
   }
 
-  submit(): void {
+  public submit(): void {
     if (this.form.valid) {
       const bot: Bot = { ...this.bot, ...this.form.value };
       this.editBot.emit(bot);

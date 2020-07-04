@@ -12,7 +12,6 @@ import { Action, createReducer, on } from '@ngrx/store';
 export const botFeatureKey = 'bot';
 export const botAdapter = createEntityAdapter<Bot>({ selectId: selectBotId, sortComparer: botSortComparer });
 
-// eslint-disable-next-line
 export interface BotState extends EntityState<Bot> {}
 
 const initialState: BotState = botAdapter.getInitialState();

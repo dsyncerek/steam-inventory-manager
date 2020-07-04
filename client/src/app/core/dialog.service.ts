@@ -11,7 +11,7 @@ import { filter } from 'rxjs/operators';
 export class DialogService {
   constructor(private readonly dialog: MatDialog) {}
 
-  openConfirmationDialog(message: string): Observable<boolean> {
+  public openConfirmationDialog(message: string): Observable<boolean> {
     return this.dialog
       .open<ConfirmationDialogComponent, ConfirmationDialogPayload, boolean>(ConfirmationDialogComponent, {
         width: '500px',

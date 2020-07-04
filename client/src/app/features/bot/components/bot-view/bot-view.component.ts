@@ -15,13 +15,13 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BotViewComponent implements OnInit {
-  bot$: Observable<Bot>;
-  loading$ = this.store.select(selectLoading, { types: [getBot.type] });
-  steamId = this.activeRoute.snapshot.params.steamId;
+  public bot$: Observable<Bot>;
+  public loading$ = this.store.select(selectLoading, { types: [getBot.type] });
+  public steamId = this.activeRoute.snapshot.params.steamId;
 
   constructor(private readonly store: Store<AppState>, private readonly activeRoute: ActivatedRoute) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.bot$ = this.store.select(selectBot, { steamId: this.steamId });
     this.store.dispatch(getBot({ steamId: this.steamId }));
   }
