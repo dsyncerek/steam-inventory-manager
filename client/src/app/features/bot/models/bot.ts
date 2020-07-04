@@ -1,4 +1,4 @@
-import { inventorySchema } from '@inventory/models/inventory';
+import { Inventory, inventorySchema } from '@inventory/models/inventory';
 import { schema } from 'normalizr';
 
 export interface Bot {
@@ -9,7 +9,7 @@ export interface Bot {
   tradeLink: string;
   is2FA: boolean;
   isOnline: boolean;
-  inventories: string[];
+  inventories: Inventory[];
 }
 
 const idAttribute: keyof Bot = 'steamId';

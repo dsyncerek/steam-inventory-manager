@@ -23,7 +23,7 @@
         <button mat-stroked-button color="warn" (click)="deleteBot()">Delete</button>
       </nav>
     </header>
-    <app-inventories-view [steamId]="bot.steamId" [inventoryIds]="bot.inventories"></app-inventories-view>
+    <app-inventory-list [steamId]="bot.steamId" [inventories]="bot.inventories"></app-inventory-list>
   </article>
 </ng-container>
 

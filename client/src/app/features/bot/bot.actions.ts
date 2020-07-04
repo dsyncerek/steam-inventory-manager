@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Bot } from '@bot/models/bot';
-import { Entities } from '@shared/models/entities';
+import { Entities } from '../../shared/models/entities';
 import { createAction, props } from '@ngrx/store';
 
 export const openAddBotDialog = createAction('BOT_OPEN_ADD_BOT_DIALOG');

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Inventory } from '@inventory/models/inventory';
+import { Inventory } from '../../../models/inventory';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../core/core.state';
 import { DialogService } from '../../../../../core/dialog.service';
