@@ -1,0 +1,12 @@
+<div fxLayout fxLayoutAlign="space-between center">
+  <div fxLayout fxLayoutAlign="space-between center" fxLayoutGap="10px">
+    <img [width]="40" [height]="40" [src]="defaultSteamAvatar" alt="" />
+    <div class="mat-small">
+      <div>Your SteamID:</div>
+      <div>{{ authService.user?.steamId }}</div>
+    </div>
+  </div>
+  <a routerLink="/logout" mat-icon-button aria-label="Logout">
+    <mat-icon>login</mat-icon>
+  </a>
+</div>

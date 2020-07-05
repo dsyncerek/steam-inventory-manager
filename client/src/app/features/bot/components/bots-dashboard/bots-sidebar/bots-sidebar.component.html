@@ -1,8 +1,6 @@
 <div class="bots-sidebar" fxLayout="column" fxLayoutGap="20px">
   <div class="bots-sidebar__box">
-    {{ authService.user?.steamId }}
-    <a *ngIf="!authService.isAuthenticated" routerLink="/login">Login</a>
-    <a *ngIf="authService.isAuthenticated" routerLink="/logout">Logout</a>
+    <app-profile-summary></app-profile-summary>
   </div>
 
   <ng-container *ngIf="bots$ | async as bots">

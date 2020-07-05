@@ -1,7 +1,11 @@
 @import 'mixins';
 
 $font-stack: 'Roboto', 'Helvetica Neue', sans-serif;
-$typography-config: mat-typography-config($font-stack);
+
+$typography-config: mat-typography-config(
+  $font-family: $font-stack,
+  $caption: mat-typography-level(12px, 1.2, 400),
+);
 
 $primary: mat-palette($mat-blue);
 $accent: mat-palette($mat-blue-gray);

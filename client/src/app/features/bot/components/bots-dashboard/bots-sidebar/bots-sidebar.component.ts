@@ -15,7 +15,7 @@ import { Bot } from '../../../models/bot';
 export class BotsSidebarComponent implements OnInit {
   public bots$: Observable<Bot[]>;
 
-  constructor(public readonly authService: AuthService, private readonly store: Store<AppState>) {}
+  constructor(private readonly authService: AuthService, private readonly store: Store<AppState>) {}
 
   public ngOnInit(): void {
     this.bots$ = this.store.select(selectUserBots, { steamId: this.authService.user.steamId });

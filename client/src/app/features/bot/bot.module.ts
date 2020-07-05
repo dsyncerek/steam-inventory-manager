@@ -14,6 +14,7 @@ import { EditBotFormComponent } from '@bot/components/edit-bot-dialog/edit-bot-f
 import { InventoryModule } from '@inventory/inventory.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { UserModule } from '../user/user.module';
 import { BotsDashboardComponent } from './components/bots-dashboard/bots-dashboard.component';
 import { BotsSidebarComponent } from './components/bots-dashboard/bots-sidebar/bots-sidebar.component';
 import { BotsSummaryComponent } from './components/bots-summary/bots-summary.component';
@@ -24,6 +25,7 @@ import { BotsSummaryComponent } from './components/bots-summary/bots-summary.com
     StoreModule.forFeature(botFeatureKey, botReducer),
     EffectsModule.forFeature([BotEffects]),
     InventoryModule,
+    UserModule,
     BotRoutingModule,
   ],
   declarations: [
