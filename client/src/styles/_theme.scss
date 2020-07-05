@@ -29,6 +29,3 @@ $background-reversed-color: $text-color;
 
 $border-color: mat-color($foreground, divider);
 $box-shadow: 0 1px 5px 0 rgba($border-color, 0.05);
-
-@include material-core($typography-config);
-@include material-theme($theme);

@@ -1,5 +1,8 @@
 @import 'theme';
 
+@include material-core($typography-config);
+@include material-theme($theme);
+
 html {
   box-sizing: border-box;
 }
