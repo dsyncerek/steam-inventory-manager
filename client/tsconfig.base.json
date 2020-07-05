@@ -21,7 +21,11 @@
       "@inventory/*": ["src/app/features/inventory/*"],
       "@item/*": ["src/app/features/item/*"],
       "@user/*": ["src/app/features/user/*"]
-    }
+    },
+    "lib": [
+      "esnext",
+      "dom"
+    ]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

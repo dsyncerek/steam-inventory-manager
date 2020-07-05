@@ -1,7 +1,4 @@
 @import '~@angular/material/theming';
-@import '../app/features/bot/components/bot-view/bot-details/bot-details.component';
-@import '../app/features/item/components/item-details/item-details.component';
-@import '../app/shared/components/layout/sidebar/sidebar.component';
 
 @mixin material-core($typography-config) {
   $font-stack: map-get($typography-config, font-family);
@@ -11,8 +8,6 @@
   }
 
   @include mat-core($typography-config);
-  @include bot-details-typography($typography-config);
-  @include item-details-typography($typography-config);
 }
 
 @mixin material-theme($theme) {
@@ -26,7 +21,4 @@
   }
 
   @include angular-material-theme($theme);
-  @include bot-details-theme($theme);
-  @include item-details-theme($theme);
-  @include sidebar-theme($theme);
 }

@@ -8,6 +8,7 @@ import {
 import { Bot, botSortComparer, selectBotId } from '@bot/models/bot';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
+import { createInventorySuccess } from '../inventory/inventory.actions';
 
 export const botFeatureKey = 'bot';
 export const botAdapter = createEntityAdapter<Bot>({ selectId: selectBotId, sortComparer: botSortComparer });
@@ -21,8 +22,12 @@ const reducer = createReducer(
   on(getUserBotsSuccess, getBotSuccess, createBotSuccess, updateBotSuccess, (state, action) => {
     return botAdapter.upsertMany(Object.values(action.entities.bots ?? {}), state);
   }),
-  on(deleteBotSuccess, (state, action) => {
-    return botAdapter.removeOne(action.steamId, state);
+  on(deleteBotSuccess, (state, { steamId }) => {
+    return botAdapter.removeOne(steamId, state);
+  }),
+  on(createInventorySuccess, (state, action) => {
+    // todo
+    return state;
   }),
 );
 

@@ -18,6 +18,13 @@ a {
   color: inherit;
 }
 
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
 .mat-stroked-button,
 .mat-button,
 .mat-flat-button,

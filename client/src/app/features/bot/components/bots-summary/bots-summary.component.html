@@ -1,0 +1,30 @@
+<div *ngIf="summary?.botCount" class="bots-summary" fxLayout="column" fxLayoutGap="10px">
+  <div fxLayout fxLayoutAlign="center center" fxLayoutGap="5px">
+    <span class="mat-small">Bots:</span>
+    <span>{{ summary.botCount }}</span>
+  </div>
+  <div fxLayout fxLayoutAlign="center center" fxLayoutGap="5px">
+    <span class="mat-small">Inventories:</span>
+    <span>{{ summary.inventoriesCount }}</span>
+  </div>
+  <mat-divider></mat-divider>
+  <div fxLayout fxLayoutAlign="center center" fxLayoutGap="5px">
+    <span class="mat-small">Items count:</span>
+    <span>{{ summary.itemsCount }}</span>
+  </div>
+  <div fxLayout fxLayoutAlign="center center" fxLayoutGap="5px">
+    <span class="mat-small">Items worth:</span>
+    <span>{{ summary.itemsWorth | currency }}</span>
+  </div>
+  <mat-divider></mat-divider>
+  <div fxLayout fxLayoutAlign="center center" fxLayoutGap="5px">
+    <span class="mat-small">Games:</span>
+    <img
+      *ngFor="let game of summary.games"
+      [width]="20"
+      [height]="20"
+      src="/assets/games/{{ game }}.jpg"
+      [alt]="game"
+    />
+  </div>
+</div>

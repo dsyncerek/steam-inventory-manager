@@ -1,25 +1,16 @@
+@import 'theme';
+
 .bot-details {
   padding: 20px;
-}
+  border: 1px solid $border-color;
+  box-shadow: $box-shadow;
 
-@mixin bot-details-typography($typography-config) {
-  .bot-details {
-    &__name {
-      font-size: mat-font-size($typography-config, headline);
-    }
-
-    &__loign,
-    &__steamid {
-      font-size: mat-font-size($typography-config, caption);
-    }
+  &__name {
+    font-size: mat-font-size($typography-config, headline);
   }
-}
 
-@mixin bot-details-theme($theme) {
-  $text-color: map-get(map-get($theme, foreground), base);
-
-  .bot-details {
-    border: 1px solid rgba($text-color, 0.25);
-    background: rgba($text-color, 0.025);
+  &__loign,
+  &__steamid {
+    font-size: mat-font-size($typography-config, caption);
   }
 }

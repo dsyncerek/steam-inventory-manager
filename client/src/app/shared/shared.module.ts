@@ -6,8 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ConfirmationDialogComponent } from '@shared/components/confirmation-dialog/confirmation-dialog.component';
 import { FormErrorMessageComponent } from '@shared/components/form-error-message/form-error-message.component';
-import { LayoutComponent } from '@shared/components/layout/layout.component';
-import { SidebarComponent } from '@shared/components/layout/sidebar/sidebar.component';
 import { MaterialModule } from '@shared/material/material.module';
 
 @NgModule({
@@ -20,8 +18,7 @@ import { MaterialModule } from '@shared/material/material.module';
     RouterModule,
     MaterialModule,
     FormErrorMessageComponent,
-    LayoutComponent,
   ],
-  declarations: [FormErrorMessageComponent, ConfirmationDialogComponent, LayoutComponent, SidebarComponent],
+  declarations: [FormErrorMessageComponent, ConfirmationDialogComponent],
 })
 export class SharedModule {}

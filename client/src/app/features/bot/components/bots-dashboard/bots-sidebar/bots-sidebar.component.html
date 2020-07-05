@@ -1,0 +1,18 @@
+<div class="bots-sidebar" fxLayout="column" fxLayoutGap="20px">
+  <div class="bots-sidebar__box">
+    {{ authService.user?.steamId }}
+    <a *ngIf="!authService.isAuthenticated" routerLink="/login">Login</a>
+    <a *ngIf="authService.isAuthenticated" routerLink="/logout">Logout</a>
+  </div>
+
+  <ng-container *ngIf="bots$ | async as bots">
+    <app-bots-summary *ngIf="bots.length" class="bots-sidebar__box" [bots]="bots"></app-bots-summary>
+  </ng-container>
+
+  <div fxLayoutAlign="center center">
+    <a mat-button (click)="addBot()">
+      <mat-icon>add</mat-icon>
+      Add Bot
+    </a>
+  </div>
+</div>

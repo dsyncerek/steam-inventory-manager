@@ -14,14 +14,21 @@ $mat-dark-theme-background: map-merge(
   )
 );
 
-$light-theme: mat-light-theme($primary, $accent);
-$dark-theme: mat-dark-theme($primary, $accent);
+$theme: mat-dark-theme($primary, $accent);
+
+$primary-color: mat-color($primary);
+$accent-color: mat-color($accent);
+
+$background: map-get($theme, background);
+$foreground: map-get($theme, foreground);
+
+$text-color: map-get($foreground, base);
+$background-color: map-get($background, background);
+$text-reversed-color: $background-color;
+$background-reversed-color: $text-color;
+
+$border-color: mat-color($foreground, divider);
+$box-shadow: 0 1px 5px 0 rgba($border-color, 0.05);
 
 @include material-core($typography-config);
-@include material-theme($dark-theme);
-
-/*
-@media (prefers-color-scheme: light) {
-  @include material-theme($light-theme);
-}
-*/
+@include material-theme($theme);

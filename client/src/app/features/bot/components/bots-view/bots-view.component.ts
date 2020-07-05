@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { getBot, getUserBots } from '@bot/bot.actions';
 import { selectUserBots } from '@bot/bot.selectors';
 import { Bot } from '@bot/models/bot';
@@ -19,11 +18,7 @@ export class BotsViewComponent implements OnInit {
   public loading$ = this.store.select(selectLoading, { types: [getUserBots.type, getBot.type] });
   public bots$: Observable<Bot[]>;
 
-  constructor(
-    private readonly store: Store<AppState>,
-    private readonly dialog: MatDialog,
-    private readonly authService: AuthService,
-  ) {}
+  constructor(private readonly store: Store<AppState>, private readonly authService: AuthService) {}
 
   public ngOnInit(): void {
     const steamId = this.authService.user.steamId;
