@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { AuthGuard } from '@core/auth/auth.guard';
+import { LoginButtonComponent } from '@shared/components/login-button/login-button.component';
 
 const routes: Route[] = [
+  {
+    path: '',
+    component: LoginButtonComponent,
+  },
   {
     path: 'bots',
     canActivate: [AuthGuard],
@@ -10,7 +15,7 @@ const routes: Route[] = [
   },
   {
     path: '**',
-    redirectTo: 'bots',
+    redirectTo: '/bots',
   },
 ];
 
