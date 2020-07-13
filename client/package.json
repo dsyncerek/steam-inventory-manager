@@ -38,7 +38,7 @@
     "@angular/compiler-cli": "^10.0.0",
     "@ngrx/schematics": "^9.2.0",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
-    "@typescript-eslint/parser": "^3.5.0",
+    "@typescript-eslint/parser": "^3.6.0",
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard-with-typescript": "^18.0.2",
