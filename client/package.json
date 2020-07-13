@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1000.1",
-    "@angular/cli": "^10.0.1",
+    "@angular/cli": "^10.0.2",
     "@angular/compiler-cli": "^10.0.0",
     "@ngrx/schematics": "^9.2.0",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
