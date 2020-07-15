@@ -20,7 +20,8 @@
       "@bot/*": ["src/app/features/bot/*"],
       "@inventory/*": ["src/app/features/inventory/*"],
       "@item/*": ["src/app/features/item/*"],
-      "@user/*": ["src/app/features/user/*"]
+      "@user/*": ["src/app/features/user/*"],
+      "@features/*": ["src/app/features/*"]
     },
     "lib": [
       "esnext",

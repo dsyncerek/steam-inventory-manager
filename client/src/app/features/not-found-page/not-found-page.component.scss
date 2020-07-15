@@ -1,0 +1,10 @@
+.not-found-page {
+  margin: 60px 0;
+
+  h2 {
+    &,
+    & span {
+      margin: 0;
+    }
+  }
+}

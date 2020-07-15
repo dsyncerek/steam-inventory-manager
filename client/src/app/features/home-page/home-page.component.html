@@ -1,0 +1,12 @@
+<div class="home-page" fxLayout="column" fxLayoutAlign="center center">
+  <h1 class="mat-display-3">Steam Inventory Manager</h1>
+
+  <ng-container *ngIf="!authService.isAuthenticated">
+    <app-login-button></app-login-button>
+  </ng-container>
+
+  <div fxLayout fxLayoutGap="20px" *ngIf="authService.isAuthenticated">
+    <a mat-stroked-button color="primary" routerLink="/bots">Go to dashboard</a>
+    <a mat-stroked-button color="warn" routerLink="/logout">Logout</a>
+  </div>
+</div>

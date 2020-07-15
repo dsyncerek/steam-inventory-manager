@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
+import { HomePageComponent } from '@app/features/home-page/home-page.component';
+import { NotFoundPageComponent } from '@app/features/not-found-page/not-found-page.component';
 import { AuthGuard } from '@core/auth/auth.guard';
-import { LoginButtonComponent } from '@shared/components/login-button/login-button.component';
 
 const routes: Route[] = [
   {
     path: '',
-    component: LoginButtonComponent,
+    component: HomePageComponent,
   },
   {
     path: 'bots',
@@ -15,7 +16,7 @@ const routes: Route[] = [
   },
   {
     path: '**',
-    redirectTo: '/bots',
+    component: NotFoundPageComponent,
   },
 ];
 
