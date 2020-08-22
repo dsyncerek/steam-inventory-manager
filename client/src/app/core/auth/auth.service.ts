@@ -36,10 +36,13 @@ export class AuthService {
   public async init(): Promise<boolean> {
     return await new Promise<boolean>(resolve => {
       if (this.getToken()) {
-        this.getUser().subscribe(user => {
-          this.store.dispatch(login({ user }));
-          resolve(true);
-        });
+        this.getUser().subscribe(
+          user => {
+            this.store.dispatch(login({ user }));
+            resolve(true);
+          },
+          () => resolve(false),
+        );
       } else {
         resolve(false);
       }
