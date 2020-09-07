@@ -30,7 +30,7 @@
     "passport-openid": "^0.4.0",
     "pg": "^8.3.3",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.6.2",
+    "rxjs": "^6.6.3",
     "swagger-ui-express": "^4.1.4",
     "typeorm": "^0.2.25"
   },
