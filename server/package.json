@@ -37,7 +37,7 @@
   "devDependencies": {
     "@nestjs/cli": "^7.5.1",
     "@nestjs/schematics": "^7.1.1",
-    "@nestjs/testing": "^7.4.3",
+    "@nestjs/testing": "^7.4.4",
     "@types/jest": "^26.0.10",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
