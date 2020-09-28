@@ -42,7 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
     "eslint": "^7.9.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-prettier": "^6.12.0",
     "eslint-config-standard-with-typescript": "^18.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
