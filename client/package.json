@@ -37,7 +37,7 @@
     "@angular-devkit/build-angular": "^0.1001.4",
     "@angular/cli": "^10.1.4",
     "@angular/compiler-cli": "^10.0.3",
-    "@ngrx/schematics": "^10.0.0",
+    "@ngrx/schematics": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
     "eslint": "^7.10.0",
