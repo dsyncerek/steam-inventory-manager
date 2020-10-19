@@ -28,7 +28,7 @@
     "@ngrx/entity": "^10.0.0-rc.0",
     "@ngrx/store": "^10.0.0-rc.0",
     "@ngrx/store-devtools": "^10.0.0-rc.0",
-    "normalizr": "^3.6.0",
+    "normalizr": "^3.6.1",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.3",
     "zone.js": "~0.10.3"
