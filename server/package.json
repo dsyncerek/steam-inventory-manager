@@ -18,7 +18,7 @@
     "@nestjs/jwt": "^7.2.0",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.6.12",
-    "@nestjs/schedule": "^0.4.1",
+    "@nestjs/schedule": "^0.4.2",
     "@nestjs/serve-static": "^2.1.4",
     "@nestjs/swagger": "^4.7.13",
     "@nestjs/typeorm": "^7.1.5",
