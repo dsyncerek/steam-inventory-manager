@@ -3,8 +3,7 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "eslint-config-standard-with-typescript",
-    "eslint-config-prettier",
-    "eslint-config-prettier/@typescript-eslint"
+    "eslint-config-prettier"
   ],
   "rules": {
     "@typescript-eslint/no-extraneous-class": "off",
