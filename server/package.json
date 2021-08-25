@@ -38,7 +38,7 @@
     "@nestjs/cli": "^7.6.0",
     "@nestjs/schematics": "^7.3.1",
     "@nestjs/testing": "^7.6.18",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.5",
     "eslint": "^7.31.0",
