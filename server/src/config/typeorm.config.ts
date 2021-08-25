@@ -9,5 +9,7 @@ export async function getTypeOrmConfig(): Promise<ConnectionOptions> {
   return {
     ...(await getConnectionOptions()),
     entities: [Bot, Inventory, InventoryItem, User, Item],
+    extra: { ssl: true },
+    ssl: true,
   };
 }
