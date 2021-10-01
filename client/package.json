@@ -13,7 +13,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@angular/animations": "^12.0.1",
+    "@angular/animations": "^12.2.8",
     "@angular/cdk": "^12.0.1",
     "@angular/common": "^12.0.1",
     "@angular/compiler": "^12.0.1",
