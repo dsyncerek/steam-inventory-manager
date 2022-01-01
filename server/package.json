@@ -31,7 +31,7 @@
     "pg": "^8.7.1",
     "pg-pool": "^3.4.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.3.0",
+    "rxjs": "^7.5.1",
     "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.32"
   },
