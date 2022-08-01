@@ -32,7 +32,7 @@
     "pg-pool": "^3.4.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.3.0",
-    "swagger-ui-express": "^4.1.6",
+    "swagger-ui-express": "^4.5.0",
     "typeorm": "^0.2.32"
   },
   "devDependencies": {
