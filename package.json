@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
-    "husky": "^4.3.8"
+    "husky": "^8.0.3"
   },
   "cacheDirectories": [
     "node_modules",
