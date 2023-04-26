@@ -47,7 +47,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-standard": "^5.0.0",
-    "lint-staged": "^11.0.0",
+    "lint-staged": "^13.2.1",
     "prettier": "^2.3.0",
     "stylelint": "^15.6.0",
     "stylelint-config-prettier": "^9.0.5",
